@@ -1,5 +1,8 @@
 R2DEngine/R2DEngine/Debug
 R2DEngine/Debug
+*.ilk
+*.pdb
+*.suo
 
 # Compiled Object files
 *.slo
