@@ -2,5 +2,63 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="R2DEngine.cpp">
+      <Filter>Engine\EngineCore</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderEngine.cpp">
+      <Filter>Engine\EngineCore</Filter>
+    </ClCompile>
+    <ClCompile Include="RDebug.cpp">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameConfig.cpp">
+      <Filter>Engine\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="R2DGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{38f6d56e-976f-4eb4-962f-c11618ad9f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\EngineCore">
+      <UniqueIdentifier>{33802f07-3a21-4078-b3e3-d63b29bca3e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Wrappers">
+      <UniqueIdentifier>{60e4874d-a4b2-4026-aea5-cc7b17c1c8c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{bacfb655-dea1-4080-bacd-1c75e928b8e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\EngineComponents">
+      <UniqueIdentifier>{6e6d6f33-922a-4b97-bd6a-741802aa6609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Config">
+      <UniqueIdentifier>{c399758d-02c2-4adc-97db-7c1b2643a3e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="R2DEngine.h">
+      <Filter>Engine\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderEngine.h">
+      <Filter>Engine\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="RMemory.h">
+      <Filter>Engine\Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="R2DGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="RString.h">
+      <Filter>Engine\Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="RDebug.h">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameConfig.h">
+      <Filter>Engine\Config</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -67,7 +67,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameConfig.cpp" />
+    <ClCompile Include="R2DGame.cpp" />
+    <ClCompile Include="RDebug.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="R2DEngine.cpp" />
+    <ClCompile Include="RenderEngine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="RDebug.h" />
+    <ClInclude Include="R2DEngine.h" />
+    <ClInclude Include="R2DGame.h" />
+    <ClInclude Include="RenderEngine.h" />
+    <ClInclude Include="RMemory.h" />
+    <ClInclude Include="RString.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
