@@ -18,10 +18,11 @@ namespace rb
 
 		virtual void StartGame();
 		virtual void Update(float dt);
+		void OnKeyboard(int key, int action);
 
 	private:
 		UniquePtr<R2DEngine> engine;
-		
+
 	};
 }
 #endif // !R_R2D_GAME_H_

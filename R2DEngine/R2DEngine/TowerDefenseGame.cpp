@@ -14,5 +14,5 @@ void rb::TowerDefenseGame::StartGame()
 
 void rb::TowerDefenseGame::Update(float dt)
 {
-	Debug::Log("TD Update " + ToString(dt));
+	//Debug::Log("TD Update " + ToString(dt));
 }

@@ -18,6 +18,8 @@ namespace rb
 		R2DEngine& operator = (const R2DEngine&& rhs) = delete;
 		~R2DEngine() = default;
 
+		const Input& GetInput();
+
 		void Run(std::function<void(float)> updateMethod);
 		void Update(float dt);
 		void ShutDown();
