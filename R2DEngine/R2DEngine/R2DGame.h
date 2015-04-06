@@ -14,8 +14,9 @@ namespace rb
 		R2DGame(const R2DGame&& rhs) = delete;
 		R2DGame& operator = (const R2DGame& rhs) = delete;
 		R2DGame& operator = (const R2DGame&& rhs) = delete;
-		~R2DGame() = default;
+		virtual ~R2DGame() = default;
 
+		virtual void StartGame();
 		virtual void Update(float dt);
 
 	private:
