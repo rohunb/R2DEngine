@@ -73,6 +73,9 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="R2DEngine.cpp" />
     <ClCompile Include="RenderEngine.cpp" />
+    <ClCompile Include="RInput.cpp" />
+    <ClCompile Include="RString.cpp" />
+    <ClCompile Include="TowerDefenseGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameConfig.h" />
@@ -80,8 +83,11 @@
     <ClInclude Include="R2DEngine.h" />
     <ClInclude Include="R2DGame.h" />
     <ClInclude Include="RenderEngine.h" />
+    <ClInclude Include="RInput.h" />
     <ClInclude Include="RMemory.h" />
     <ClInclude Include="RString.h" />
+    <ClInclude Include="RCollections.h" />
+    <ClInclude Include="TowerDefenseGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

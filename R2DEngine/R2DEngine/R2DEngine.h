@@ -1,8 +1,10 @@
 #ifndef R_R2D_ENGINE_H_
 #define R_R2D_ENGINE_H_
 
+#include <functional>
 #include "RMemory.h"
 #include "RenderEngine.h"
+#include "RInput.h"
 
 namespace rb
 {
@@ -16,14 +18,14 @@ namespace rb
 		R2DEngine& operator = (const R2DEngine&& rhs) = delete;
 		~R2DEngine() = default;
 
-		void Run();
+		void Run(std::function<void(float)> updateMethod);
 		void Update(float dt);
 		void ShutDown();
 
 	private:
-		bool keepRunning;
 		UniquePtr<RenderEngine> renderEngine;
-
+		UniquePtr<Input> input;
+		
 	};
 }
 #endif // !R_R2D_ENGINE_H_

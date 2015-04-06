@@ -17,6 +17,15 @@
     <ClCompile Include="R2DGame.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="RInput.cpp">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="RString.cpp">
+      <Filter>Engine\Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerDefenseGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -59,6 +68,15 @@
     </ClInclude>
     <ClInclude Include="GameConfig.h">
       <Filter>Engine\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="RInput.h">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RCollections.h">
+      <Filter>Engine\Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerDefenseGame.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

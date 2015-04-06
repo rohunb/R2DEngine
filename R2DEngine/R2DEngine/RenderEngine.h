@@ -16,7 +16,7 @@ namespace rb
 		RenderEngine(const RenderEngine&& rhs) = delete;
 		RenderEngine& operator = (const RenderEngine& rhs) = delete;
 		RenderEngine& operator = (const RenderEngine&& rhs) = delete;
-		~RenderEngine() =default;
+		~RenderEngine() = default;
 
 		GLFWwindow* Window() const;
 

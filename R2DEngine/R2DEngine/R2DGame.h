@@ -15,8 +15,12 @@ namespace rb
 		R2DGame& operator = (const R2DGame& rhs) = delete;
 		R2DGame& operator = (const R2DGame&& rhs) = delete;
 		~R2DGame() = default;
+
+		virtual void Update(float dt);
+
 	private:
 		UniquePtr<R2DEngine> engine;
+		
 	};
 }
 #endif // !R_R2D_GAME_H_
