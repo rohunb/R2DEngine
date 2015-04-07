@@ -7,7 +7,7 @@ namespace rb
 {
 	class Transform : public R2DComponent
 	{
-
+		
 	};
 }
 #endif // R_TRANSFORM_H_

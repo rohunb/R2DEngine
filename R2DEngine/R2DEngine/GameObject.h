@@ -17,13 +17,14 @@ namespace rb
 
 		GameObject();
 		GameObject(const GameObject& rhs);
-		GameObject(const GameObject&& rhs);
+		GameObject(GameObject&& rhs);
 		GameObject& operator = (const GameObject& rhs);
-		GameObject& operator = (const GameObject&& rhs);
+		GameObject& operator = (GameObject&& rhs);
 		~GameObject();
 
 		template <class T>
-		T GetComponent<T>();
+		T GetComponent();
+
 		void Destroy();
 
 	private:

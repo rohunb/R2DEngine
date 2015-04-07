@@ -1,7 +1,7 @@
 #ifndef R_SHADER_H_
 #define R_SHADER_H_
 
-#include "GL_Includes.h";
+#include "GL_Includes.h"
 #include "RString.h"
 
 namespace rb
