@@ -1,8 +1,7 @@
 #ifndef R_RENDER_ENGINE_H_
 #define R_RENDER_ENGINE_H_
 
-#define GLEW_STATIC
-#include <glew.h>
+#include "GL_Includes.h"
 #include <glfw3.h>
 #include "RString.h"
 

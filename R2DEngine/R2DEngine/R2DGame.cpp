@@ -1,6 +1,7 @@
 #include "R2DGame.h"
 #include <functional>
 #include "RDebug.h"
+#include "FileManager.h"
 
 using namespace rb;
 using namespace std;
@@ -8,7 +9,6 @@ using namespace std::placeholders;
 
 rb::R2DGame::R2DGame()
 {
-	Debug::Log("R2D Game ctor");
 	engine = MakeUnique<R2DEngine>();
 }
 

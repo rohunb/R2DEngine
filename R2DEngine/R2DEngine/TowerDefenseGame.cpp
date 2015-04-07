@@ -3,7 +3,6 @@
 
 rb::TowerDefenseGame::TowerDefenseGame()
 {
-	Debug::Log("TD ctor");
 
 }
 

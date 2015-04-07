@@ -67,7 +67,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssetPaths.cpp" />
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameConfig.cpp" />
+    <ClCompile Include="R2DComponent.cpp" />
     <ClCompile Include="R2DGame.cpp" />
     <ClCompile Include="RDebug.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -75,10 +78,19 @@
     <ClCompile Include="RenderEngine.cpp" />
     <ClCompile Include="RInput.cpp" />
     <ClCompile Include="RString.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TowerDefenseGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetPaths.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="GL_Includes.h" />
+    <ClInclude Include="R2DComponent.h" />
     <ClInclude Include="RDebug.h" />
     <ClInclude Include="R2DEngine.h" />
     <ClInclude Include="R2DGame.h" />
@@ -87,6 +99,11 @@
     <ClInclude Include="RMemory.h" />
     <ClInclude Include="RString.h" />
     <ClInclude Include="RCollections.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TowerDefenseGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

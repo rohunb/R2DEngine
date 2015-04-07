@@ -21,10 +21,34 @@
       <Filter>Engine\EngineComponents</Filter>
     </ClCompile>
     <ClCompile Include="RString.cpp">
-      <Filter>Engine\Wrappers</Filter>
+      <Filter>Engine\Includes</Filter>
     </ClCompile>
     <ClCompile Include="TowerDefenseGame.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="R2DComponent.cpp">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Engine\RenderingComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetPaths.cpp">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\RenderingComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -33,9 +57,6 @@
     </Filter>
     <Filter Include="Engine\EngineCore">
       <UniqueIdentifier>{33802f07-3a21-4078-b3e3-d63b29bca3e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Wrappers">
-      <UniqueIdentifier>{60e4874d-a4b2-4026-aea5-cc7b17c1c8c8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{bacfb655-dea1-4080-bacd-1c75e928b8e1}</UniqueIdentifier>
@@ -46,6 +67,18 @@
     <Filter Include="Engine\Config">
       <UniqueIdentifier>{c399758d-02c2-4adc-97db-7c1b2643a3e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GameObjectAndComponents">
+      <UniqueIdentifier>{64115d0c-f7dd-41ab-b28f-a38126acbabc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\RenderingComponents">
+      <UniqueIdentifier>{9dc13228-7938-4f6c-b64c-0c983bfaa24d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ResourceManagers">
+      <UniqueIdentifier>{3ff1201e-ce2d-4e4e-bea7-7bdccf58f5d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Includes">
+      <UniqueIdentifier>{60e4874d-a4b2-4026-aea5-cc7b17c1c8c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="R2DEngine.h">
@@ -55,13 +88,13 @@
       <Filter>Engine\EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="RMemory.h">
-      <Filter>Engine\Wrappers</Filter>
+      <Filter>Engine\Includes</Filter>
     </ClInclude>
     <ClInclude Include="R2DGame.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="RString.h">
-      <Filter>Engine\Wrappers</Filter>
+      <Filter>Engine\Includes</Filter>
     </ClInclude>
     <ClInclude Include="RDebug.h">
       <Filter>Engine\EngineComponents</Filter>
@@ -73,10 +106,37 @@
       <Filter>Engine\EngineComponents</Filter>
     </ClInclude>
     <ClInclude Include="RCollections.h">
-      <Filter>Engine\Wrappers</Filter>
+      <Filter>Engine\Includes</Filter>
     </ClInclude>
     <ClInclude Include="TowerDefenseGame.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="R2DComponent.h">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Engine\RenderingComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\RenderingComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetPaths.h">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Engine\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_Includes.h">
+      <Filter>Engine\Includes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
