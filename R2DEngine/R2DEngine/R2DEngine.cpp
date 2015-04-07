@@ -17,32 +17,11 @@ const Input& rb::R2DEngine::GetInput()
 	return *input.get();
 }
 
-//void rb::R2DEngine::Run()
-//{
-//	float deltaTime = 0.0f;
-//	float lastFrameTime = 0.0f;
-//
-//	while (!glfwWindowShouldClose(renderEngine->Window()))
-//	{
-//		float currentTime = static_cast<float>(glfwGetTime());
-//		deltaTime = currentTime - lastFrameTime;
-//		lastFrameTime = currentTime;
-//
-//		glfwPollEvents();
-//		//render
-//		renderEngine->PreRender();
-//		renderEngine->PostRender();
-//		//update
-//		Update(deltaTime);
-//	}
-//	ShutDown();
-//}
-
 void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 {
 	float deltaTime = 0.0f;
 	float lastFrameTime = 0.0f;
-
+	Debug::Log("Running engine...");
 	while (!glfwWindowShouldClose(renderEngine->Window()))
 	{
 		float currentTime = static_cast<float>(glfwGetTime());

@@ -50,6 +50,15 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Engine\RenderingComponents</Filter>
     </ClCompile>
+    <ClCompile Include="Colour.cpp">
+      <Filter>Engine\RenderingComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -78,6 +87,9 @@
     </Filter>
     <Filter Include="Engine\Includes">
       <UniqueIdentifier>{60e4874d-a4b2-4026-aea5-cc7b17c1c8c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shaders">
+      <UniqueIdentifier>{dda4e511-9544-42b9-9344-45789fff9f96}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -138,5 +150,25 @@
     <ClInclude Include="GL_Includes.h">
       <Filter>Engine\Includes</Filter>
     </ClInclude>
+    <ClInclude Include="Colour.h">
+      <Filter>Engine\RenderingComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RVector.h">
+      <Filter>Engine\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\SpriteShader.frag">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\SpriteShader.vert">
+      <Filter>Engine\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
