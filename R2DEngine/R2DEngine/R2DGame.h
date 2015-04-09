@@ -25,7 +25,8 @@ namespace rb
 	private:
 		std::unique_ptr<R2DEngine> engine;
 		//temp
-		std::shared_ptr<GameObject> testObj;
+		std::shared_ptr<GameObject> missile;
+		std::shared_ptr<GameObject> asteroid;
 
 		void LoadDefaultResources();
 	};

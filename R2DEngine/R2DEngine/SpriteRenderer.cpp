@@ -12,6 +12,7 @@ using namespace rb;
 rb::SpriteRenderer::SpriteRenderer(const Texture& texture, const Shader& shader)
 	: texture(texture), shader(shader)
 {
+	//Debug::Log("Tex Width: " + ToString(texture.width) + "," + ToString(texture.height));
 	InitGL();
 }
 
@@ -24,6 +25,12 @@ SpriteRenderer::~SpriteRenderer()
 {
 	glDeleteVertexArrays(1, &VAO);
 }
+
+rb::Texture rb::SpriteRenderer::GetTexture() const
+{
+	return texture;
+}
+
 void rb::SpriteRenderer::Render()
 {
 	shader.Use();

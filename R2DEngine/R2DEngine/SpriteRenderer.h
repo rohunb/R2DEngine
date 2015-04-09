@@ -15,6 +15,8 @@ namespace rb
 		SpriteRenderer(const Texture& texture, const Shader& shader);
 		~SpriteRenderer();
 
+		Texture GetTexture() const;
+
 		void Render();
 
 	private:

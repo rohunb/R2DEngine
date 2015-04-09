@@ -21,7 +21,7 @@ rb::GameObject::GameObject(const Texture& texture)
 	:transform(std::make_shared<Transform>()),
 	renderer(std::make_shared<SpriteRenderer>(texture))
 {
-	Debug::Log("Game Object ctor");
+	transform->size = Vec2(renderer->GetTexture().width, renderer->GetTexture().height);
 }
 
 rb::GameObject::GameObject(const GameObject& rhs)
