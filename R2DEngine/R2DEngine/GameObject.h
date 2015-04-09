@@ -18,7 +18,7 @@ namespace rb
 
 		//ctors
 		GameObject();
-		GameObject(const Texture& texture);
+		explicit GameObject(const Texture& texture);
 		GameObject(const GameObject& rhs);
 		GameObject(GameObject&& rhs);
 		GameObject& operator = (const GameObject& rhs);

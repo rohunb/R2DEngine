@@ -26,6 +26,8 @@ rb::Texture rb::TextureManager::LoadTextureFromFile(const string& path)
 	int width, height;
 	int channels = 0;
 	unsigned char* imageData = SOIL_load_image(path.c_str(), &width, &height, &channels, SOIL_LOAD_RGBA);
+	if (!imageData) Debug::Error("SOIL could not load " + path + " Error: "+SOIL_last_result());
+	assert(imageData);
 	texture.GenerateGLTexture(width, height, imageData);
 	SOIL_free_image_data(imageData);
 	return texture;

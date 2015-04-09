@@ -1,9 +1,9 @@
 #include <memory>
-#include "TowerDefenseGame.h"
+#include "RocketCommand.h"
 
 int main()
 {
 	using namespace rb;
-	std::unique_ptr<TowerDefenseGame> game = std::make_unique<TowerDefenseGame>();
+	std::unique_ptr<RocketCommand> game = std::make_unique<RocketCommand>();
 	game->StartGame();
 }

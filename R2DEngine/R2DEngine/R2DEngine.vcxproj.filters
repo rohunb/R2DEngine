@@ -15,16 +15,13 @@
       <Filter>Engine\Config</Filter>
     </ClCompile>
     <ClCompile Include="R2DGame.cpp">
-      <Filter>Game</Filter>
+      <Filter>Engine\Game</Filter>
     </ClCompile>
     <ClCompile Include="RInput.cpp">
       <Filter>Engine\EngineComponents</Filter>
     </ClCompile>
     <ClCompile Include="RString.cpp">
       <Filter>Engine\Includes</Filter>
-    </ClCompile>
-    <ClCompile Include="TowerDefenseGame.cpp">
-      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="R2DComponent.cpp">
       <Filter>Engine\GameObjectAndComponents</Filter>
@@ -62,6 +59,12 @@
     <ClCompile Include="RVector.cpp">
       <Filter>Engine\Includes</Filter>
     </ClCompile>
+    <ClCompile Include="RocketCommand.cpp">
+      <Filter>Game Code</Filter>
+    </ClCompile>
+    <ClCompile Include="R2DScene.cpp">
+      <Filter>Engine\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -69,9 +72,6 @@
     </Filter>
     <Filter Include="Engine\EngineCore">
       <UniqueIdentifier>{33802f07-3a21-4078-b3e3-d63b29bca3e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{bacfb655-dea1-4080-bacd-1c75e928b8e1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\EngineComponents">
       <UniqueIdentifier>{6e6d6f33-922a-4b97-bd6a-741802aa6609}</UniqueIdentifier>
@@ -94,6 +94,12 @@
     <Filter Include="Engine\Shaders">
       <UniqueIdentifier>{dda4e511-9544-42b9-9344-45789fff9f96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Game">
+      <UniqueIdentifier>{bacfb655-dea1-4080-bacd-1c75e928b8e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Code">
+      <UniqueIdentifier>{384d19df-f0a1-40b4-b799-e79b5b49ba09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="R2DEngine.h">
@@ -103,7 +109,7 @@
       <Filter>Engine\EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="R2DGame.h">
-      <Filter>Game</Filter>
+      <Filter>Engine\Game</Filter>
     </ClInclude>
     <ClInclude Include="RString.h">
       <Filter>Engine\Includes</Filter>
@@ -116,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="RInput.h">
       <Filter>Engine\EngineComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="TowerDefenseGame.h">
-      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="R2DComponent.h">
       <Filter>Engine\GameObjectAndComponents</Filter>
@@ -161,6 +164,12 @@
     </ClInclude>
     <ClInclude Include="RMatrix.h">
       <Filter>Engine\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="RocketCommand.h">
+      <Filter>Game Code</Filter>
+    </ClInclude>
+    <ClInclude Include="R2DScene.h">
+      <Filter>Engine\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

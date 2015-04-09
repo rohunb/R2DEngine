@@ -74,6 +74,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="R2DComponent.cpp" />
     <ClCompile Include="R2DGame.cpp" />
+    <ClCompile Include="R2DScene.cpp" />
     <ClCompile Include="RDebug.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="R2DEngine.cpp" />
@@ -86,7 +87,7 @@
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="TowerDefenseGame.cpp" />
+    <ClCompile Include="RocketCommand.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +98,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GL_Includes.h" />
     <ClInclude Include="R2DComponent.h" />
+    <ClInclude Include="R2DScene.h" />
     <ClInclude Include="RDebug.h" />
     <ClInclude Include="R2DEngine.h" />
     <ClInclude Include="R2DGame.h" />
@@ -110,7 +112,7 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="TowerDefenseGame.h" />
+    <ClInclude Include="RocketCommand.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>

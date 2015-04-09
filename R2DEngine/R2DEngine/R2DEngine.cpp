@@ -41,7 +41,6 @@ void rb::R2DEngine::Run(std::function<void(float)> updateMethod, std::function<v
 		updateMethod(deltaTime);
 	}
 	glfwTerminate();
-
 }
 
 void rb::R2DEngine::Update(float dt)
