@@ -13,12 +13,21 @@ namespace rb
 	typedef glm::vec3 Vec3;
 	typedef glm::vec4 Vec4;
 
+	struct RVector2
+	{
+		static Vec2 up;
+		static Vec2 down;
+		static Vec2 right;
+		static Vec2 left;
 
-	static Vec2 up = Vec2(0.0f, 1.0f);
-	static Vec2 down = Vec2(0.0f, -1.0f);
-	static Vec2 right = Vec2(1.0f, 0.0f);
-	static Vec2 left = Vec2(-1.0f, 0.0f);
-
+		static Vec3 ToVector3(const Vec2& vec2);
+	};
+	struct RVector3
+	{
+		static Vec3 up, down, left, right, forward, back;
+		static Vec2 ToVector2(const Vec3& vec3);
+	};
+	
 }
 
 #endif // R_VECTOR_H_

@@ -1,34 +1,29 @@
 #include "R2DComponent.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "RDebug.h"
 
 using namespace rb;
 
 rb::R2DComponent::R2DComponent()
-{}
+{
+	Debug::Log("R2DComp ctor");
+}
+
 rb::R2DComponent::R2DComponent(const R2DComponent& rhs)
-	:gameObject(rhs.gameObject),
-	transform(rhs.transform)
+	:gameObject(rhs.gameObject)
 {}
 rb::R2DComponent::R2DComponent(R2DComponent&& rhs)
-	: gameObject(std::move(rhs.gameObject)),
-	transform(std::move(rhs.transform))
-{
-	rhs.gameObject.reset();
-	rhs.transform.reset();
-}
+	: gameObject(std::move(rhs.gameObject))
+{}
 R2DComponent& rb::R2DComponent::operator=(const R2DComponent& rhs)
 {
 	gameObject = rhs.gameObject;
-	transform = rhs.transform;
 	return *this;
 }
 R2DComponent& rb::R2DComponent::operator=(R2DComponent&& rhs)
 {
 	gameObject = std::move(rhs.gameObject);
-	transform = std::move(rhs.transform);
-	rhs.gameObject.reset();
-	rhs.transform.reset();
 	return *this;
 }
 
@@ -39,10 +34,7 @@ rb::R2DComponent::~R2DComponent()
 
 GameObject& rb::R2DComponent::GetGameObject() const
 {
-	return *gameObject.get();
-}
-
-Transform& rb::R2DComponent::GetTransform() const
-{
-	return *transform.get();
+	auto go = gameObject.lock();
+	assert(go && "GameObject reference has expired");
+	return *go;
 }

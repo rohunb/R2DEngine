@@ -1,6 +1,8 @@
 #ifndef R_TD_GAME_H_
 #define R_TD_GAME_H_
+
 #include "R2DGame.h"
+
 namespace rb
 {
 	class TowerDefenseGame : public R2DGame
@@ -14,6 +16,7 @@ namespace rb
 		virtual ~TowerDefenseGame() = default;
 		
 		virtual void StartGame() override;
+		virtual void Render() override;
 		virtual void Update(float dt) override;
 	private:
 

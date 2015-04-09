@@ -2,6 +2,8 @@
 #include "GameConfig.h"
 #include "RDebug.h"
 #include "R2DGame.h"
+//temp
+#include "GameObject.h"
 
 using namespace rb;
 
@@ -11,13 +13,12 @@ rb::R2DEngine::R2DEngine()
 	input = std::make_unique<Input>(renderEngine->Window());
 }
 
-
-const Input& rb::R2DEngine::GetInput()
+const RenderEngine& rb::R2DEngine::GetRenderEngine()
 {
-	return *input.get();
+	return *renderEngine;
 }
 
-void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
+void rb::R2DEngine::Run(std::function<void(float)> updateMethod, std::function<void()> renderMethod)
 {
 	float deltaTime = 0.0f;
 	float lastFrameTime = 0.0f;
@@ -31,9 +32,12 @@ void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 		glfwPollEvents();
 		//render
 		renderEngine->PreRender();
+		assert(renderMethod && "Render method is null");
+		renderMethod();
 		renderEngine->PostRender();
 		//update
 		Update(deltaTime);
+		assert(updateMethod && "Update Method is null");
 		updateMethod(deltaTime);
 	}
 	glfwTerminate();
@@ -42,7 +46,6 @@ void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 
 void rb::R2DEngine::Update(float dt)
 {
-	
 	//game->Update(dt);
 }
 

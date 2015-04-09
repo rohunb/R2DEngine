@@ -1,8 +1,9 @@
 #ifndef R_R2D_GAME_H_
 #define R_R2D_GAME_H_
 
-#include "RMemory.h"
+#include <memory>
 #include "R2DEngine.h"
+#include "GameObject.h"
 
 namespace rb
 {
@@ -17,12 +18,16 @@ namespace rb
 		virtual ~R2DGame() = default;
 
 		virtual void StartGame();
+		virtual void Render();
 		virtual void Update(float dt);
 		void OnKeyboard(int key, int action);
 
 	private:
-		UniquePtr<R2DEngine> engine;
+		std::unique_ptr<R2DEngine> engine;
+		//temp
+		std::shared_ptr<GameObject> testObj;
 
+		void LoadDefaultResources();
 	};
 }
 #endif // !R_R2D_GAME_H_

@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "RDebug.h"
 #include "FileManager.h"
+#include "AssetPaths.h"
 
 using namespace rb;
 
@@ -23,8 +24,8 @@ void rb::ShaderManager::LoadShader(const string& vertFileName, const string& fra
 	assert(shaderTable.find(type) == shaderTable.end() && "Shader already exists");
 	Debug::Log("Loading shader: " + vertFileName);
 	shaderTable[type] = Shader(
-		FileManager::ReadFile(vertFileName), 
-		FileManager::ReadFile(fragFileName),
-		geomFileName.empty()? "" : FileManager::ReadFile(geomFileName), 
+		FileManager::ReadFile(AssetPaths::shadersPath + vertFileName), 
+		FileManager::ReadFile(AssetPaths::shadersPath + fragFileName),
+		geomFileName.empty() ? "" : FileManager::ReadFile(AssetPaths::shadersPath + geomFileName),
 		type);
 }

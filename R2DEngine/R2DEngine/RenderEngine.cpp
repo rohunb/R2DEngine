@@ -1,5 +1,6 @@
 #include "RenderEngine.h"
 #include "RDebug.h"
+#include "SpriteRenderer.h"
 
 rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX, int windowPosY, string windowName)
 {
@@ -14,10 +15,15 @@ rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX
 	int status = glewInit();
 	glGetError();
 	glViewport(windowPosX, windowPosY, windowWidth, windowHeight);
+	glFrontFace(GL_CW);
+	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	Debug::Log("Initialized Render Engine.");
+
+
+
 }
 
 
@@ -35,4 +41,9 @@ void rb::RenderEngine::PostRender() const
 GLFWwindow* rb::RenderEngine::Window() const
 {
 	return window;
+}
+
+void rb::RenderEngine::AddNewRenderer(const std::shared_ptr<SpriteRenderer>& renderer)
+{
+	spriteRenderers.push_back(std::move(renderer));
 }

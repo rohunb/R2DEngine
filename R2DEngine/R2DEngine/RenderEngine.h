@@ -1,6 +1,8 @@
 #ifndef R_RENDER_ENGINE_H_
 #define R_RENDER_ENGINE_H_
 
+#include <vector>
+#include <memory>
 #include "GL_Includes.h"
 #include <glfw3.h>
 #include "RString.h"
@@ -19,11 +21,14 @@ namespace rb
 
 		GLFWwindow* Window() const;
 
+		void AddNewRenderer(const std::shared_ptr<class SpriteRenderer>& renderer);
 		void PreRender() const;
 		void PostRender() const;
 
 	private:
 		GLFWwindow* window;
+		std::vector<std::shared_ptr<class SpriteRenderer>> spriteRenderers;
+
 	};
 }
 

@@ -1,13 +1,14 @@
 #ifndef R_R2D_COMPONENT_H_
 #define R_R2D_COMPONENT_H_
 
-#include "RMemory.h"
+#include <memory>
 
 namespace rb
 {
 	class R2DComponent
 	{
 	public:
+		//ctors
 		R2DComponent();
 		R2DComponent(const R2DComponent& rhs);
 		R2DComponent(R2DComponent&& rhs);
@@ -15,12 +16,16 @@ namespace rb
 		R2DComponent& operator = (R2DComponent&& rhs);
 		virtual ~R2DComponent();
 
+		//get/set
 		class GameObject& GetGameObject() const;
-		class Transform& GetTransform() const;
 
+		//methods
+		
 	protected:
-		SharedPtr<class GameObject> gameObject;
-		SharedPtr<class Transform> transform;
+		std::weak_ptr<class GameObject> gameObject;
+
+	private:
+		friend class GameObject;
 	};
 }
 

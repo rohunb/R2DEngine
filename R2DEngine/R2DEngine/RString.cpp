@@ -1,6 +1,7 @@
 #include "RString.h"
 
 using namespace std;
+using namespace rb;
 
 std::string rb::ToString(float num)
 {
@@ -13,6 +14,10 @@ std::string rb::ToString(bool value)
 }
 
 std::string rb::ToString(int value)
+{
+	return to_string(value);
+}
+std::string rb::ToString(unsigned int value)
 {
 	return to_string(value);
 }

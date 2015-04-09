@@ -7,7 +7,7 @@ namespace rb
 {
 	struct AssetPaths
 	{
-		static const string texturesPath;
+		static const string spritesPath;
 		static const string shadersPath;
 	};
 }

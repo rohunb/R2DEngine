@@ -80,6 +80,7 @@
     <ClCompile Include="RenderEngine.cpp" />
     <ClCompile Include="RInput.cpp" />
     <ClCompile Include="RString.cpp" />
+    <ClCompile Include="RVector.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -101,9 +102,8 @@
     <ClInclude Include="R2DGame.h" />
     <ClInclude Include="RenderEngine.h" />
     <ClInclude Include="RInput.h" />
-    <ClInclude Include="RMemory.h" />
+    <ClInclude Include="RMatrix.h" />
     <ClInclude Include="RString.h" />
-    <ClInclude Include="RCollections.h" />
     <ClInclude Include="RVector.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />

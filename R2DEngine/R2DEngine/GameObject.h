@@ -1,35 +1,42 @@
 #ifndef R_GAME_OBJECT_H_
 #define R_GAME_OBJECT_H_
 
+#include <memory>
+#include <vector>
 #include "RString.h"
-#include "RCollections.h"
-#include "RMemory.h"
-#include "R2DComponent.h"
 #include "Transform.h"
+#include "SpriteRenderer.h"
+#include "Texture.h"
 
 namespace rb
 {
-	class GameObject
+	class GameObject : public std::enable_shared_from_this<GameObject>
 	{
 	public:
 		string name;
 		string tag;
 
+		//ctors
 		GameObject();
+		GameObject(const Texture& texture);
 		GameObject(const GameObject& rhs);
 		GameObject(GameObject&& rhs);
 		GameObject& operator = (const GameObject& rhs);
 		GameObject& operator = (GameObject&& rhs);
 		~GameObject();
 
-		template <class T>
-		T GetComponent();
+		//get/set
+		Transform& GetTransform() const;
+		SpriteRenderer& GetRenderer() const;
 
+		//methods
+		void Init();
 		void Destroy();
 
 	private:
-		TVector<SharedPtr<R2DComponent>> components;
-		SharedPtr<Transform> transform;
+		//std::vector<std::shared_ptr<R2DComponent>> components;
+		std::shared_ptr<Transform> transform;
+		std::shared_ptr<SpriteRenderer> renderer;
 	};
 }
 

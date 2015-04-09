@@ -59,6 +59,9 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Engine\GameObjectAndComponents</Filter>
     </ClCompile>
+    <ClCompile Include="RVector.cpp">
+      <Filter>Engine\Includes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -99,9 +102,6 @@
     <ClInclude Include="RenderEngine.h">
       <Filter>Engine\EngineCore</Filter>
     </ClInclude>
-    <ClInclude Include="RMemory.h">
-      <Filter>Engine\Includes</Filter>
-    </ClInclude>
     <ClInclude Include="R2DGame.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -116,9 +116,6 @@
     </ClInclude>
     <ClInclude Include="RInput.h">
       <Filter>Engine\EngineComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="RCollections.h">
-      <Filter>Engine\Includes</Filter>
     </ClInclude>
     <ClInclude Include="TowerDefenseGame.h">
       <Filter>Game</Filter>
@@ -161,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RMatrix.h">
+      <Filter>Engine\Includes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

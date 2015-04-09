@@ -2,12 +2,13 @@
 
 in vec2 fragUV;
 
-uniform sampler2D uSpriteTexture;
-uniform vec3 uSpriteColour;
+uniform sampler2D uTexture;
+uniform vec4 uColour;
 
 out vec4 outColour;
 
 void main()
 {
-	outColour = vec4(uSpriteColour, 1.0) * texture(uSpriteTexture, fragUV);
+	outColour = uColour * texture(uTexture, fragUV);
+	//outColour = vec4(1.0f,1.0f,0.0f,1.0f);
 }

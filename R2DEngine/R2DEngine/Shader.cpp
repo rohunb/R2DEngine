@@ -6,6 +6,11 @@
 
 using namespace rb;
 
+const string& Shader::modelUniformName = "uModel";
+const string& Shader::projUniformName = "uProjection";
+const string& Shader::spriteTextureName = "uTexture";
+const string& Shader::spriteColourName = "uColour";
+
 rb::Shader::Shader(const string& vertexFileName, const string& fragmentFileName, ShaderType type)
 	: Shader(vertexFileName, fragmentFileName, "", type)
 {}
@@ -41,42 +46,58 @@ void rb::Shader::Unbind()
 
 void rb::Shader::SetFloat(const string& uniformName, float value)
 {
-	glUniform1f(glGetUniformLocation(program, uniformName.c_str()), value);
+	glUniform1f(GetUniformLoc(uniformName), value);
+}
+
+void rb::Shader::SetInt(const string& uniforName, int value)
+{
+	glUniform1i(GetUniformLoc(uniforName), value);
+}
+
+void rb::Shader::SetVec3(const string& uniformName, const Vec3& value)
+{
+	glUniform3f(GetUniformLoc(uniformName), value.x, value.y, value.z);
+}
+
+void rb::Shader::SetVec4(const string& uniformName, const Vec4& value)
+{
+	glUniform4f(GetUniformLoc(uniformName), value.x, value.y, value.z, value.w);
+}
+
+void rb::Shader::SetMat4(const string& uniformName, const Mat4& value)
+{
+	glUniformMatrix4fv(GetUniformLoc(uniformName), 1, GL_FALSE, glm::value_ptr(value));
+}
+
+GLint rb::Shader::GetUniformLoc(const string& uniformName)
+{
+	GLint loc = glGetUniformLocation(program, uniformName.c_str());
+	//if (loc < 0) Debug::Error(uniformName);
+	//assert(loc >= 0 && "Uniform location not found");
+	return loc;
 }
 
 void rb::Shader::ProcessShader(const char* vertSource, const char* fragSource, const char* geomSource /*= nullptr*/)
 {
-	//Debug::Log("Processing Shader: " + vertFileName);
 	GLuint vertShader, fragShader, geomShader;
 	
 	//vertex shader
-	//const char* vertSource = FileManager::ReadFile(vertFileName).c_str();
-	//assert(vertSource);
 	vertShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertShader, 1, &vertSource, nullptr);
 	glCompileShader(vertShader);
 	CheckForErrors(vertShader, "Vertex");
-	//if(vertSource) delete[] vertSource;
-	
 	//Fragment 
-	/*const char* fragSource = FileManager::ReadFile(fragFileName).c_str();
-	assert(fragSource);*/
 	fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragShader, 1, &fragSource, nullptr);
 	glCompileShader(fragShader);
 	CheckForErrors(fragShader, "Fragment");
-	//if (fragSource) delete[] fragSource;
-
 	//Geometry
 	if (geomSource)
 	{
-		/*const char* geomSource = FileManager::ReadFile(geomFileName).c_str();
-		assert(geomSource);*/
 		geomShader = glCreateShader(GL_GEOMETRY_SHADER);
 		glShaderSource(geomShader, 1, &geomSource, nullptr);
 		glCompileShader(geomShader);
 		CheckForErrors(geomShader,"Geometry");
-		//if (geomSource) delete[] geomSource;
 	}
 	//Main program
 	program = glCreateProgram();

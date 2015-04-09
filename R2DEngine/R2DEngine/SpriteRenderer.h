@@ -11,18 +11,19 @@ namespace rb
 	class SpriteRenderer : public R2DComponent
 	{
 	public:
+		SpriteRenderer(const Texture& texture);
 		SpriteRenderer(const Texture& texture, const Shader& shader);
 		~SpriteRenderer();
 
-		void Render() const;
+		void Render();
 
 	private:
 		Shader shader;
 		Texture texture;
 		Colour colour;
-		GLuint VAO;
-
+		GLuint VAO, texID;
 		void InitGL();
+
 	};
 }
 #endif // !R_SPRITE_RENDERER_H_

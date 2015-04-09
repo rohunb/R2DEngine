@@ -3,7 +3,6 @@
 
 #include <functional>
 #include <glfw3.h>
-#include "RCollections.h"
 
 namespace rb
 {

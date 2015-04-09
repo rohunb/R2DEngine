@@ -2,7 +2,7 @@
 #define R_R2D_ENGINE_H_
 
 #include <functional>
-#include "RMemory.h"
+#include <memory>
 #include "RenderEngine.h"
 #include "RInput.h"
 
@@ -18,15 +18,15 @@ namespace rb
 		R2DEngine& operator = (const R2DEngine&& rhs) = delete;
 		~R2DEngine() = default;
 
-		const Input& GetInput();
+		const RenderEngine& GetRenderEngine();
 
-		void Run(std::function<void(float)> updateMethod);
+		void Run(std::function<void(float)> updateMethod, std::function<void()> renderMethod);
 		void Update(float dt);
 		void ShutDown();
 
 	private:
-		UniquePtr<RenderEngine> renderEngine;
-		UniquePtr<Input> input;
+		std::unique_ptr <RenderEngine> renderEngine;
+		std::unique_ptr <Input> input;
 		
 	};
 }
