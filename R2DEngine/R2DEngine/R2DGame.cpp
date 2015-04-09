@@ -17,11 +17,11 @@ void rb::R2DGame::StartGame()
 {
 	LoadDefaultResources();
 
-	testObj = std::make_shared<GameObject>(TextureManager::GetTexture("Smiley"));
+	testObj = std::make_shared<GameObject>(TextureManager::GetTexture("Missile"));
 	testObj->Init();
-	testObj->GetTransform().size = Vec2(512.0f);
-	testObj->GetTransform().position = Vec2(100.0f);
-
+	testObj->GetTransform().size = Vec2(100.0f);
+	testObj->GetTransform().position = Vec2(500.0f);
+	testObj->GetTransform().rotation = glm::radians(30.0f);
 	Input::RegisterKeyCallback(std::bind(&R2DGame::OnKeyboard, this, _1, _2));
 	engine->Run(std::bind(&R2DGame::Update, this, _1),
 		std::bind(&R2DGame::Render, this));

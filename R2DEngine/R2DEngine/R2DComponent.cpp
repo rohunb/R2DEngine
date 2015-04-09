@@ -6,9 +6,7 @@
 using namespace rb;
 
 rb::R2DComponent::R2DComponent()
-{
-	Debug::Log("R2DComp ctor");
-}
+{}
 
 rb::R2DComponent::R2DComponent(const R2DComponent& rhs)
 	:gameObject(rhs.gameObject)

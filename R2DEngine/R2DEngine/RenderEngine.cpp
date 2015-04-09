@@ -21,11 +21,7 @@ rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	Debug::Log("Initialized Render Engine.");
-
-
-
 }
-
 
 void rb::RenderEngine::PreRender() const
 {

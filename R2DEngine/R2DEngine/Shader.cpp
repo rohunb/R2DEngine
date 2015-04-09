@@ -72,8 +72,7 @@ void rb::Shader::SetMat4(const string& uniformName, const Mat4& value)
 GLint rb::Shader::GetUniformLoc(const string& uniformName)
 {
 	GLint loc = glGetUniformLocation(program, uniformName.c_str());
-	//if (loc < 0) Debug::Error(uniformName);
-	//assert(loc >= 0 && "Uniform location not found");
+	assert(loc >= 0 && "Uniform location not found");
 	return loc;
 }
 

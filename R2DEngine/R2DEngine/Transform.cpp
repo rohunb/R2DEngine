@@ -7,7 +7,6 @@ using namespace rb;
 rb::Transform::Transform(const Vec2& position, const Vec2& size, float rotation)
 	: position(position), size(size), rotation(rotation)
 {
-	Debug::Log("Transform ctor");
 }
 
 rb::Transform::Transform()
