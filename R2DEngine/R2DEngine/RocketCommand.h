@@ -20,6 +20,8 @@ namespace rb
 	private:
 		std::shared_ptr<class R2DScene> testScene;
 		std::unique_ptr<class GameObject> missilePrefab;
+		Vec2 cannonPos;
+		float missileSpeed;
 
 		void LoadResources();
 		void OnKeyboard(int key, int action);

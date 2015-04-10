@@ -8,8 +8,10 @@ namespace rb
 	class Screen
 	{
 	public:
-		int Width() const;
-		int Height() const;
+		static int Width();
+		static int Height();
+		static float WidthToFloat();
+		static float HeightToFloat();
 		static Vec2 ToWorldCoords(const Vec2& screenPosition);
 	private:
 		static int width;
