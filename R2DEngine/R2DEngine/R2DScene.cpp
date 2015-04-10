@@ -38,10 +38,12 @@ std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab)
 std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab, const Vec2& position, float rotation)
 {
 	std::shared_ptr<GameObject> objClone = std::make_shared<GameObject>(prefab);
+	Debug::Log("transform: " + ToString(objClone->transform.use_count()) + " sprite " + ToString(objClone->renderer.use_count()) + " rb " + ToString(objClone->rigidbody.use_count()));
 	objClone->SetTransform(position, rotation);
 	sceneObjects.push_back(objClone);
 	assert(instantiateCallback && "Instantiate callback is null");
 	instantiateCallback(*objClone);
+	//Debug::Log("transform: " + ToString(objClone->transform.use_count()) + " sprite " + ToString(objClone->renderer.use_count()) + " rb " + ToString(objClone->rigidbody.use_count()));
 	return objClone;
 }
 

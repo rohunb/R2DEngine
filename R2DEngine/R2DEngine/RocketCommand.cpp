@@ -13,7 +13,6 @@ rb::RocketCommand::RocketCommand()
 	missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
 	missilePrefab->SetTransform(Vec2(500.0f), glm::radians(30.0f));
 	missilePrefab->transform->size *= 0.2f;
-	missilePrefab->rigidbody->velocity = Vec2(0.0f, 100.0f);
 
 	Input::RegisterKeyCallback(std::bind(&RocketCommand::OnKeyboard, this, _1, _2));
 	Input::RegisterMouseClickCallback(std::bind(&RocketCommand::OnMouseClick, this, _1, _2, _3));
@@ -37,9 +36,10 @@ void rb::RocketCommand::OnMouseClick(int button, int action, const Vec2& mousePo
 	//Debug::Log("mouse click " + ToString(button) + "," + ToString(action) + ": "+ToString(mousePosition));
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
-		missilePrefab->rigidbody->velocity = Vec2(0.0f, 100.0f);
+		//missilePrefab->rigidbody->velocity = Vec2(0.0f, 100.0f);
 		auto missileClone = testScene->Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
-		//missileClone->rigidbody->velocity = Vec2(0.0f, 100.0f);
+		//Debug::Log("missile rb copies " + ToString(missileClone->rigidbody.use_count()));
+		missileClone->rigidbody->velocity = Vec2(0.0f, 100.0f);
 	}
 }
 

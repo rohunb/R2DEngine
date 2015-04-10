@@ -40,7 +40,7 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	assert(&gameObject && "GameObject is null");
 	gameObject.Init();
 	engine->GetRenderEngine()->AddNewRenderer(*(gameObject.renderer));
-	engine->GetPhysicsEngine()->AddNewRigidbody(*(gameObject.rigidbody));
+	engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.rigidbody	);
 	//register with other engines if required
 }
 void rb::R2DGame::OnKeyboard(int key, int action)

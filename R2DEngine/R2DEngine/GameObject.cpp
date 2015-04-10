@@ -38,8 +38,8 @@ rb::GameObject::GameObject(GameObject&& rhs)
 {}
 GameObject& rb::GameObject::operator=(const GameObject& rhs)
 {
-	transform = std::shared_ptr<Transform>(new Transform(*rhs.transform));
 	renderer = rhs.renderer;
+	transform = std::shared_ptr<Transform>(new Transform(*rhs.transform));
 	rigidbody = std::shared_ptr<Rigidbody2D>(new Rigidbody2D(*rhs.rigidbody));
 	return *this;
 }
