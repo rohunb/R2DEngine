@@ -19,7 +19,7 @@ namespace rb
 		//virtual void Update(float dt) override;
 	private:
 		std::shared_ptr<class R2DScene> testScene;
-		std::unique_ptr<class GameObject> missile;
+		std::unique_ptr<class GameObject> missilePrefab;
 	};
 }
 

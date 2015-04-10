@@ -76,6 +76,17 @@ rb::GameObject::~GameObject()
 {
 
 }
+void rb::GameObject::SetTransform(const Vec2& position, float rotation)
+{
+	SetTransform(position, rotation, transform->size);
+}
+
+void rb::GameObject::SetTransform(const Vec2& position, float rotation, const Vec2& size)
+{
+	transform->position = position;
+	transform->rotation = rotation;
+	transform->size = size;
+}
 
 Transform& rb::GameObject::GetTransform() const
 {

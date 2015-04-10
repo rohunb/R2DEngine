@@ -28,7 +28,8 @@ namespace rb
 		//get/set
 		Transform& GetTransform() const;
 		SpriteRenderer& GetRenderer() const;
-
+		void SetTransform(const Vec2& position, float rotation);
+		void SetTransform(const Vec2& position, float rotation, const Vec2& size);
 		//methods
 		void Init();
 		void Destroy();

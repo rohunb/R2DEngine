@@ -1,11 +1,11 @@
 #include "R2DGame.h"
 #include <functional>
+#include <assert.h>
 #include "RDebug.h"
 #include "FileManager.h"
 #include "ShaderManager.h"
 #include "TextureManager.h"
 #include "GameObject.h"
-
 
 using namespace rb;
 using namespace std::placeholders;
@@ -18,7 +18,7 @@ rb::R2DGame::R2DGame()
 
 void rb::R2DGame::StartGame()
 {
-	missile = std::make_shared<GameObject>(TextureManager::GetTexture("Missile"));
+	/*missile = std::make_shared<GameObject>(TextureManager::GetTexture("Missile"));
 	missile->Init();
 	engine->GetRenderEngine().AddNewRenderer(missile->GetRenderer());
 	missile->GetTransform().size *= 0.2f;
@@ -29,7 +29,7 @@ void rb::R2DGame::StartGame()
 	asteroid->Init();
 	engine->GetRenderEngine().AddNewRenderer(asteroid->GetRenderer());
 	asteroid->GetTransform().position = Vec2(200.0f);
-	asteroid->GetTransform().size *= 0.5f;
+	asteroid->GetTransform().size *= 0.5f;*/
 
 	Input::RegisterKeyCallback(std::bind(&R2DGame::OnKeyboard, this, _1, _2));
 	engine->Run(std::bind(&R2DGame::Update, this, _1));
@@ -42,11 +42,19 @@ void rb::R2DGame::Update(float dt)
 
 rb::R2DScene rb::R2DGame::CreateNewScene()
 {
-	std::shared_ptr<R2DScene> newScene = std::make_shared<R2DScene>();
+	std::shared_ptr<R2DScene> newScene = std::make_shared<R2DScene>(std::bind(&R2DGame::RegisterNewGameObject, this, _1));
 	sceneList.push_back(newScene);
 	return *newScene;
 }
 
+void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
+{
+	Debug::Log("Register new go");
+	assert(&gameObject && "GameObject is null");
+	gameObject.Init();
+	engine->GetRenderEngine().AddNewRenderer(gameObject.GetRenderer());
+	//register with other engines if required
+}
 void rb::R2DGame::OnKeyboard(int key, int action)
 {
 	Debug::Log("OnKeyboard: key " + ToString(key) + " action " + ToString(action));
@@ -62,3 +70,4 @@ void rb::R2DGame::LoadDefaultResources()
 	TextureManager::LoadTexture("Asteroid", "asteroid.png");
 	
 }
+

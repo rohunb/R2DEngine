@@ -4,6 +4,7 @@
 #include <memory>
 #include "R2DEngine.h"
 #include "R2DScene.h"
+#include "TextureManager.h"
 
 namespace rb
 {
@@ -22,7 +23,7 @@ namespace rb
 		virtual void StartGame();
 		//virtual void Render();
 		virtual void Update(float dt);
-		virtual R2DScene CreateNewScene();
+		R2DScene CreateNewScene();
 		//callbacks
 		void OnKeyboard(int key, int action);
 
@@ -30,10 +31,11 @@ namespace rb
 		std::unique_ptr<R2DEngine> engine;
 		std::vector<std::shared_ptr<R2DScene>> sceneList;
 		//temp
-		std::shared_ptr<class GameObject> missile;
-		std::shared_ptr<class GameObject> asteroid;
+		/*std::shared_ptr<class GameObject> missile;
+		std::shared_ptr<class GameObject> asteroid;*/
 
 		void LoadDefaultResources();
+		void RegisterNewGameObject(class GameObject& gameObject);
 	};
 }
 #endif // !R_R2D_GAME_H_
