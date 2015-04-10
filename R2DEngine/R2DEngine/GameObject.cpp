@@ -26,21 +26,21 @@ rb::GameObject::GameObject(const Texture& texture)
 }
 
 rb::GameObject::GameObject(const GameObject& rhs)
-	:renderer(rhs.renderer),
-	transform(std::shared_ptr<Transform>(new Transform(*rhs.transform))),
-	rigidbody(std::shared_ptr<Rigidbody2D>(new Rigidbody2D(*rhs.rigidbody)))
+	:renderer(std::make_shared<SpriteRenderer>(*(rhs.renderer))),
+	transform(std::make_shared<Transform>(*(rhs.transform))),
+	rigidbody(std::make_shared<Rigidbody2D>(*(rhs.rigidbody)))
 {}
 
 rb::GameObject::GameObject(GameObject&& rhs)
-	:transform(std::move(rhs.transform)),
+	: transform(std::move(rhs.transform)),
 	renderer(std::move(rhs.renderer)),
 	rigidbody(std::move(rhs.rigidbody))
 {}
 GameObject& rb::GameObject::operator=(const GameObject& rhs)
 {
-	renderer = rhs.renderer;
-	transform = std::shared_ptr<Transform>(new Transform(*rhs.transform));
-	rigidbody = std::shared_ptr<Rigidbody2D>(new Rigidbody2D(*rhs.rigidbody));
+	renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+	transform = std::make_shared<Transform>(*(rhs.transform));
+	rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
 	return *this;
 }
 GameObject& rb::GameObject::operator=(GameObject&& rhs)
@@ -66,15 +66,18 @@ void rb::GameObject::SetTransform(const Vec2& position, float rotation, const Ve
 	transform->size = size;
 }
 
-//Transform& rb::GameObject::GetTransform() const
-//{
-//	return *transform;
-//}
-//
-//SpriteRenderer& rb::GameObject::GetRenderer() const
-//{
-//	return *renderer;
-//}
+std::shared_ptr<Transform> rb::GameObject::GetTransform() const
+{
+	return transform;
+}
+std::shared_ptr<SpriteRenderer> rb::GameObject::GetRenderer() const
+{
+	return renderer;
+}
+std::shared_ptr<Rigidbody2D> rb::GameObject::GetRigidbody() const
+{
+	return rigidbody;
+}
 
 void rb::GameObject::Destroy()
 {

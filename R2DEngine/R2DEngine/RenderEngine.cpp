@@ -48,7 +48,7 @@ GLFWwindow* rb::RenderEngine::Window() const
 	return window;
 }
 
-void rb::RenderEngine::AddNewRenderer(const SpriteRenderer& renderer)
+void rb::RenderEngine::AddNewRenderer(std::shared_ptr<class SpriteRenderer>& renderer)
 {
-	spriteRenderers.push_back(std::make_shared<SpriteRenderer>(renderer));
+	spriteRenderers.push_back(renderer);
 }

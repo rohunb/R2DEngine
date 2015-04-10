@@ -5,44 +5,43 @@
 
 using namespace rb;
 
-rb::R2DScene::R2DScene(std::function<void(GameObject&)> instantiateCallback)
-	:instantiateCallback(instantiateCallback)
+rb::R2DScene::R2DScene(std::function<void(GameObject&)> OnInstantiate)
+	:OnInstantiate(OnInstantiate)
 {}
 
 rb::R2DScene::R2DScene(const R2DScene& rhs)
 	:sceneObjects(rhs.sceneObjects),
-	instantiateCallback(rhs.instantiateCallback)
+	OnInstantiate(rhs.OnInstantiate)
 {}
 R2DScene& rb::R2DScene::operator=(const R2DScene& rhs)
 {
 	sceneObjects = rhs.sceneObjects;
-	instantiateCallback = instantiateCallback;
+	OnInstantiate = OnInstantiate;
 	return *this;
 }
 rb::R2DScene::R2DScene(R2DScene&& rhs)
 {
 	sceneObjects = std::move(rhs.sceneObjects);
-	instantiateCallback = std::move(rhs.instantiateCallback);
+	OnInstantiate = std::move(rhs.OnInstantiate);
 }
 R2DScene& rb::R2DScene::operator=(R2DScene&& rhs)
 {
 	sceneObjects = std::move(rhs.sceneObjects);
-	instantiateCallback = std::move(rhs.instantiateCallback);
+	OnInstantiate = std::move(rhs.OnInstantiate);
 	return *this;
 }
 std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab)
 {
-	return Instantiate(prefab, prefab.transform->position, prefab.transform->rotation);
+	return Instantiate(prefab, prefab.GetTransform()->position, prefab.GetTransform()->rotation);
 }
 
 std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab, const Vec2& position, float rotation)
 {
 	std::shared_ptr<GameObject> objClone = std::make_shared<GameObject>(prefab);
-	Debug::Log("transform: " + ToString(objClone->transform.use_count()) + " sprite " + ToString(objClone->renderer.use_count()) + " rb " + ToString(objClone->rigidbody.use_count()));
 	objClone->SetTransform(position, rotation);
 	sceneObjects.push_back(objClone);
-	assert(instantiateCallback && "Instantiate callback is null");
-	instantiateCallback(*objClone);
+	assert(OnInstantiate && "Instantiate callback is null");
+	OnInstantiate(*objClone);
 	//Debug::Log("transform: " + ToString(objClone->transform.use_count()) + " sprite " + ToString(objClone->renderer.use_count()) + " rb " + ToString(objClone->rigidbody.use_count()));
 	return objClone;
 }

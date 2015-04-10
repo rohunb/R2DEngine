@@ -9,5 +9,5 @@ rb::Rigidbody2D::Rigidbody2D(const Vec2& velocity)
 {}
 void rb::Rigidbody2D::Update(float dt)
 {
-	gameObject->transform->position += velocity * dt;
+	gameObject->GetTransform()->position += velocity * dt;
 }

@@ -11,7 +11,7 @@ namespace rb
 	class R2DScene
 	{
 	public:
-		R2DScene(std::function<void(GameObject&)> instantiateCallback);
+		R2DScene(std::function<void(GameObject&)> OnInstantiate);
 		R2DScene(const R2DScene& rhs);
 		R2DScene(R2DScene&& rhs);
 		R2DScene& operator = (const R2DScene& rhs);
@@ -27,7 +27,7 @@ namespace rb
 		std::shared_ptr<GameObject> missile;
 
 
-		std::function<void(GameObject&)> instantiateCallback;
+		std::function<void(GameObject&)> OnInstantiate;
 	};
 }
 

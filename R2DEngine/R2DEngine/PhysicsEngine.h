@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <vector>
-#include "Rigidbody2D.h"
 
 namespace rb
 {
@@ -17,11 +16,11 @@ namespace rb
 		PhysicsEngine& operator = (PhysicsEngine&& rhs) = delete;
 		~PhysicsEngine() = default;
 
-		void AddNewRigidbody(std::shared_ptr<Rigidbody2D>& rigidbody);
+		void AddNewRigidbody(std::shared_ptr<class Rigidbody2D>& rigidbody);
 		void Update(float dt);
 
 	private:
-		std::vector < std::shared_ptr<Rigidbody2D>> rigidbodies;
+		std::vector < std::shared_ptr<class Rigidbody2D>> rigidbodies;
 	};
 }
 

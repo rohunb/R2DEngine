@@ -39,9 +39,8 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	Debug::Log("Register new go");
 	assert(&gameObject && "GameObject is null");
 	gameObject.Init();
-	engine->GetRenderEngine()->AddNewRenderer(*(gameObject.renderer));
-	engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.rigidbody	);
-	//register with other engines if required
+	engine->GetRenderEngine()->AddNewRenderer(gameObject.GetRenderer());
+	engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.GetRigidbody());
 }
 void rb::R2DGame::OnKeyboard(int key, int action)
 {

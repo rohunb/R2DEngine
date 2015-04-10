@@ -22,9 +22,9 @@ namespace rb
 
 		//methods
 		virtual void StartGame();
-		//virtual void Render();
 		virtual void Update(float dt);
 		R2DScene CreateNewScene();
+
 		//callbacks
 		void OnKeyboard(int key, int action);
 

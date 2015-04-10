@@ -34,7 +34,7 @@ rb::Texture rb::SpriteRenderer::GetTexture() const
 void rb::SpriteRenderer::Render()
 {
 	shader.Use();
-	auto trans = gameObject->transform;
+	auto trans = gameObject->GetTransform();
 	Mat4 modelMat = glm::translate(Mat4(1.0f), RVector2::ToVector3(trans->position));
 	////translate to origin and rotate
 	modelMat = glm::translate(modelMat, RVector2::ToVector3(trans->size * -0.5f));

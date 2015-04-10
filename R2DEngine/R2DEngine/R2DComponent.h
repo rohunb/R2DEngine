@@ -17,11 +17,11 @@ namespace rb
 		virtual ~R2DComponent();
 
 		//get/set
-		//class GameObject& GetGameObject() const;
+		std::shared_ptr<class GameObject> GetGameObject() const;
 
 		//methods
 		
-	//protected:
+	protected:
 		std::shared_ptr<class GameObject> gameObject;
 
 	private:
