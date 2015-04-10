@@ -1,5 +1,5 @@
 #include "R2DScene.h"
-#include "GameObject.h";
+#include "GameObject.h"
 
 using namespace rb;
 

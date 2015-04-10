@@ -20,7 +20,7 @@ namespace rb
 
 		//methods
 		virtual void StartGame();
-		virtual void Render();
+		//virtual void Render();
 		virtual void Update(float dt);
 		virtual R2DScene CreateNewScene();
 		//callbacks

@@ -14,9 +14,6 @@
     <ClCompile Include="GameConfig.cpp">
       <Filter>Engine\Config</Filter>
     </ClCompile>
-    <ClCompile Include="R2DGame.cpp">
-      <Filter>Engine\Game</Filter>
-    </ClCompile>
     <ClCompile Include="RInput.cpp">
       <Filter>Engine\EngineComponents</Filter>
     </ClCompile>
@@ -60,10 +57,13 @@
       <Filter>Engine\Includes</Filter>
     </ClCompile>
     <ClCompile Include="RocketCommand.cpp">
-      <Filter>Game Code</Filter>
+      <Filter>Gameplay Code</Filter>
+    </ClCompile>
+    <ClCompile Include="R2DGame.cpp">
+      <Filter>Engine\EngineCore</Filter>
     </ClCompile>
     <ClCompile Include="R2DScene.cpp">
-      <Filter>Engine\Game</Filter>
+      <Filter>Engine\EngineCore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,10 +94,7 @@
     <Filter Include="Engine\Shaders">
       <UniqueIdentifier>{dda4e511-9544-42b9-9344-45789fff9f96}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Game">
-      <UniqueIdentifier>{bacfb655-dea1-4080-bacd-1c75e928b8e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game Code">
+    <Filter Include="Gameplay Code">
       <UniqueIdentifier>{384d19df-f0a1-40b4-b799-e79b5b49ba09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -107,9 +104,6 @@
     </ClInclude>
     <ClInclude Include="RenderEngine.h">
       <Filter>Engine\EngineCore</Filter>
-    </ClInclude>
-    <ClInclude Include="R2DGame.h">
-      <Filter>Engine\Game</Filter>
     </ClInclude>
     <ClInclude Include="RString.h">
       <Filter>Engine\Includes</Filter>
@@ -166,10 +160,13 @@
       <Filter>Engine\Includes</Filter>
     </ClInclude>
     <ClInclude Include="RocketCommand.h">
-      <Filter>Game Code</Filter>
+      <Filter>Gameplay Code</Filter>
+    </ClInclude>
+    <ClInclude Include="R2DGame.h">
+      <Filter>Engine\EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="R2DScene.h">
-      <Filter>Engine\Game</Filter>
+      <Filter>Engine\EngineCore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

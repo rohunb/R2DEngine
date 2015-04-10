@@ -9,6 +9,7 @@ void rb::GameObject::Init()
 	Debug::Log("GameObject init");
 	transform->gameObject = shared_from_this();
 	renderer->gameObject = shared_from_this();
+
 }
 
 

@@ -21,8 +21,9 @@ namespace rb
 
 		GLFWwindow* Window() const;
 
-		void AddNewRenderer(const std::shared_ptr<class SpriteRenderer>& renderer);
+		void AddNewRenderer(const class SpriteRenderer& renderer);
 		void PreRender() const;
+		void Render() const;
 		void PostRender() const;
 
 	private:

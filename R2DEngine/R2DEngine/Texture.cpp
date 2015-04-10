@@ -18,7 +18,7 @@ void rb::Texture::GenerateGLTexture(int width, int height, unsigned char* imageD
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	Unbind();
-	Debug::Log("Tex Width: " + ToString(width) + "," + ToString(height));
+	//Debug::Log("Tex Width: " + ToString(width) + "," + ToString(height));
 }
 
 void rb::Texture::Bind() const

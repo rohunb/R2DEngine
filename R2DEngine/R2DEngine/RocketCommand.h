@@ -1,5 +1,5 @@
-#ifndef R_TD_GAME_H_
-#define R_TD_GAME_H_
+#ifndef R_ROCKET_COMMAND_H_
+#define R_ROCKET_COMMAND_H_
 
 #include "R2DGame.h"
 
@@ -18,8 +18,9 @@ namespace rb
 		virtual void StartGame() override;
 		//virtual void Update(float dt) override;
 	private:
-
+		std::shared_ptr<class R2DScene> testScene;
+		std::unique_ptr<class GameObject> missile;
 	};
 }
 
-#endif // !R_TD_GAME_H_
+#endif // !R_ROCKET_COMMAND_H_

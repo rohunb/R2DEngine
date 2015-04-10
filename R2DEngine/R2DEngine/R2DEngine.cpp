@@ -13,12 +13,12 @@ rb::R2DEngine::R2DEngine()
 	input = std::make_unique<Input>(renderEngine->Window());
 }
 
-const RenderEngine& rb::R2DEngine::GetRenderEngine()
+RenderEngine& rb::R2DEngine::GetRenderEngine()
 {
 	return *renderEngine;
 }
 
-void rb::R2DEngine::Run(std::function<void(float)> updateMethod, std::function<void()> renderMethod)
+void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 {
 	float deltaTime = 0.0f;
 	float lastFrameTime = 0.0f;
@@ -32,9 +32,9 @@ void rb::R2DEngine::Run(std::function<void(float)> updateMethod, std::function<v
 		glfwPollEvents();
 		//render
 		renderEngine->PreRender();
-		assert(renderMethod && "Render method is null");
-		renderMethod();
+		renderEngine->Render();
 		renderEngine->PostRender();
+		
 		//update
 		Update(deltaTime);
 		assert(updateMethod && "Update Method is null");

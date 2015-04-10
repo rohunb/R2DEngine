@@ -2,6 +2,8 @@
 #include "RDebug.h"
 #include "SpriteRenderer.h"
 
+using namespace rb;
+
 rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX, int windowPosY, string windowName)
 {
 	glfwInit();
@@ -28,7 +30,13 @@ void rb::RenderEngine::PreRender() const
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
-
+void RenderEngine::Render() const
+{
+	for (auto renderer: spriteRenderers)
+	{
+		renderer->Render();
+	}
+}
 void rb::RenderEngine::PostRender() const
 {
 	glfwSwapBuffers(window);
@@ -39,7 +47,7 @@ GLFWwindow* rb::RenderEngine::Window() const
 	return window;
 }
 
-void rb::RenderEngine::AddNewRenderer(const std::shared_ptr<SpriteRenderer>& renderer)
+void rb::RenderEngine::AddNewRenderer(const SpriteRenderer& renderer)
 {
-	spriteRenderers.push_back(std::move(renderer));
+	spriteRenderers.push_back(std::make_shared<SpriteRenderer>(renderer));
 }
