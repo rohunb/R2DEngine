@@ -26,6 +26,6 @@ float rb::Screen::HeightToFloat()
 
 rb::Vec2 rb::Screen::ToWorldCoords(const Vec2& screenPosition)
 {
-	return Vec2(screenPosition.x, height - screenPosition.y);
+	return Vec2(screenPosition.x, HeightToFloat() - screenPosition.y);
 }
 
