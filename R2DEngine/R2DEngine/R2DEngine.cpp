@@ -2,11 +2,14 @@
 #include "GameConfig.h"
 #include "RDebug.h"
 #include "R2DGame.h"
+#include "Screen.h"
 
 using namespace rb;
 
 rb::R2DEngine::R2DEngine()
 {
+	Screen::width = GameConfig::windowWidth;
+	Screen::height = GameConfig::windowHeight;
 	renderEngine = std::make_unique<RenderEngine>(GameConfig::windowWidth, GameConfig::windowHeight, GameConfig::windowPosX, GameConfig::windowPosY, GameConfig::windowName);
 	input = std::make_unique<Input>(renderEngine->Window());
 }

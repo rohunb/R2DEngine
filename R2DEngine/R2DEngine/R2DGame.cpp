@@ -44,7 +44,6 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 }
 void rb::R2DGame::OnKeyboard(int key, int action)
 {
-	Debug::Log("OnKeyboard: key " + ToString(key) + " action " + ToString(action));
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		engine->ShutDown();
@@ -53,8 +52,7 @@ void rb::R2DGame::OnKeyboard(int key, int action)
 void rb::R2DGame::LoadDefaultResources()
 {
 	ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
-	TextureManager::LoadTexture("Missile", "Missile.png");
-	TextureManager::LoadTexture("Asteroid", "asteroid.png");
+	
 	
 }
 

@@ -5,6 +5,7 @@
 #include "R2DEngine.h"
 #include "R2DScene.h"
 #include "TextureManager.h"
+#include "Screen.h"
 
 namespace rb
 {

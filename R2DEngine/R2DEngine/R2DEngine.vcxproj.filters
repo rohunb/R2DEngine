@@ -65,6 +65,9 @@
     <ClCompile Include="R2DScene.cpp">
       <Filter>Engine\EngineCore</Filter>
     </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="R2DScene.h">
       <Filter>Engine\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Engine\EngineComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
