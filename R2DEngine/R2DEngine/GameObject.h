@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "Texture.h"
+#include "Rigidbody2D.h"
 
 namespace rb
 {
@@ -15,6 +16,9 @@ namespace rb
 	public:
 		string name;
 		string tag;
+		std::shared_ptr<Transform> transform;
+		std::shared_ptr<SpriteRenderer> renderer;
+		std::shared_ptr<Rigidbody2D> rigidbody;
 
 		//ctors
 		GameObject();
@@ -26,18 +30,17 @@ namespace rb
 		~GameObject();
 
 		//get/set
-		Transform& GetTransform() const;
-		SpriteRenderer& GetRenderer() const;
+		/*Transform& GetTransform() const;
+		SpriteRenderer& GetRenderer() const;*/
 		void SetTransform(const Vec2& position, float rotation);
 		void SetTransform(const Vec2& position, float rotation, const Vec2& size);
 		//methods
 		void Init();
 		void Destroy();
 
-	private:
+	//private:
 		//std::vector<std::shared_ptr<R2DComponent>> components;
-		std::shared_ptr<Transform> transform;
-		std::shared_ptr<SpriteRenderer> renderer;
+		
 	};
 }
 

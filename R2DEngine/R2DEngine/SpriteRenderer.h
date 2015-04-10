@@ -11,7 +11,7 @@ namespace rb
 	class SpriteRenderer : public R2DComponent
 	{
 	public:
-		SpriteRenderer(const Texture& texture);
+		explicit SpriteRenderer(const Texture& texture);
 		SpriteRenderer(const Texture& texture, const Shader& shader);
 		~SpriteRenderer();
 

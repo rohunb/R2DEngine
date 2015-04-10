@@ -30,9 +30,9 @@ rb::R2DComponent::~R2DComponent()
 
 }
 
-GameObject& rb::R2DComponent::GetGameObject() const
-{
-	auto go = gameObject.lock();
-	assert(go && "GameObject reference has expired");
-	return *go;
-}
+//GameObject& rb::R2DComponent::GetGameObject() const
+//{
+//	auto go = gameObject.lock();
+//	assert(go && "GameObject reference has expired");
+//	return *go;
+//}

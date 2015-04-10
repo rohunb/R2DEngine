@@ -17,12 +17,12 @@ namespace rb
 		virtual ~R2DComponent();
 
 		//get/set
-		class GameObject& GetGameObject() const;
+		//class GameObject& GetGameObject() const;
 
 		//methods
 		
-	protected:
-		std::weak_ptr<class GameObject> gameObject;
+	//protected:
+		std::shared_ptr<class GameObject> gameObject;
 
 	private:
 		friend class GameObject;

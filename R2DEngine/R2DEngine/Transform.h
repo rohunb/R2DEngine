@@ -15,8 +15,6 @@ namespace rb
 
 		Transform();
 		Transform(const Vec2& position, float rotation, const Vec2& size);
-
-
 	};
 }
 #endif // R_TRANSFORM_H_

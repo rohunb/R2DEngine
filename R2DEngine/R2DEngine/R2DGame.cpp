@@ -39,7 +39,7 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	Debug::Log("Register new go");
 	assert(&gameObject && "GameObject is null");
 	gameObject.Init();
-	engine->GetRenderEngine().AddNewRenderer(gameObject.GetRenderer());
+	engine->GetRenderEngine().AddNewRenderer(*(gameObject.renderer));
 	//register with other engines if required
 }
 void rb::R2DGame::OnKeyboard(int key, int action)

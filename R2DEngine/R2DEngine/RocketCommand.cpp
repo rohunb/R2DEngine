@@ -12,7 +12,7 @@ rb::RocketCommand::RocketCommand()
 	testScene = std::make_shared<R2DScene>(CreateNewScene());
 	missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
 	missilePrefab->SetTransform(Vec2(500.0f), glm::radians(30.0f));
-	missilePrefab->GetTransform().size *= 0.2f;
+	missilePrefab->transform->size *= 0.2f;
 
 	Input::RegisterKeyCallback(std::bind(&RocketCommand::OnKeyboard, this, _1, _2));
 	Input::RegisterMouseClickCallback(std::bind(&RocketCommand::OnMouseClick, this, _1, _2, _3));

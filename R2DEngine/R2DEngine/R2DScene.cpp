@@ -32,7 +32,7 @@ R2DScene& rb::R2DScene::operator=(R2DScene&& rhs)
 }
 GameObject rb::R2DScene::Instantiate(const GameObject& prefab)
 {
-	return Instantiate(prefab, prefab.GetTransform().position, prefab.GetTransform().rotation);
+	return Instantiate(prefab, prefab.transform->position, prefab.transform->rotation);
 }
 
 rb::GameObject rb::R2DScene::Instantiate(const GameObject& prefab, const Vec2& position, float rotation)
