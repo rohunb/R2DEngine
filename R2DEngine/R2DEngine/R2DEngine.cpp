@@ -2,8 +2,6 @@
 #include "GameConfig.h"
 #include "RDebug.h"
 #include "R2DGame.h"
-//temp
-#include "GameObject.h"
 
 using namespace rb;
 

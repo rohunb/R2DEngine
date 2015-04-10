@@ -28,7 +28,6 @@ namespace rb
 
 
 		std::function<void(GameObject&)> instantiateCallback;
-		friend class R2DGame;
 	};
 }
 

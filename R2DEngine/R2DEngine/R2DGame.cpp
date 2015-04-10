@@ -18,19 +18,6 @@ rb::R2DGame::R2DGame()
 
 void rb::R2DGame::StartGame()
 {
-	/*missile = std::make_shared<GameObject>(TextureManager::GetTexture("Missile"));
-	missile->Init();
-	engine->GetRenderEngine().AddNewRenderer(missile->GetRenderer());
-	missile->GetTransform().size *= 0.2f;
-	missile->GetTransform().position = Vec2(500.0f);
-	missile->GetTransform().rotation = glm::radians(30.0f);
-
-	asteroid = std::make_shared<GameObject>(TextureManager::GetTexture("Asteroid"));
-	asteroid->Init();
-	engine->GetRenderEngine().AddNewRenderer(asteroid->GetRenderer());
-	asteroid->GetTransform().position = Vec2(200.0f);
-	asteroid->GetTransform().size *= 0.5f;*/
-
 	Input::RegisterKeyCallback(std::bind(&R2DGame::OnKeyboard, this, _1, _2));
 	engine->Run(std::bind(&R2DGame::Update, this, _1));
 }

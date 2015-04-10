@@ -14,7 +14,9 @@ namespace rb
 		float rotation;
 
 		Transform();
-		Transform(const Vec2& position, const Vec2& size, float rotation);
+		Transform(const Vec2& position, float rotation, const Vec2& size);
+
+
 	};
 }
 #endif // R_TRANSFORM_H_

@@ -16,7 +16,7 @@ namespace rb
 		virtual ~RocketCommand() = default;
 		
 		virtual void StartGame() override;
-		//virtual void Update(float dt) override;
+
 	private:
 		std::shared_ptr<class R2DScene> testScene;
 		std::unique_ptr<class GameObject> missilePrefab;

@@ -30,9 +30,6 @@ namespace rb
 	private:
 		std::unique_ptr<R2DEngine> engine;
 		std::vector<std::shared_ptr<R2DScene>> sceneList;
-		//temp
-		/*std::shared_ptr<class GameObject> missile;
-		std::shared_ptr<class GameObject> asteroid;*/
 
 		void LoadDefaultResources();
 		void RegisterNewGameObject(class GameObject& gameObject);
