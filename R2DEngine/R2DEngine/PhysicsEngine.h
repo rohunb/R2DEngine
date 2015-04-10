@@ -8,6 +8,7 @@ namespace rb
 {
 	class PhysicsEngine
 	{
+	public:
 		PhysicsEngine() = default;
 		PhysicsEngine(const PhysicsEngine& rhs) = delete;
 		PhysicsEngine(const PhysicsEngine&& rhs) = delete;

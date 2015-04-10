@@ -5,6 +5,7 @@
 #include <memory>
 #include "RenderEngine.h"
 #include "RInput.h"
+#include "PhysicsEngine.h"
 
 namespace rb
 {
@@ -18,7 +19,8 @@ namespace rb
 		R2DEngine& operator = (const R2DEngine&& rhs) = delete;
 		~R2DEngine() = default;
 
-		RenderEngine& GetRenderEngine();
+		RenderEngine* GetRenderEngine();
+		PhysicsEngine* GetPhysicsEngine();
 
 		void Run(std::function<void(float)> updateMethod);
 		void Update(float dt);
@@ -26,6 +28,7 @@ namespace rb
 
 	private:
 		std::unique_ptr <RenderEngine> renderEngine;
+		std::unique_ptr<PhysicsEngine> physicsEngine;
 		std::unique_ptr <Input> input;
 		
 	};

@@ -10,5 +10,8 @@ void rb::PhysicsEngine::AddNewRigidbody(const Rigidbody2D& rigidbody)
 
 void rb::PhysicsEngine::Update(float dt)
 {
-
+	for (auto&& rigidbody: rigidbodies)
+	{
+		rigidbody->Update(dt);
+	}
 }

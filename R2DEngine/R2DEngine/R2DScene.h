@@ -18,8 +18,8 @@ namespace rb
 		R2DScene& operator = ( R2DScene&& rhs);
 		~R2DScene() = default;
 
-		GameObject Instantiate(const GameObject& prefab);
-		GameObject Instantiate(const GameObject& prefab, const Vec2& position, float rotation);
+		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
+		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);
 		void Update(float dt);
 
 	private:

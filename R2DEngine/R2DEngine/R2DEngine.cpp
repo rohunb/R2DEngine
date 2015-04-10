@@ -11,12 +11,18 @@ rb::R2DEngine::R2DEngine()
 	Screen::width = GameConfig::windowWidth;
 	Screen::height = GameConfig::windowHeight;
 	renderEngine = std::make_unique<RenderEngine>(GameConfig::windowWidth, GameConfig::windowHeight, GameConfig::windowPosX, GameConfig::windowPosY, GameConfig::windowName);
+	physicsEngine = std::make_unique<PhysicsEngine>();
 	input = std::make_unique<Input>(renderEngine->Window());
 }
 
-RenderEngine& rb::R2DEngine::GetRenderEngine()
+RenderEngine* rb::R2DEngine::GetRenderEngine()
 {
-	return *renderEngine;
+	return renderEngine.get();
+}
+
+PhysicsEngine* rb::R2DEngine::GetPhysicsEngine()
+{
+	return physicsEngine.get();
 }
 
 void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
@@ -37,6 +43,7 @@ void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 		renderEngine->PostRender();
 		
 		//update
+		physicsEngine->Update(deltaTime);
 		Update(deltaTime);
 		assert(updateMethod && "Update Method is null");
 		updateMethod(deltaTime);

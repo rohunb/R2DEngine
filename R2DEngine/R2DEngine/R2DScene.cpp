@@ -30,19 +30,19 @@ R2DScene& rb::R2DScene::operator=(R2DScene&& rhs)
 	instantiateCallback = std::move(rhs.instantiateCallback);
 	return *this;
 }
-GameObject rb::R2DScene::Instantiate(const GameObject& prefab)
+std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab)
 {
 	return Instantiate(prefab, prefab.transform->position, prefab.transform->rotation);
 }
 
-rb::GameObject rb::R2DScene::Instantiate(const GameObject& prefab, const Vec2& position, float rotation)
+std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab, const Vec2& position, float rotation)
 {
 	std::shared_ptr<GameObject> objClone = std::make_shared<GameObject>(prefab);
 	objClone->SetTransform(position, rotation);
 	sceneObjects.push_back(objClone);
 	assert(instantiateCallback && "Instantiate callback is null");
 	instantiateCallback(*objClone);
-	return *objClone;
+	return objClone;
 }
 
 void rb::R2DScene::Update(float dt)
