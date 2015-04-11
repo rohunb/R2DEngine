@@ -10,10 +10,11 @@ rb::RocketCommand::RocketCommand()
 	LoadResources();
 
 	testScene = std::make_shared<R2DScene>(CreateNewScene());
-	cannonPos = Vec2(static_cast<float>(Screen::WidthToFloat())*0.5f, 5.0f);
+	//testScene->BackgroundColour(Colour::cyan);
+	cannonPos = Vec2(static_cast<float>(Screen::WidthToFloat())*0.5f, 0.0f);
 	missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
 	missilePrefab->SetTransform(cannonPos, glm::radians(0.0f));
-	missilePrefab->GetTransform()->size *= 0.2f;
+	missilePrefab->GetTransform()->size *= 0.1f;
 	missileSpeed = 500.0f;
 
 	Input::RegisterKeyCallback(std::bind(&RocketCommand::OnKeyboard, this, _1, _2));
@@ -35,11 +36,18 @@ void rb::RocketCommand::OnMouseClick(int button, int action, const Vec2& mousePo
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		//auto missileClone = testScene->Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
-		Vec2 targetPos = Screen::ToWorldCoords(mousePosition);
-		Vec2 dir = glm::normalize(targetPos - cannonPos);
-		auto missileClone = testScene->Instantiate(*missilePrefab);//, cannonPos, 0.0f);
-		missileClone->GetRigidbody()->velocity = dir*missileSpeed;
-		missileClone->GetTransform()->LookAt(targetPos);
+
+		missileClone = testScene->Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
+
+		//Vec2 targetPos = Screen::ToWorldCoords(mousePosition);
+		//Vec2 dir = glm::normalize(targetPos - cannonPos);
+		//auto missileClone = testScene->Instantiate(*missilePrefab);// , cannonPos, glm::radians(-45.0f));
+		//missileClone->GetRigidbody()->velocity = dir*missileSpeed;
+		//missileClone->GetTransform()->LookAt(targetPos);
+	}
+	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		testScene->Destroy(missileClone);
 	}
 }
 

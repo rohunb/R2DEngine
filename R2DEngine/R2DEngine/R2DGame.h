@@ -24,6 +24,7 @@ namespace rb
 		virtual void StartGame();
 		virtual void Update(float dt);
 		R2DScene CreateNewScene();
+		void LoadScene(R2DScene* scene);
 
 		//callbacks
 		void OnKeyboard(int key, int action);
@@ -34,6 +35,7 @@ namespace rb
 
 		void LoadDefaultResources();
 		void RegisterNewGameObject(class GameObject& gameObject);
+		void DestroyGameObject(std::shared_ptr<class GameObject>& gameObject);
 	};
 }
 #endif // !R_R2D_GAME_H_

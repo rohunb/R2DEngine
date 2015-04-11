@@ -29,7 +29,10 @@ void rb::R2DGame::Update(float dt)
 
 rb::R2DScene rb::R2DGame::CreateNewScene()
 {
-	std::shared_ptr<R2DScene> newScene = std::make_shared<R2DScene>(std::bind(&R2DGame::RegisterNewGameObject, this, _1));
+	std::shared_ptr<R2DScene> newScene = 
+		std::make_shared<R2DScene>(
+		std::bind(&R2DGame::RegisterNewGameObject, this, _1),
+		std::bind(&R2DGame::DestroyGameObject, this, _1));
 	sceneList.push_back(newScene);
 	return *newScene;
 }
@@ -42,6 +45,16 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	engine->GetRenderEngine()->AddNewRenderer(gameObject.GetRenderer());
 	engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.GetRigidbody());
 }
+
+void rb::R2DGame::DestroyGameObject(std::shared_ptr<GameObject>& gameObject)
+{
+	Debug::Log("Destroying GameObject");
+	assert(gameObject.get() && "GameObject pointer is null");
+	
+	engine->GetRenderEngine()->RemoveRenderer(gameObject->GetRenderer());
+	engine->GetPhysicsEngine()->RemoveRigidbody(gameObject->GetRigidbody());
+}
+
 void rb::R2DGame::OnKeyboard(int key, int action)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)

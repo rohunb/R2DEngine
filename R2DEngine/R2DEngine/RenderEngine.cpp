@@ -1,8 +1,12 @@
 #include "RenderEngine.h"
+#include <assert.h>
+#include <algorithm>
 #include "RDebug.h"
 #include "SpriteRenderer.h"
 
 using namespace rb;
+
+Colour RenderEngine::clearColour;
 
 rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX, int windowPosY, string windowName)
 {
@@ -22,12 +26,13 @@ rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	clearColour = Colour::darkGrey;
 	Debug::Log("Initialized Render Engine.");
 }
 
 void rb::RenderEngine::PreRender() const
 {
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+	glClearColor(clearColour.r, clearColour.g, clearColour.b, clearColour.a);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 void RenderEngine::Render() const
@@ -43,6 +48,11 @@ void rb::RenderEngine::PostRender() const
 	glfwSwapBuffers(window);
 }
 
+void rb::RenderEngine::SetClearColour(const Colour& colour)
+{
+	clearColour = colour;
+}
+
 GLFWwindow* rb::RenderEngine::Window() const
 {
 	return window;
@@ -51,4 +61,11 @@ GLFWwindow* rb::RenderEngine::Window() const
 void rb::RenderEngine::AddNewRenderer(std::shared_ptr<class SpriteRenderer>& renderer)
 {
 	spriteRenderers.push_back(renderer);
+}
+
+void rb::RenderEngine::RemoveRenderer(std::shared_ptr<class SpriteRenderer>& renderer)
+{
+	assert(std::find(spriteRenderers.begin(), spriteRenderers.end(), renderer) != spriteRenderers.end() && "SpriteRenderer not present in RenderEngine");
+	spriteRenderers.erase(std::remove(spriteRenderers.begin(), spriteRenderers.end(), renderer),
+						spriteRenderers.end());
 }

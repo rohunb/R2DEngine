@@ -21,6 +21,7 @@ namespace rb
 		static Colour clear;
 		static Colour cyan;
 		static Colour grey;
+		static Colour darkGrey;
 		static Colour green;
 		static Colour magenta;
 		static Colour red;

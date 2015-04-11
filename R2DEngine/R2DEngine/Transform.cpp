@@ -16,6 +16,7 @@ void rb::Transform::LookAt(const Vec2& targetPosition)
 {
 	Vec2 dir = targetPosition - position;
 	rotation = -glm::radians(90.0f) + glm::atan(dir.y, dir.x);
+	Debug::Log("angle: " + ToString(glm::degrees(rotation)));
 }
 
 

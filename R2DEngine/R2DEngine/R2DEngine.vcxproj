@@ -72,6 +72,7 @@
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameConfig.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="R2DComponent.cpp" />
     <ClCompile Include="R2DGame.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="GL_Includes.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="R2DComponent.h" />

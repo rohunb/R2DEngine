@@ -11,23 +11,32 @@ namespace rb
 	class R2DScene
 	{
 	public:
-		R2DScene(std::function<void(GameObject&)> OnInstantiate);
+		//ctors
+		R2DScene(std::function<void(GameObject&)> OnInstantiate, std::function<void(std::shared_ptr<GameObject>&)> OnDestroy);
 		R2DScene(const R2DScene& rhs);
 		R2DScene(R2DScene&& rhs);
 		R2DScene& operator = (const R2DScene& rhs);
 		R2DScene& operator = ( R2DScene&& rhs);
 		~R2DScene() = default;
 
+		//get/set
+		Colour BackgroundColour() const;
+		void BackgroundColour(const Colour& val);
+
+		//methods
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);
-		void Update(float dt);
+		void Destroy(std::shared_ptr<GameObject>& gameObject);
+		virtual void Update(float dt);
+
+	protected:
 
 	private:
+		Colour backgroundColour;
+		
 		std::vector<std::shared_ptr<GameObject>> sceneObjects;
-		std::shared_ptr<GameObject> missile;
-
-
 		std::function<void(GameObject&)> OnInstantiate;
+		std::function<void(std::shared_ptr<GameObject>&)> OnDestroy;
 	};
 }
 

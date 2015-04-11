@@ -74,6 +74,9 @@
     <ClCompile Include="Rigidbody2D.cpp">
       <Filter>Engine\GameObjectAndComponents</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Gameplay Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="Rigidbody2D.h">
       <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Gameplay Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

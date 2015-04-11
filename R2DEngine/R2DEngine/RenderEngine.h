@@ -6,6 +6,7 @@
 #include "GL_Includes.h"
 #include <glfw3.h>
 #include "RString.h"
+#include "Colour.h"
 
 namespace rb
 {
@@ -22,12 +23,15 @@ namespace rb
 		GLFWwindow* Window() const;
 
 		void AddNewRenderer(std::shared_ptr<class SpriteRenderer>& renderer);
+		void RemoveRenderer(std::shared_ptr<class SpriteRenderer>& renderer);
 		void PreRender() const;
 		void Render() const;
 		void PostRender() const;
+		static void SetClearColour(const Colour& colour);
 
 	private:
 		GLFWwindow* window;
+		static Colour clearColour;
 		std::vector<std::shared_ptr<class SpriteRenderer>> spriteRenderers;
 
 	};

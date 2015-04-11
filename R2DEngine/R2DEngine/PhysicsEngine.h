@@ -17,6 +17,7 @@ namespace rb
 		~PhysicsEngine() = default;
 
 		void AddNewRigidbody(std::shared_ptr<class Rigidbody2D>& rigidbody);
+		void RemoveRigidbody(std::shared_ptr<class Rigidbody2D>& rigidbody);
 		void Update(float dt);
 
 	private:

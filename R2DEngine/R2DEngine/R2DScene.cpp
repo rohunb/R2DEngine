@@ -1,35 +1,54 @@
 #include "R2DScene.h"
+#include <algorithm>
 #include "GameObject.h"
 #include "RDebug.h"
 #include "TextureManager.h"
+#include "RenderEngine.h"
 
 using namespace rb;
 
-rb::R2DScene::R2DScene(std::function<void(GameObject&)> OnInstantiate)
-	:OnInstantiate(OnInstantiate)
+rb::R2DScene::R2DScene(std::function<void(GameObject&)> OnInstantiate, std::function<void(std::shared_ptr<GameObject>&)> OnDestroy)
+	:OnInstantiate(OnInstantiate),
+	OnDestroy(OnDestroy)
 {}
 
 rb::R2DScene::R2DScene(const R2DScene& rhs)
 	:sceneObjects(rhs.sceneObjects),
-	OnInstantiate(rhs.OnInstantiate)
+	OnInstantiate(rhs.OnInstantiate),
+	OnDestroy(rhs.OnDestroy)
 {}
 R2DScene& rb::R2DScene::operator=(const R2DScene& rhs)
 {
 	sceneObjects = rhs.sceneObjects;
 	OnInstantiate = OnInstantiate;
+	OnDestroy = rhs.OnDestroy;
 	return *this;
 }
 rb::R2DScene::R2DScene(R2DScene&& rhs)
 {
 	sceneObjects = std::move(rhs.sceneObjects);
 	OnInstantiate = std::move(rhs.OnInstantiate);
+	OnDestroy = std::move(rhs.OnDestroy);
 }
 R2DScene& rb::R2DScene::operator=(R2DScene&& rhs)
 {
 	sceneObjects = std::move(rhs.sceneObjects);
 	OnInstantiate = std::move(rhs.OnInstantiate);
+	OnDestroy = std::move(rhs.OnDestroy);
 	return *this;
 }
+
+rb::Colour rb::R2DScene::BackgroundColour() const
+{
+	return backgroundColour;
+}
+
+void rb::R2DScene::BackgroundColour(const Colour& val)
+{
+	backgroundColour = val;
+	RenderEngine::SetClearColour(backgroundColour);
+}
+
 std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab)
 {
 	return Instantiate(prefab, prefab.GetTransform()->position, prefab.GetTransform()->rotation);
@@ -45,7 +64,23 @@ std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab, 
 	//Debug::Log("transform: " + ToString(objClone->transform.use_count()) + " sprite " + ToString(objClone->renderer.use_count()) + " rb " + ToString(objClone->rigidbody.use_count()));
 	return objClone;
 }
+void rb::R2DScene::Destroy(std::shared_ptr<GameObject>& gameObject)
+{
+	assert(std::find(sceneObjects.begin(), sceneObjects.end(), gameObject) != sceneObjects.end() && "GameObject is not present in the scene");
+	Debug::Log("Gameobject refs: " + ToString(gameObject.use_count()) +
+		" trans: " + ToString(gameObject->GetTransform().use_count()) +
+		" rigidbody: " + ToString(gameObject->GetRigidbody().use_count()) +
+		" renderer: " + ToString(gameObject->GetRenderer().use_count()));
 
+	sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), gameObject), sceneObjects.end());
+	assert(OnDestroy && "OnDestroy is null");
+	OnDestroy(gameObject);
+	
+	Debug::Log("After destruction: Gameobject refs: " + ToString(gameObject.use_count()) +
+		" trans: " + ToString(gameObject->GetTransform().use_count()) +
+		" rigidbody: " + ToString(gameObject->GetRigidbody().use_count()) +
+		" renderer: " + ToString(gameObject->GetRenderer().use_count()));
+}
 void rb::R2DScene::Update(float dt)
 {
 
