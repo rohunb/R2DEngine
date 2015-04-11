@@ -34,7 +34,6 @@ namespace rb
 		void SetTransform(const Vec2& position, float rotation, const Vec2& size);
 		//methods
 		void Init();
-		void Destroy();
 
 	private:
 		//std::vector<std::shared_ptr<R2DComponent>> components;

@@ -77,6 +77,9 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>Gameplay Code</Filter>
     </ClCompile>
+    <ClCompile Include="Scene2.cpp">
+      <Filter>Gameplay Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -190,6 +193,9 @@
       <Filter>Engine\GameObjectAndComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
+      <Filter>Gameplay Code</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h">
       <Filter>Gameplay Code</Filter>
     </ClInclude>
   </ItemGroup>

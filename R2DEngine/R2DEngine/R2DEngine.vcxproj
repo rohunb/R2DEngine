@@ -85,6 +85,7 @@
     <ClCompile Include="RInput.cpp" />
     <ClCompile Include="RString.cpp" />
     <ClCompile Include="RVector.cpp" />
+    <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="RMatrix.h" />
     <ClInclude Include="RString.h" />
     <ClInclude Include="RVector.h" />
+    <ClInclude Include="Scene2.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />

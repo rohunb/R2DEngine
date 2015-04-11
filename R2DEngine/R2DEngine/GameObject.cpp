@@ -78,8 +78,3 @@ std::shared_ptr<Rigidbody2D> rb::GameObject::GetRigidbody() const
 {
 	return rigidbody;
 }
-
-void rb::GameObject::Destroy()
-{
-
-}

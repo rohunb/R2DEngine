@@ -2,6 +2,8 @@
 #include <functional>
 #include "RDebug.h"
 #include "GameObject.h"
+#include "GameScene.h"
+#include "Scene2.h"
 
 using namespace std::placeholders;
 
@@ -9,16 +11,20 @@ rb::RocketCommand::RocketCommand()
 {
 	LoadResources();
 
-	testScene = std::make_shared<R2DScene>(CreateNewScene());
-	//testScene->BackgroundColour(Colour::cyan);
-	cannonPos = Vec2(static_cast<float>(Screen::WidthToFloat())*0.5f, 0.0f);
-	missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
-	missilePrefab->SetTransform(cannonPos, glm::radians(0.0f));
-	missilePrefab->GetTransform()->size *= 0.1f;
-	missileSpeed = 500.0f;
+	//testScene = std::make_shared<R2DScene>(CreateNewScene());
+	////testScene->BackgroundColour(Colour::cyan);
+	//cannonPos = Vec2(static_cast<float>(Screen::WidthToFloat())*0.5f, 0.0f);
+	//missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
+	//missilePrefab->SetTransform(cannonPos, glm::radians(0.0f));
+	//missilePrefab->GetTransform()->size *= 0.1f;
+	//missileSpeed = 500.0f;
 
-	Input::RegisterKeyCallback(std::bind(&RocketCommand::OnKeyboard, this, _1, _2));
-	Input::RegisterMouseClickCallback(std::bind(&RocketCommand::OnMouseClick, this, _1, _2, _3));
+	Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePosition){OnMouseClick(button, action, mousePosition); });
+	//Input::RegisterKeyCallback([&](int key, int action){OnKeyboard(key, action); });
+
+	gameScene = CreateNewScene<GameScene>();
+	scene2 = CreateNewScene<Scene2>();
+	LoadScene(gameScene);
 }
 
 void rb::RocketCommand::StartGame()
@@ -35,9 +41,11 @@ void rb::RocketCommand::OnMouseClick(int button, int action, const Vec2& mousePo
 	//Debug::Log("mouse click " + ToString(button) + "," + ToString(action) + ": "+ToString(mousePosition));
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
+		LoadScene(scene2);
+
 		//auto missileClone = testScene->Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
 
-		missileClone = testScene->Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
+		//missileClone = testScene->Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
 
 		//Vec2 targetPos = Screen::ToWorldCoords(mousePosition);
 		//Vec2 dir = glm::normalize(targetPos - cannonPos);
@@ -47,7 +55,8 @@ void rb::RocketCommand::OnMouseClick(int button, int action, const Vec2& mousePo
 	}
 	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
 	{
-		testScene->Destroy(missileClone);
+		//testScene->Destroy(missileClone);
+		LoadScene(gameScene);
 	}
 }
 

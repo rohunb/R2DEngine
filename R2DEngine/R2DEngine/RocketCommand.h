@@ -21,6 +21,10 @@ namespace rb
 		std::shared_ptr<class R2DScene> testScene;
 		std::unique_ptr<class GameObject> missilePrefab;
 		std::shared_ptr<class GameObject> missileClone;
+
+		std::shared_ptr<class GameScene> gameScene;
+		std::shared_ptr<class Scene2> scene2;
+
 		Vec2 cannonPos;
 		float missileSpeed;
 

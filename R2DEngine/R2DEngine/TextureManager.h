@@ -11,7 +11,7 @@ namespace rb
 	{
 	public:
 		typedef std::unordered_map<string, Texture> TextureTable;
-		static void LoadTexture(const string& textureName, const string& textureFileName);
+		static Texture LoadTexture(const string& textureName, const string& textureFileName);
 		static Texture GetTexture(const string& name);
 	private:
 		static TextureTable textureTable;

@@ -23,8 +23,19 @@ namespace rb
 		//methods
 		virtual void StartGame();
 		virtual void Update(float dt);
-		R2DScene CreateNewScene();
-		void LoadScene(R2DScene* scene);
+		template<class T>
+		std::shared_ptr<T> CreateNewScene()
+		{
+			std::shared_ptr<T> newScene = std::make_shared<T>();
+			assert(dynamic_cast<R2DScene*>(newScene.get()) && "Must derive from R2DScene");
+			static_cast<R2DScene*>(newScene.get())->SetupCallbacks(
+				[&](GameObject& go){RegisterNewGameObject(go); },
+				[&](std::shared_ptr<GameObject>& go){DestroyGameObject(go); });
+			sceneList.push_back(newScene);
+			return newScene;
+		}
+		void LoadScene(std::shared_ptr<R2DScene> scene);
+
 
 		//callbacks
 		void OnKeyboard(int key, int action);
@@ -32,6 +43,7 @@ namespace rb
 	private:
 		std::unique_ptr<R2DEngine> engine;
 		std::vector<std::shared_ptr<R2DScene>> sceneList;
+		std::shared_ptr<R2DScene> currentScene;
 
 		void LoadDefaultResources();
 		void RegisterNewGameObject(class GameObject& gameObject);

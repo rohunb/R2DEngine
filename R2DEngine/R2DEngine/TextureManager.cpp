@@ -8,11 +8,11 @@ using namespace rb;
 
 rb::TextureManager::TextureTable rb::TextureManager::textureTable;
 
-void rb::TextureManager::LoadTexture(const string& textureName, const string& textureFileName)
+Texture rb::TextureManager::LoadTexture(const string& textureName, const string& textureFileName)
 {
 	assert(textureTable.find(textureName) == textureTable.end() && "Texture already exists in table");
 	Debug::Log("Loading texture \"" + textureName + "\" from: " + AssetPaths::spritesPath + textureFileName);
-	textureTable[textureName] = LoadTextureFromFile(AssetPaths::spritesPath + textureFileName);
+	return textureTable[textureName] = LoadTextureFromFile(AssetPaths::spritesPath + textureFileName);
 }
 
 rb::Texture rb::TextureManager::GetTexture(const string& name)

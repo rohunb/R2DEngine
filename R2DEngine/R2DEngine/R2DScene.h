@@ -3,8 +3,10 @@
 
 #include <vector>
 #include <functional>
+#include <memory>
 #include "GameObject.h"
 #include "RVector.h"
+#include "TextureManager.h"
 
 namespace rb
 {
@@ -12,7 +14,7 @@ namespace rb
 	{
 	public:
 		//ctors
-		R2DScene(std::function<void(GameObject&)> OnInstantiate, std::function<void(std::shared_ptr<GameObject>&)> OnDestroy);
+		R2DScene();
 		R2DScene(const R2DScene& rhs);
 		R2DScene(R2DScene&& rhs);
 		R2DScene& operator = (const R2DScene& rhs);
@@ -24,19 +26,25 @@ namespace rb
 		void BackgroundColour(const Colour& val);
 
 		//methods
+		virtual void Start();// = 0;
+		virtual void Update(float dt);// = 0;
+
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);
 		void Destroy(std::shared_ptr<GameObject>& gameObject);
-		virtual void Update(float dt);
 
 	protected:
 
 	private:
 		Colour backgroundColour;
-		
 		std::vector<std::shared_ptr<GameObject>> sceneObjects;
 		std::function<void(GameObject&)> OnInstantiate;
 		std::function<void(std::shared_ptr<GameObject>&)> OnDestroy;
+
+		void SetupCallbacks(std::function<void(GameObject&)> OnInstantiate, std::function<void(std::shared_ptr<GameObject>&)> OnDestroy);
+		void DestroyAllObjects();
+
+		friend class R2DGame;
 	};
 }
 
