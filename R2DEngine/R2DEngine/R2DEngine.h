@@ -22,14 +22,14 @@ namespace rb
 		RenderEngine* GetRenderEngine();
 		PhysicsEngine* GetPhysicsEngine();
 
-		void Run(std::function<void(float)> updateMethod);
+		void Run(std::function<void(float)> OnUpdate);
 		void ShutDown();
 
 	private:
 		std::unique_ptr <RenderEngine> renderEngine;
-		std::unique_ptr<PhysicsEngine> physicsEngine;
+		std::unique_ptr <PhysicsEngine> physicsEngine;
 		std::unique_ptr <Input> input;
-		
+
 	};
 }
 #endif // !R_R2D_ENGINE_H_

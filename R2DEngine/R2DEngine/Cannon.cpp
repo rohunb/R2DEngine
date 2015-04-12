@@ -1,4 +1,7 @@
 #include "Cannon.h"
+#include "TextureManager.h"
+#include "RInput.h"
+#include "Screen.h"
 
 void rb::Cannon::Start()
 {

@@ -1,4 +1,5 @@
 #include "Scene2.h"
+#include "TextureManager.h"
 
 void rb::Scene2::Start()
 {

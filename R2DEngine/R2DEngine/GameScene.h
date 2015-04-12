@@ -2,6 +2,7 @@
 #define R_GAME_SCENE_H_
 
 #include "R2DScene.h"
+#include "RInput.h"
 
 namespace rb
 {

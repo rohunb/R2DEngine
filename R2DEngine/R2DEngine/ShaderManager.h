@@ -14,6 +14,7 @@ namespace rb
 		static void LoadShader(const string& vertFileName, const string& fragFileName, Shader::ShaderType type);
 		static void LoadShader(const string& vertFileName, const string& fragFileName, const string& geomFileName, Shader::ShaderType type);
 		static Shader GetShader(Shader::ShaderType type);
+
 	private:
 		static ShaderTable shaderTable;
 	};

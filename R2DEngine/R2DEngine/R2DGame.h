@@ -4,8 +4,6 @@
 #include <memory>
 #include "R2DEngine.h"
 #include "R2DScene.h"
-#include "TextureManager.h"
-#include "Screen.h"
 
 namespace rb
 {
@@ -32,7 +30,6 @@ namespace rb
 
 	private:
 		std::unique_ptr<R2DEngine> engine;
-		//std::vector<std::shared_ptr<R2DScene>> sceneList;
 		std::shared_ptr<R2DScene> currentScene;
 
 		void LoadDefaultResources();

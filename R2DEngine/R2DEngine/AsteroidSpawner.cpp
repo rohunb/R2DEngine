@@ -1,4 +1,9 @@
 #include "AsteroidSpawner.h"
+#include "RDebug.h"
+#include "TextureManager.h"
+#include "Screen.h"
+#include "RTime.h"
+#include "RRandom.h"
 
 void rb::AsteroidSpawner::Start()
 {

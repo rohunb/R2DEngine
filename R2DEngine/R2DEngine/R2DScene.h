@@ -6,9 +6,6 @@
 #include <memory>
 #include "GameObject.h"
 #include "RVector.h"
-#include "TextureManager.h"
-#include "RInput.h"
-#include "Screen.h"
 
 namespace rb
 {

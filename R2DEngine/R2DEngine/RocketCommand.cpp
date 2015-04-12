@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "GameScene.h"
 #include "Scene2.h"
+#include "TextureManager.h"
 
 using namespace std::placeholders;
 
