@@ -10,11 +10,14 @@ namespace rb
 	public:
 		virtual void Start() override;
 		virtual void Update(float dt) override;
+		virtual void Exit() override;
 
 	private:
 		std::unique_ptr<GameObject> asteroidPrefab;
 
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
+
+
 	};
 }
 

@@ -23,3 +23,8 @@ void rb::GameScene::OnMouseClick(int button, int action, const Vec2& mousePos)
 	if (action == GLFW_PRESS)
 		Instantiate(*asteroidPrefab, Screen::ToWorldCoords(mousePos), 0.0f);
 }
+
+void rb::GameScene::Exit()
+{
+	//Input::ClearAllCallbacks();
+}

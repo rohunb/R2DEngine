@@ -32,6 +32,7 @@ void rb::R2DGame::LoadScene(std::shared_ptr<R2DScene> scene)
 	if (currentScene.get())
 	{
 		currentScene->DestroyAllObjects();
+		currentScene->Exit();
 	}
 	else
 	{

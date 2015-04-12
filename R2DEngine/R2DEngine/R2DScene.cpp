@@ -103,6 +103,7 @@ void rb::R2DScene::Update(float dt)
 
 }
 
+void rb::R2DScene::Exit()
+{
 
-
-
+}
