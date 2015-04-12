@@ -5,7 +5,7 @@
 
 void rb::GameScene::Start()
 {
-	BackgroundColour(Colour::darkGrey);
+	SetBackgroundColour(Colour::darkGrey);
 
 	asteroidSpawnerPrefab = std::make_unique<GameObject>();
 	asteroidSpawnerPrefab->AddScript<AsteroidSpawner>();
@@ -26,8 +26,7 @@ void rb::GameScene::Update(float dt)
 
 void rb::GameScene::OnMouseClick(int button, int action, const Vec2& mousePos)
 {
-	/*if (action == GLFW_PRESS)
-		Instantiate(*asteroidPrefab, Screen::ToWorldCoords(mousePos), 0.0f);*/
+	
 }
 
 void rb::GameScene::Exit()

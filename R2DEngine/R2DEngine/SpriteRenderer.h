@@ -16,6 +16,8 @@ namespace rb
 		~SpriteRenderer();
 
 		Texture GetTexture() const;
+		Shader GetShader() const;
+		Colour GetColour() const;
 
 		void Render();
 

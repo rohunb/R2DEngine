@@ -3,7 +3,7 @@
 
 void rb::Scene2::Start()
 {
-	BackgroundColour(Colour::red);
+	SetBackgroundColour(Colour::red);
 
 	missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
 	missilePrefab->SetTransform(Vec2(200.0f), glm::radians(30.0f));

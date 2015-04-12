@@ -22,7 +22,7 @@ namespace rb
 
 		//get/set
 		Colour BackgroundColour() const;
-		void BackgroundColour(const Colour& val);
+		void SetBackgroundColour(const Colour& val);
 
 		//methods
 		virtual void Start() = 0;

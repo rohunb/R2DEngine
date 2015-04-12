@@ -7,6 +7,7 @@
 #include <glfw3.h>
 #include "RString.h"
 #include "Colour.h"
+#include "RMatrix.h"
 
 namespace rb
 {
@@ -31,6 +32,7 @@ namespace rb
 
 	private:
 		GLFWwindow* window;
+		Mat4 projection;
 		static Colour clearColour;
 		std::vector<std::shared_ptr<class SpriteRenderer>> spriteRenderers;
 

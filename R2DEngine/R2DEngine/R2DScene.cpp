@@ -61,8 +61,7 @@ void rb::R2DScene::DestroyAllObjects()
 	sceneObjects.clear();
 }
 
-
-void rb::R2DScene::BackgroundColour(const Colour& val)
+void rb::R2DScene::SetBackgroundColour(const Colour& val)
 {
 	backgroundColour = val;
 	RenderEngine::SetClearColour(backgroundColour);

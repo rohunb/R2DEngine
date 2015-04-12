@@ -31,32 +31,21 @@ rb::Texture rb::SpriteRenderer::GetTexture() const
 	return texture;
 }
 
+Shader rb::SpriteRenderer::GetShader() const
+{
+	return shader;
+}
+
+rb::Colour rb::SpriteRenderer::GetColour() const
+{
+	return colour;
+}
+
 void rb::SpriteRenderer::Render()
 {
-	shader.Use();
-	auto trans = gameObject->GetTransform();
-	Mat4 modelMat = glm::translate(Mat4(1.0f), RVector2::ToVector3(trans->position));
-	////translate to origin and rotate
-	modelMat = glm::translate(modelMat, RVector2::ToVector3(trans->size * -0.5f));
-	modelMat = glm::rotate(modelMat, trans->rotation, RVector3::back);
-	modelMat = glm::translate(modelMat, RVector2::ToVector3(trans->size*0.5f));
-	//scale to size
-	modelMat = glm::scale(modelMat, Vec3(trans->size.x, trans->size.y, 1.0f));
-
-	//set uniforms
-	Mat4 projection = glm::ortho(0.0f, static_cast<float>(GameConfig::windowWidth), 0.0f, static_cast<float>(GameConfig::windowHeight), -1.0f, 1.0f);
-
-	shader.SetMat4(Shader::modelUniformName, modelMat);
-	shader.SetMat4(Shader::projUniformName, projection);
-	shader.SetVec4(Shader::spriteColourName, colour.ToVec4());
-	shader.SetInt(Shader::spriteTextureName, 0);
-	texture.Bind();
-
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	glBindVertexArray(0);
-	Texture::Unbind();
-	Shader::Unbind();
 }
 
 void rb::SpriteRenderer::InitGL()

@@ -19,8 +19,6 @@ namespace rb
 		std::unique_ptr<GameObject> cannonPrefab;
 
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
-
-
 	};
 }
 
