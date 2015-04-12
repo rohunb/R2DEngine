@@ -85,6 +85,7 @@
     <ClCompile Include="RenderEngine.cpp" />
     <ClCompile Include="Rigidbody2D.cpp" />
     <ClCompile Include="RInput.cpp" />
+    <ClCompile Include="RRandom.cpp" />
     <ClCompile Include="RString.cpp" />
     <ClCompile Include="RTime.cpp" />
     <ClCompile Include="RVector.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Rigidbody2D.h" />
     <ClInclude Include="RInput.h" />
     <ClInclude Include="RMatrix.h" />
+    <ClInclude Include="RRandom.h" />
     <ClInclude Include="RString.h" />
     <ClInclude Include="RTime.h" />
     <ClInclude Include="RVector.h" />

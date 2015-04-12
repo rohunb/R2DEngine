@@ -8,6 +8,8 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "RDebug.h"
+#include "RRandom.h"
+#include "Screen.h"
 
 namespace rb
 {

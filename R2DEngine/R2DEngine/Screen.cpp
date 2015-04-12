@@ -23,6 +23,10 @@ float rb::Screen::HeightToFloat()
 	return static_cast<float>(height);
 }
 
+rb::Vec2 rb::Screen::Center()
+{
+	return Vec2(WidthToFloat()*0.5f, HeightToFloat()*0.5f);
+}
 
 rb::Vec2 rb::Screen::ToWorldCoords(const Vec2& screenPosition)
 {

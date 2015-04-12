@@ -89,6 +89,9 @@
     <ClCompile Include="RTime.cpp">
       <Filter>Engine\EngineComponents</Filter>
     </ClCompile>
+    <ClCompile Include="RRandom.cpp">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -214,6 +217,9 @@
       <Filter>Gameplay Code</Filter>
     </ClInclude>
     <ClInclude Include="RTime.h">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RRandom.h">
       <Filter>Engine\EngineComponents</Filter>
     </ClInclude>
   </ItemGroup>
