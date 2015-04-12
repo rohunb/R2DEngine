@@ -38,7 +38,7 @@ void rb::RenderEngine::PreRender() const
 void RenderEngine::Render() const
 {
 //	Debug::Log("Num renderers: " + ToString(spriteRenderers.size()));
-	for (auto&& renderer: spriteRenderers)
+	for (auto& renderer: spriteRenderers)
 	{
 		renderer->Render();
 	}

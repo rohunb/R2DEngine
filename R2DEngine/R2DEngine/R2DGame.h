@@ -24,30 +24,34 @@ namespace rb
 		virtual void StartGame();
 		virtual void Update(float dt);
 		template<class T>
-		std::shared_ptr<T> CreateNewScene()
-		{
-			std::shared_ptr<T> newScene = std::make_shared<T>();
-			assert(dynamic_cast<R2DScene*>(newScene.get()) && "Must derive from R2DScene");
-			static_cast<R2DScene*>(newScene.get())->SetupCallbacks(
-				[&](GameObject& go){RegisterNewGameObject(go); },
-				[&](std::shared_ptr<GameObject>& go){DestroyGameObject(go); });
-			sceneList.push_back(newScene);
-			return newScene;
-		}
+		std::shared_ptr<T> CreateNewScene();
 		void LoadScene(std::shared_ptr<R2DScene> scene);
-
 
 		//callbacks
 		void OnKeyboard(int key, int action);
 
 	private:
 		std::unique_ptr<R2DEngine> engine;
-		std::vector<std::shared_ptr<R2DScene>> sceneList;
+		//std::vector<std::shared_ptr<R2DScene>> sceneList;
 		std::shared_ptr<R2DScene> currentScene;
 
 		void LoadDefaultResources();
 		void RegisterNewGameObject(class GameObject& gameObject);
 		void DestroyGameObject(std::shared_ptr<class GameObject>& gameObject);
 	};
+
+	template<class T>
+	std::shared_ptr<T> R2DGame::CreateNewScene()
+	{
+		std::shared_ptr<T> newScene = std::make_shared<T>();
+
+		static_assert(std::is_base_of<R2DScene, T>::value, "Must derive from R2DScene");
+
+		static_cast<R2DScene*>(newScene.get())->SetupCallbacks(
+			[&](GameObject& go){RegisterNewGameObject(go); },
+			[&](std::shared_ptr<GameObject>& go){DestroyGameObject(go); });
+
+		return newScene;
+	}
 }
 #endif // !R_R2D_GAME_H_

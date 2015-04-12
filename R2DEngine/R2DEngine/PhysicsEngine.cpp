@@ -19,7 +19,7 @@ void rb::PhysicsEngine::RemoveRigidbody(std::shared_ptr<Rigidbody2D>& rigidbody)
 
 void rb::PhysicsEngine::Update(float dt)
 {
-	for (auto&& rigidbody: rigidbodies)
+	for (auto& rigidbody: rigidbodies)
 	{
 		rigidbody->Update(dt);
 	}

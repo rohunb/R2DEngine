@@ -89,9 +89,10 @@ std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab, 
 void rb::R2DScene::Destroy(std::shared_ptr<GameObject>& gameObject)
 {
 	assert(std::find(sceneObjects.begin(), sceneObjects.end(), gameObject) != sceneObjects.end() && "GameObject is not present in the scene");
-	sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), gameObject), sceneObjects.end());
 	assert(OnDestroy && "OnDestroy is null");
 	OnDestroy(gameObject);
+	sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), gameObject), sceneObjects.end());
+
 	//Debug::Log("After destruction: Gameobject refs: " + ToString(gameObject.use_count()) +
 	//	" trans: " + ToString(gameObject->GetTransform().use_count()) +
 	//	" rigidbody: " + ToString(gameObject->GetRigidbody().use_count()) +

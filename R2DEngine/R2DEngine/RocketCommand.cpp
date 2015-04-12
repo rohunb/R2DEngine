@@ -19,8 +19,8 @@ rb::RocketCommand::RocketCommand()
 	//missilePrefab->GetTransform()->size *= 0.1f;
 	//missileSpeed = 500.0f;
 
-	Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePosition){OnMouseClick(button, action, mousePosition); });
-	//Input::RegisterKeyCallback([&](int key, int action){OnKeyboard(key, action); });
+	//Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePosition){OnMouseClick(button, action, mousePosition); });
+	Input::RegisterKeyCallback([&](int key, int action){OnKeyboard(key, action); });
 
 	gameScene = CreateNewScene<GameScene>();
 	scene2 = CreateNewScene<Scene2>();
@@ -34,6 +34,14 @@ void rb::RocketCommand::StartGame()
 void rb::RocketCommand::OnKeyboard(int key, int action)
 {
 	Debug::Log("OnKeyboard: key " + ToString(key) + " action " + ToString(action));
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	{
+		LoadScene(scene2);
+	}
+	else if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
+	{
+		LoadScene(gameScene);
+	}
 }
 
 void rb::RocketCommand::OnMouseClick(int button, int action, const Vec2& mousePosition)

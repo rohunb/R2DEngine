@@ -27,19 +27,6 @@ void rb::R2DGame::Update(float dt)
 	//Debug::Log("Game Update " + ToString(dt));
 }
 
-//std::shared_ptr<R2DScene> rb::R2DGame::CreateNewScene()
-//{
-//	std::shared_ptr<R2DScene> newScene = 
-//		std::make_shared<R2DScene>(
-//		std::bind(&R2DGame::RegisterNewGameObject, this, _1),
-//		std::bind(&R2DGame::DestroyGameObject, this, _1));
-//	sceneList.push_back(newScene);
-//	return newScene;
-//}
-
-
-
-
 void rb::R2DGame::LoadScene(std::shared_ptr<R2DScene> scene)
 {
 	if (currentScene.get())
