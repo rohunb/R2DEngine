@@ -6,6 +6,7 @@
 #include "ShaderManager.h"
 #include "TextureManager.h"
 #include "GameObject.h"
+#include "R2DScript.h"
 
 using namespace rb;
 using namespace std::placeholders;
@@ -46,18 +47,34 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 {
 	Debug::Log("Register new go");
 	assert(&gameObject && "GameObject is null");
+	for (auto& script : gameObject.GetScripts())
+	{
+		script->currentScene = currentScene;
+	}
 	gameObject.Init();
-	engine->GetRenderEngine()->AddNewRenderer(gameObject.GetRenderer());
-	engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.GetRigidbody());
+	if (gameObject.GetRenderer())
+	{
+		engine->GetRenderEngine()->AddNewRenderer(gameObject.GetRenderer());
+	}
+	if (gameObject.GetRigidbody())
+	{
+		engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.GetRigidbody());
+	}
+
 }
 
 void rb::R2DGame::DestroyGameObject(std::shared_ptr<GameObject>& gameObject)
 {
 	Debug::Log("Destroying GameObject");
 	assert(gameObject.get() && "GameObject pointer is null");
-	
-	engine->GetRenderEngine()->RemoveRenderer(gameObject->GetRenderer());
-	engine->GetPhysicsEngine()->RemoveRigidbody(gameObject->GetRigidbody());
+	if (gameObject->GetRenderer())
+	{
+		engine->GetRenderEngine()->RemoveRenderer(gameObject->GetRenderer());
+	}
+	if (gameObject->GetRigidbody())
+	{
+		engine->GetPhysicsEngine()->RemoveRigidbody(gameObject->GetRigidbody());
+	}
 }
 
 void rb::R2DGame::OnKeyboard(int key, int action)

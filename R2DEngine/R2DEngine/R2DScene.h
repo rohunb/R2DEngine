@@ -20,7 +20,7 @@ namespace rb
 		R2DScene(const R2DScene& rhs);
 		R2DScene(R2DScene&& rhs);
 		R2DScene& operator = (const R2DScene& rhs);
-		R2DScene& operator = ( R2DScene&& rhs);
+		R2DScene& operator = (R2DScene&& rhs);
 		~R2DScene() = default;
 
 		//get/set
@@ -28,9 +28,9 @@ namespace rb
 		void BackgroundColour(const Colour& val);
 
 		//methods
-		virtual void Start();// = 0;
-		virtual void Update(float dt);// = 0;
-		virtual void Exit();
+		virtual void Start() = 0;
+		virtual void Update(float dt) = 0;
+		virtual void Exit() = 0;
 
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);

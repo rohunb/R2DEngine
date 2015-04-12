@@ -60,10 +60,6 @@ void rb::R2DScene::DestroyAllObjects()
 	sceneObjects.clear();
 }
 
-void rb::R2DScene::Start()
-{
-
-}
 
 void rb::R2DScene::BackgroundColour(const Colour& val)
 {
@@ -97,6 +93,11 @@ void rb::R2DScene::Destroy(std::shared_ptr<GameObject>& gameObject)
 	//	" trans: " + ToString(gameObject->GetTransform().use_count()) +
 	//	" rigidbody: " + ToString(gameObject->GetRigidbody().use_count()) +
 	//	" renderer: " + ToString(gameObject->GetRenderer().use_count()));
+}
+
+void rb::R2DScene::Start()
+{
+
 }
 void rb::R2DScene::Update(float dt)
 {

@@ -80,6 +80,15 @@
     <ClCompile Include="Scene2.cpp">
       <Filter>Gameplay Code</Filter>
     </ClCompile>
+    <ClCompile Include="R2DScript.cpp">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidSpawner.cpp">
+      <Filter>Gameplay Code</Filter>
+    </ClCompile>
+    <ClCompile Include="RTime.cpp">
+      <Filter>Engine\EngineComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -197,6 +206,15 @@
     </ClInclude>
     <ClInclude Include="Scene2.h">
       <Filter>Gameplay Code</Filter>
+    </ClInclude>
+    <ClInclude Include="R2DScript.h">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidSpawner.h">
+      <Filter>Gameplay Code</Filter>
+    </ClInclude>
+    <ClInclude Include="RTime.h">
+      <Filter>Engine\EngineComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

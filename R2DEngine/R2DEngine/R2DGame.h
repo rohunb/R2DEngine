@@ -43,9 +43,9 @@ namespace rb
 	template<class T>
 	std::shared_ptr<T> R2DGame::CreateNewScene()
 	{
-		std::shared_ptr<T> newScene = std::make_shared<T>();
-
 		static_assert(std::is_base_of<R2DScene, T>::value, "Must derive from R2DScene");
+
+		std::shared_ptr<T> newScene = std::make_shared<T>();
 
 		static_cast<R2DScene*>(newScene.get())->SetupCallbacks(
 			[&](GameObject& go){RegisterNewGameObject(go); },

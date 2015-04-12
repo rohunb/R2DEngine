@@ -3,6 +3,7 @@
 #include "RDebug.h"
 #include "R2DGame.h"
 #include "Screen.h"
+#include "RTime.h"
 
 using namespace rb;
 
@@ -27,14 +28,14 @@ PhysicsEngine* rb::R2DEngine::GetPhysicsEngine()
 
 void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 {
-	float deltaTime = 0.0f;
-	float lastFrameTime = 0.0f;
+	RTime::deltaTime = 0.0f;
+	RTime::lastFrameTime = 0.0f;
 	Debug::Log("Running engine...");
 	while (!glfwWindowShouldClose(renderEngine->Window()))
 	{
-		float currentTime = static_cast<float>(glfwGetTime());
-		deltaTime = currentTime - lastFrameTime;
-		lastFrameTime = currentTime;
+		RTime::elapsedTime = static_cast<float>(glfwGetTime());
+		RTime::deltaTime = RTime::elapsedTime - RTime::lastFrameTime;
+		RTime::lastFrameTime = RTime::elapsedTime;
 
 		glfwPollEvents();
 		//render
@@ -43,17 +44,11 @@ void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 		renderEngine->PostRender();
 		
 		//update
-		physicsEngine->Update(deltaTime);
-		Update(deltaTime);
+		physicsEngine->Update(RTime::deltaTime);
 		assert(updateMethod && "Update Method is null");
-		updateMethod(deltaTime);
+		updateMethod(RTime::deltaTime);
 	}
 	glfwTerminate();
-}
-
-void rb::R2DEngine::Update(float dt)
-{
-	//game->Update(dt);
 }
 
 void rb::R2DEngine::ShutDown()

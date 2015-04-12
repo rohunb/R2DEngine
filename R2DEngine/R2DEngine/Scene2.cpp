@@ -15,3 +15,8 @@ void rb::Scene2::Update(float dt)
 {
 
 }
+
+void rb::Scene2::Exit()
+{
+
+}

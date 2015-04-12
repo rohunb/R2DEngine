@@ -11,7 +11,7 @@ namespace rb
 	public:
 		virtual void Start() override;
 		virtual void Update(float dt) override;
-
+		virtual void Exit() override;
 	private:
 		//prefabs
 		std::unique_ptr<GameObject> missilePrefab;

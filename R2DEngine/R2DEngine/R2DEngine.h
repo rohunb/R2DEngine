@@ -23,7 +23,6 @@ namespace rb
 		PhysicsEngine* GetPhysicsEngine();
 
 		void Run(std::function<void(float)> updateMethod);
-		void Update(float dt);
 		void ShutDown();
 
 	private:

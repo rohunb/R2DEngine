@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Texture.h"
 #include "RDebug.h"
+#include "R2DScript.h"
 
 using namespace rb;
 
@@ -8,52 +9,85 @@ void rb::GameObject::Init()
 {
 	Debug::Log("GameObject init");
 	transform->gameObject = shared_from_this();
-	renderer->gameObject = shared_from_this();
-	rigidbody->gameObject = shared_from_this();
+	if(renderer) renderer->gameObject = shared_from_this();
+	if(rigidbody) rigidbody->gameObject = shared_from_this();
+	for (auto& script : scripts)
+	{
+		Debug::Log("script");
+		script->Start();
+	}
 }
 
 
 rb::GameObject::GameObject()
+	:transform(std::make_shared<Transform>())
 {}
 
 rb::GameObject::GameObject(const Texture& texture)
 	:transform(std::make_shared<Transform>()),
 	renderer(std::make_shared<SpriteRenderer>(texture)),
 	rigidbody(std::make_shared<Rigidbody2D>())
-
 {
 	transform->size = Vec2(renderer->GetTexture().width, renderer->GetTexture().height);
 }
 
 rb::GameObject::GameObject(const GameObject& rhs)
-	:renderer(std::make_shared<SpriteRenderer>(*(rhs.renderer))),
-	transform(std::make_shared<Transform>(*(rhs.transform))),
-	rigidbody(std::make_shared<Rigidbody2D>(*(rhs.rigidbody)))
-{}
+	:transform(std::make_shared<Transform>(*(rhs.transform))),
+	scripts(rhs.scripts)
+{
+	if (rhs.renderer)
+	{
+		renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+	}
+	if (rhs.rigidbody)
+	{
+		rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
+	}
+}
 
 rb::GameObject::GameObject(GameObject&& rhs)
 	: transform(std::move(rhs.transform)),
-	renderer(std::move(rhs.renderer)),
-	rigidbody(std::move(rhs.rigidbody))
-{}
+	scripts(std::move(rhs.scripts))
+{
+	if (rhs.renderer)
+	{
+		renderer=std::move(rhs.renderer);
+	}
+	if (rhs.rigidbody)
+	{
+		rigidbody=std::move(rhs.rigidbody);
+	}
+}
+
 GameObject& rb::GameObject::operator=(const GameObject& rhs)
 {
-	renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
 	transform = std::make_shared<Transform>(*(rhs.transform));
-	rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
+	if (rhs.renderer)
+	{
+		renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+	}
+	if (rhs.rigidbody)
+	{
+		rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
+	}
+	scripts = rhs.scripts;
 	return *this;
 }
 GameObject& rb::GameObject::operator=(GameObject&& rhs)
 {
 	transform = std::move(rhs.transform);
-	renderer = std::move(rhs.renderer);
-	rigidbody = std::move(rhs.rigidbody);
+	if (rhs.renderer)
+	{
+		renderer = std::move(rhs.renderer);
+	}
+	if (rhs.rigidbody)
+	{
+		rigidbody = std::move(rhs.rigidbody);
+	}
+	scripts = std::move(rhs.scripts);
 	return *this;
 }
-rb::GameObject::~GameObject()
-{
 
-}
 void rb::GameObject::SetTransform(const Vec2& position, float rotation)
 {
 	SetTransform(position, rotation, transform->size);
@@ -77,4 +111,9 @@ std::shared_ptr<SpriteRenderer> rb::GameObject::GetRenderer() const
 std::shared_ptr<Rigidbody2D> rb::GameObject::GetRigidbody() const
 {
 	return rigidbody;
+}
+
+std::vector<std::shared_ptr<class R2DScript>> rb::GameObject::GetScripts() const
+{
+	return scripts;
 }
