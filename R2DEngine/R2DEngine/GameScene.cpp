@@ -1,20 +1,19 @@
 #include "GameScene.h"
 #include "AsteroidSpawner.h"
+#include "Cannon.h"
 
 void rb::GameScene::Start()
 {
-	/*asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
-	asteroidPrefab->SetTransform(Vec2(200.0f),0.0f);
-	asteroidPrefab->GetTransform()->size *= 0.3f;
-
-	Instantiate(*asteroidPrefab);
-	Instantiate(*asteroidPrefab, Vec2(500.0f), 0.0f);*/
-
 	BackgroundColour(Colour::darkGrey);
-	asteroidSpawner = std::make_unique<GameObject>();
-	asteroidSpawner->AddScript<AsteroidSpawner>();
-	
-	Instantiate(*asteroidSpawner);
+
+	asteroidSpawnerPrefab = std::make_unique<GameObject>();
+	asteroidSpawnerPrefab->AddScript<AsteroidSpawner>();
+	Instantiate(*asteroidSpawnerPrefab);
+
+	cannonPrefab = std::make_unique<GameObject>();
+	cannonPrefab->AddScript<Cannon>();
+	cannonPrefab->SetTransform(Vec2(Screen::WidthToFloat()*0.5f, 50.0f));
+	Instantiate(*cannonPrefab);
 
 	mouseClickEvent = Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
 }

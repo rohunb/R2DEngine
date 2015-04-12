@@ -69,6 +69,7 @@
   <ItemGroup>
     <ClCompile Include="AssetPaths.cpp" />
     <ClCompile Include="AsteroidSpawner.cpp" />
+    <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Colour.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameConfig.cpp" />
@@ -102,6 +103,7 @@
   <ItemGroup>
     <ClInclude Include="AssetPaths.h" />
     <ClInclude Include="AsteroidSpawner.h" />
+    <ClInclude Include="Cannon.h" />
     <ClInclude Include="Colour.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="GameConfig.h" />

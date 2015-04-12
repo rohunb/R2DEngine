@@ -13,7 +13,7 @@ void rb::GameObject::Init()
 	if(rigidbody) rigidbody->gameObject = shared_from_this();
 	for (auto& script : scripts)
 	{
-		Debug::Log("script");
+		script->gameObject = shared_from_this();
 		script->Start();
 	}
 }

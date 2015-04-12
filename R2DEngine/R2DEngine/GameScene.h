@@ -13,9 +13,9 @@ namespace rb
 		virtual void Exit() override;
 
 	private:
-		//std::unique_ptr<GameObject> asteroidPrefab;
 		std::shared_ptr<MouseClickEvent> mouseClickEvent;
-		std::unique_ptr<GameObject> asteroidSpawner;
+		std::unique_ptr<GameObject> asteroidSpawnerPrefab;
+		std::unique_ptr<GameObject> cannonPrefab;
 
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
 

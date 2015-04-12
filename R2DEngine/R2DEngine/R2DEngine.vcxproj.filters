@@ -92,6 +92,9 @@
     <ClCompile Include="RRandom.cpp">
       <Filter>Engine\EngineComponents</Filter>
     </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>Gameplay Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -221,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="RRandom.h">
       <Filter>Engine\EngineComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
+      <Filter>Gameplay Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@
 #include "RDebug.h"
 #include "RRandom.h"
 #include "Screen.h"
+#include "RInput.h"
 
 namespace rb
 {

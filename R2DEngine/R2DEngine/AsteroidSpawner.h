@@ -12,10 +12,10 @@ namespace rb
 		virtual void Update(float dt) override;
 
 	private:
-		std::unique_ptr<class GameObject> asteroidPrefab;
+		std::unique_ptr<GameObject> asteroidPrefab;
 		float spawnInterval;
 		float currentTime;
-		Vec2 asteroidSpeed;
+		float asteroidSpeed;
 		Vec2 spawnPos;
 	};
 }
