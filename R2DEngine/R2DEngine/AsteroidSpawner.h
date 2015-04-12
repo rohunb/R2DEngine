@@ -16,6 +16,7 @@ namespace rb
 		float spawnInterval;
 		float currentTime;
 		Vec2 asteroidSpeed;
+		Vec2 startPos;
 	};
 }
 

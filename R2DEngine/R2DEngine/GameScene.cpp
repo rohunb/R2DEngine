@@ -21,7 +21,7 @@ void rb::GameScene::Start()
 
 void rb::GameScene::Update(float dt)
 {
-	
+	R2DScene::Update(dt);
 }
 
 void rb::GameScene::OnMouseClick(int button, int action, const Vec2& mousePos)

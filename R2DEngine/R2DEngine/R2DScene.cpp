@@ -4,6 +4,7 @@
 #include "RDebug.h"
 #include "TextureManager.h"
 #include "RenderEngine.h"
+#include "R2DScript.h"
 
 using namespace rb;
 
@@ -101,7 +102,23 @@ void rb::R2DScene::Start()
 }
 void rb::R2DScene::Update(float dt)
 {
-
+	//Debug::Log("scene Update");
+	/*for (auto& go: sceneObjects)
+	{
+		for (auto& script: go->GetScripts())
+		{
+			script->Update(dt);
+		}
+	}*/
+	size_t numSceneObjs = sceneObjects.size();
+	for (size_t i = 0; i < numSceneObjs; i++)
+	{
+		size_t numScripts = sceneObjects[i]->GetScripts().size();
+		for (size_t j = 0; j < numScripts; j++)
+		{
+			sceneObjects[i]->GetScripts()[j]->Update(dt);
+		}
+	}
 }
 
 void rb::R2DScene::Exit()

@@ -26,6 +26,7 @@ void rb::R2DGame::StartGame()
 void rb::R2DGame::Update(float dt)
 {
 	//Debug::Log("Game Update " + ToString(dt));
+	currentScene->Update(dt);
 }
 
 void rb::R2DGame::LoadScene(std::shared_ptr<R2DScene> scene)
