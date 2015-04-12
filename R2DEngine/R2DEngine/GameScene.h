@@ -14,6 +14,7 @@ namespace rb
 
 	private:
 		std::unique_ptr<GameObject> asteroidPrefab;
+		std::shared_ptr<MouseClickEvent> mouseClickEvent;
 
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
 

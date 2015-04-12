@@ -1,9 +1,10 @@
 #ifndef R_INPUT_H_
 #define R_INPUT_H_
 
-#include <functional>
 #include <glfw3.h>
+#include <functional>
 #include <vector>
+#include <memory>
 #include "RVector.h"
 
 namespace rb
@@ -15,19 +16,24 @@ namespace rb
 	{
 	public:
 		Input(GLFWwindow* window);
-		static void RegisterKeyCallback(KeyboardEvent OnKeyboard);
-		static void RegisterMouseClickCallback(MouseClickEvent OnMouseClick);
-		
-		static void ClearAllCallbacks();
+		Input(const Input& rhs) = delete;
+		Input(Input&& rhs) = delete;
+		Input& operator = (const Input& rhs) = delete;
+		Input& operator = (Input&& rhs) = delete;
+		~Input() = default;
 
-		/*static void RemoveKeyCallback(std::function<void(int key, int action)> OnKeyboard);
-		static void RemoveMouseClickCallback(std::function<void(int button, int action, const Vec2& mousePos)> OnMouseClick);*/
+		static std::shared_ptr<KeyboardEvent> RegisterKeyCallback(KeyboardEvent OnKeyboard);
+		static std::shared_ptr<MouseClickEvent> RegisterMouseClickCallback(MouseClickEvent OnMouseClick);
+
+		static void ClearAllCallbacks();
+		static void RemoveKeyCallback(std::shared_ptr<KeyboardEvent>& OnKeyboard);
+		static void RemoveMouseClickCallback(std::shared_ptr<MouseClickEvent>& OnMouseClick);
 
 		static Vec2 GetMousePosition();
 
 	private:
-		static std::vector<KeyboardEvent> OnKeyboardEvents;
-		static std::vector<MouseClickEvent> OnMouseClickEvents;
+		static std::vector<std::shared_ptr<KeyboardEvent>> keyboardEvents;
+		static std::vector<std::shared_ptr<MouseClickEvent>> mouseClickEvents;
 		static Vec2 mousePosition;
 
 		static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);

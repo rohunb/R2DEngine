@@ -10,7 +10,7 @@ void rb::GameScene::Start()
 	Instantiate(*asteroidPrefab, Vec2(500.0f), 0.0f);
 	BackgroundColour(Colour::blue);
 
-	Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
+	mouseClickEvent = Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
 }
 
 void rb::GameScene::Update(float dt)
@@ -26,5 +26,5 @@ void rb::GameScene::OnMouseClick(int button, int action, const Vec2& mousePos)
 
 void rb::GameScene::Exit()
 {
-	//Input::ClearAllCallbacks();
+	Input::RemoveMouseClickCallback(mouseClickEvent);
 }
