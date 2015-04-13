@@ -3,12 +3,12 @@
 
 #include <memory>
 #include <vector>
+#include <type_traits>
 #include "RString.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "Texture.h"
 #include "Rigidbody2D.h"
-#include <iostream>
 //#include "RDebug.h"
 
 namespace rb
@@ -24,7 +24,7 @@ namespace rb
 		GameObject();
 		explicit GameObject(const Texture& texture);
 		GameObject(const GameObject& rhs);
-		GameObject(GameObject&& rhs);
+		GameObject(GameObject&& rhs) ;
 		GameObject& operator = (const GameObject& rhs);
 		GameObject& operator = (GameObject&& rhs);
 		~GameObject() = default;

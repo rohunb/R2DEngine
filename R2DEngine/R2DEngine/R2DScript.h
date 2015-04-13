@@ -20,6 +20,7 @@ namespace rb
 		virtual void Start() ;
 		virtual void Update(float dt) ;
 		virtual void OnDestroy() ;
+		virtual std::unique_ptr<R2DScript> Clone() const = 0;
 
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);

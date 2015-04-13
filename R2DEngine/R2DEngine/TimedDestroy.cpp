@@ -2,6 +2,8 @@
 #include "RTime.h"
 #include "RDebug.h"
 
+using namespace rb;
+
 void rb::TimedDestroy::Start()
 {
 	timeToDestroy = 1.0f;
@@ -29,4 +31,9 @@ void rb::TimedDestroy::StartDestroyTimer(float timeToDestroy)
 	startTimer = true;
 	currentTime = 0.0f;
 	this->timeToDestroy = timeToDestroy;
+}
+
+std::unique_ptr<R2DScript> rb::TimedDestroy::Clone() const
+{
+	return std::make_unique<TimedDestroy>();
 }

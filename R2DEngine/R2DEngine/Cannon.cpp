@@ -6,6 +6,19 @@
 
 using namespace rb;
 
+//rb::Cannon::Cannon(Cannon&& rhs)
+//	:missilePrefab(std::move(rhs.missilePrefab)),
+//	missileSpeed(std::move(rhs.missileSpeed)),
+//
+//{
+//
+//}
+
+//Cannon& rb::Cannon::operator=(Cannon&& rhs)
+//{
+//
+//}
+
 void rb::Cannon::Start()
 {
 	//Debug::Log("Cannon start");
@@ -57,4 +70,9 @@ void rb::Cannon::OnDestroy()
 {
 	Input::RemoveMouseClickCallback(onMouseClick);
 	Input::RemoveKeyCallback(onKeyboard);
+}
+
+std::unique_ptr<R2DScript> Cannon::Clone() const
+{
+	return std::make_unique<Cannon>();
 }

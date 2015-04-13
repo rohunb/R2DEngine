@@ -5,6 +5,8 @@
 #include "RTime.h"
 #include "RRandom.h"
 
+using namespace rb;
+
 void rb::AsteroidSpawner::Start()
 {
 	Debug::Log("Asteroid spawner start");
@@ -49,4 +51,9 @@ void rb::AsteroidSpawner::Update(float dt)
 void rb::AsteroidSpawner::OnDestroy()
 {
 
+}
+
+std::unique_ptr<R2DScript> rb::AsteroidSpawner::Clone() const
+{
+	return std::make_unique<AsteroidSpawner>();
 }

@@ -30,27 +30,6 @@ rb::GameObject::GameObject(const Texture& texture)
 	transform->size = Vec2(renderer->GetTexture().width, renderer->GetTexture().height);
 }
 
-rb::GameObject::GameObject(const GameObject& rhs)
-	:transform(std::make_shared<Transform>(*(rhs.transform)))
-{
-	if (rhs.renderer)
-	{
-		renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
-	}
-	if (rhs.rigidbody)
-	{
-		rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
-	}
-	scripts = rhs.scripts;
-	/*scripts.clear();
-	size_t numScripts = rhs.scripts.size();
-	scripts.reserve(numScripts);
-	for (size_t i = 0; i < numScripts; i++)
-	{
-		scripts.push_back(std::make_shared<R2DScript>(*(rhs.scripts[i])));
-	}*/
-}
-
 rb::GameObject::GameObject(GameObject&& rhs)
 	: transform(std::move(rhs.transform)),
 	scripts(std::move(rhs.scripts))
@@ -62,6 +41,23 @@ rb::GameObject::GameObject(GameObject&& rhs)
 	if (rhs.rigidbody)
 	{
 		rigidbody=std::move(rhs.rigidbody);
+	}
+}
+rb::GameObject::GameObject(const GameObject& rhs)
+	:transform(std::make_shared<Transform>(*(rhs.transform)))
+{
+	if (rhs.renderer)
+	{
+		renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+	}
+	if (rhs.rigidbody)
+	{
+		rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
+	}
+	scripts.reserve(rhs.scripts.size());
+	for (auto& rhsScript: rhs.scripts)
+	{
+		scripts.push_back(rhsScript->Clone());
 	}
 }
 

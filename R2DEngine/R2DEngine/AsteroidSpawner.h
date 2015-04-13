@@ -8,9 +8,15 @@ namespace rb
 	class AsteroidSpawner : public R2DScript
 	{
 	public:
+		AsteroidSpawner() = default;
+		AsteroidSpawner(const AsteroidSpawner& rhs) = delete;
+		AsteroidSpawner& operator = (const AsteroidSpawner& rhs) = delete;
+		~AsteroidSpawner() = default;
+
 		virtual void Start() override;
 		virtual void Update(float dt) override;
 		virtual void OnDestroy() override;
+		virtual std::unique_ptr<R2DScript> Clone() const override;
 
 	private:
 		std::unique_ptr<GameObject> asteroidPrefab;
