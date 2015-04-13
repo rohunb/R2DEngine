@@ -59,6 +59,21 @@ void rb::R2DScene::DestroyAllObjects()
 	}
 	sceneObjects.clear();
 }
+void rb::R2DScene::RemoveDestroyedObjects()
+{
+	int i = sceneObjects.size() - 1;
+	while (i >= 0 )
+	{
+		if (sceneObjects[i]->destroyed)
+		{
+			Destroy(sceneObjects[i]);
+		}
+		else
+		{
+			--i;
+		}
+	}
+}
 
 void rb::R2DScene::SetBackgroundColour(const Colour& val)
 {
@@ -85,8 +100,9 @@ void rb::R2DScene::Destroy(std::shared_ptr<GameObject>& gameObject)
 	assert(std::find(sceneObjects.begin(), sceneObjects.end(), gameObject) != sceneObjects.end() && "GameObject is not present in the scene");
 	assert(OnDestroy && "OnDestroy is null");
 	OnDestroy(gameObject);
+	assert(std::find(sceneObjects.begin(), sceneObjects.end(), gameObject) != sceneObjects.end() && "GameObject is not present in the scene");
 	sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), gameObject), sceneObjects.end());
-
+	
 	//Debug::Log("After destruction: Gameobject refs: " + ToString(gameObject.use_count()) +
 	//	" trans: " + ToString(gameObject->GetTransform().use_count()) +
 	//	" rigidbody: " + ToString(gameObject->GetRigidbody().use_count()) +

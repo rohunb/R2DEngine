@@ -32,6 +32,7 @@ namespace rb
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);
 		void Destroy(std::shared_ptr<GameObject>& gameObject);
+		void RemoveDestroyedObjects();
 
 	protected:
 

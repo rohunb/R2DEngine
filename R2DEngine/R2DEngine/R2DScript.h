@@ -17,12 +17,13 @@ namespace rb
 		R2DScript& operator = (R2DScript&& rhs){};
 		virtual ~R2DScript() = default;
 
-		virtual void Start() = 0;
-		virtual void Update(float dt) = 0;
-		virtual void OnDestroy() = 0;
+		virtual void Start() ;
+		virtual void Update(float dt) ;
+		virtual void OnDestroy() ;
 
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);
+		void Destroy(std::shared_ptr<GameObject>& gameObject);
 
 	private:
 		std::shared_ptr<class R2DScene> currentScene;

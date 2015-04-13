@@ -16,7 +16,8 @@ namespace rb
 		std::unique_ptr<GameObject> asteroidPrefab;
 		float spawnInterval;
 		float currentTime;
-		float asteroidSpeed;
+		float asteroidVelY;
+		float asteroidVelXRange;
 		Vec2 spawnPos;
 		//int counter = 0;
 	};

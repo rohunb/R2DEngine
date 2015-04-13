@@ -31,8 +31,7 @@ rb::GameObject::GameObject(const Texture& texture)
 }
 
 rb::GameObject::GameObject(const GameObject& rhs)
-	:transform(std::make_shared<Transform>(*(rhs.transform))),
-	scripts(rhs.scripts)
+	:transform(std::make_shared<Transform>(*(rhs.transform)))
 {
 	if (rhs.renderer)
 	{
@@ -42,6 +41,14 @@ rb::GameObject::GameObject(const GameObject& rhs)
 	{
 		rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
 	}
+	scripts = rhs.scripts;
+	/*scripts.clear();
+	size_t numScripts = rhs.scripts.size();
+	scripts.reserve(numScripts);
+	for (size_t i = 0; i < numScripts; i++)
+	{
+		scripts.push_back(std::make_shared<R2DScript>(*(rhs.scripts[i])));
+	}*/
 }
 
 rb::GameObject::GameObject(GameObject&& rhs)
@@ -111,7 +118,6 @@ std::shared_ptr<Rigidbody2D> rb::GameObject::GetRigidbody() const
 {
 	return rigidbody;
 }
-
 std::vector<std::shared_ptr<class R2DScript>> rb::GameObject::GetScripts() const
 {
 	return scripts;

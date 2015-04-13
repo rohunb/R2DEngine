@@ -17,7 +17,10 @@ namespace rb
 		std::unique_ptr<GameObject> missilePrefab;
 		float missileSpeed;
 		std::shared_ptr<MouseClickEvent> onMouseClick;
+		std::shared_ptr<KeyboardEvent> onKeyboard;
+		void Fire(const Vec2& targetPos);
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
+		void OnKeyboard(int key, int action);
 
 
 	};

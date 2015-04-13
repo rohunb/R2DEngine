@@ -8,6 +8,8 @@
 #include "SpriteRenderer.h"
 #include "Texture.h"
 #include "Rigidbody2D.h"
+#include <iostream>
+//#include "RDebug.h"
 
 namespace rb
 {
@@ -16,6 +18,7 @@ namespace rb
 	public:
 		string name;
 		string tag;
+		bool destroyed=false;
 
 		//ctors
 		GameObject();
@@ -39,6 +42,8 @@ namespace rb
 
 		template<class T>
 		std::shared_ptr<T> AddScript();
+		template<class T>
+		std::shared_ptr<T> GetScript();
 		
 	private:
 		std::vector<std::shared_ptr<class R2DScript>> scripts;
@@ -53,8 +58,27 @@ namespace rb
 		static_assert(std::is_base_of<R2DScript, T>::value, "Script must inherit from R2DScript");
 		auto newScript = std::make_shared<T>();
 		scripts.push_back(newScript);
+		
 		return newScript;
 	}
+	template<class T>
+	std::shared_ptr<T> GameObject::GetScript()
+	{
+		//static_assert(std::is_base_of<R2DScript, T>::value, "Script must inherit from R2dscript");
+		for (auto& script: scripts)
+		{
+			//Debug::Log("Type: " + std::to_string(typeid(script).name()));
+			//if (dynamic_cast<T*>(script.get()))
+			if (auto ptr = std::dynamic_pointer_cast<T>(script))
+			//if (typeid(script))
+			{
+				return script;
+			}
+		}
+		//return scripts[scripts.size() - 1];
+
+	}
+
 
 }
 

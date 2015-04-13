@@ -40,14 +40,7 @@ void rb::RocketCommand::OnKeyboard(int key, int action)
 void rb::RocketCommand::OnMouseClick(int button, int action, const Vec2& mousePosition)
 {
 	//Debug::Log("mouse click " + ToString(button) + "," + ToString(action) + ": "+ToString(mousePosition));
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		LoadScene(scene2);
-	}
-	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		LoadScene(gameScene);
-	}
+
 }
 
 void rb::RocketCommand::LoadResources()

@@ -27,6 +27,7 @@ void rb::R2DGame::Update(float dt)
 {
 	//Debug::Log("Game Update " + ToString(dt));
 	currentScene->Update(dt);
+	currentScene->RemoveDestroyedObjects();
 }
 
 void rb::R2DGame::LoadScene(std::shared_ptr<R2DScene> scene)
@@ -51,6 +52,7 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	for (auto& script : gameObject.GetScripts())
 	{
 		script->currentScene = currentScene;
+		Debug::Log("Add Script: script ref count: " + ToString(script.use_count()));
 	}
 	gameObject.Init();
 	if (gameObject.GetRenderer())

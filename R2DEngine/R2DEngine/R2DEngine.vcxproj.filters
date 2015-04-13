@@ -95,6 +95,9 @@
     <ClCompile Include="Cannon.cpp">
       <Filter>Gameplay Code</Filter>
     </ClCompile>
+    <ClCompile Include="TimedDestroy.cpp">
+      <Filter>Gameplay Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -226,6 +229,9 @@
       <Filter>Engine\EngineComponents</Filter>
     </ClInclude>
     <ClInclude Include="Cannon.h">
+      <Filter>Gameplay Code</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedDestroy.h">
       <Filter>Gameplay Code</Filter>
     </ClInclude>
   </ItemGroup>
