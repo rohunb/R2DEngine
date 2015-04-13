@@ -64,19 +64,15 @@ namespace rb
 	template<class T>
 	std::shared_ptr<T> GameObject::GetScript()
 	{
-		//static_assert(std::is_base_of<R2DScript, T>::value, "Script must inherit from R2dscript");
+		static_assert(std::is_base_of<R2DScript, T>::value, "Script must inherit from R2dscript");
 		for (auto& script: scripts)
 		{
-			//Debug::Log("Type: " + std::to_string(typeid(script).name()));
-			//if (dynamic_cast<T*>(script.get()))
-			if (auto ptr = std::dynamic_pointer_cast<T>(script))
-			//if (typeid(script))
+			if (dynamic_cast<T*>(script.get()))
 			{
-				return script;
+				return std::dynamic_pointer_cast<T>(script);
 			}
 		}
-		//return scripts[scripts.size() - 1];
-
+		return nullptr;
 	}
 
 

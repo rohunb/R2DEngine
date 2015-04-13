@@ -32,8 +32,8 @@ void Cannon::Fire(const Vec2& targetPos)
 	missileClone->GetRigidbody()->velocity = dir / distToTarget * missileSpeed;
 	missileClone->GetTransform()->LookAt(targetPos);
 	float timeToTarget = distToTarget / missileSpeed;
-	//missileClone->GetScript<TimedDestroy>()->StartDestroyTimer(timeToTarget);
-	Debug::Log("Dist: " + ToString(distToTarget) + " Time: " + ToString(timeToTarget));
+	missileClone->GetScript<TimedDestroy>()->StartDestroyTimer(timeToTarget);
+	//Debug::Log("Dist: " + ToString(distToTarget) + " Time: " + ToString(timeToTarget));
 
 }
 
