@@ -26,7 +26,7 @@ PhysicsEngine* rb::R2DEngine::GetPhysicsEngine()
 	return physicsEngine.get();
 }
 
-void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
+void rb::R2DEngine::Run(std::function<void(float)> OnUpdate)
 {
 	RTime::deltaTime = 0.0f;
 	RTime::lastFrameTime = 0.0f;
@@ -45,8 +45,8 @@ void rb::R2DEngine::Run(std::function<void(float)> updateMethod)
 		
 		//update
 		physicsEngine->Update(RTime::deltaTime);
-		assert(updateMethod && "Update Method is null");
-		updateMethod(RTime::deltaTime);
+		assert(OnUpdate && "Update Method is null");
+		OnUpdate(RTime::deltaTime);
 	}
 	glfwTerminate();
 }

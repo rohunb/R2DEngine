@@ -1,6 +1,5 @@
 #include "Cannon.h"
 #include "TextureManager.h"
-#include "RInput.h"
 #include "Screen.h"
 
 void rb::Cannon::Start()
@@ -10,7 +9,7 @@ void rb::Cannon::Start()
 	missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
 	missilePrefab->GetTransform()->size *= 0.1f;
 
-	Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
+	onMouseClick = Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
 }
 
 void rb::Cannon::Update(float dt)
@@ -30,4 +29,9 @@ void rb::Cannon::OnMouseClick(int button, int action, const Vec2& mousePosition)
 		missileClone->GetRigidbody()->velocity = dir*missileSpeed;
 		missileClone->GetTransform()->LookAt(targetPos);
 	}
+}
+
+void rb::Cannon::OnDestroy()
+{
+	Input::RemoveMouseClickCallback(onMouseClick);
 }

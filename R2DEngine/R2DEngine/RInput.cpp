@@ -52,20 +52,6 @@ void rb::Input::RemoveMouseClickCallback(std::shared_ptr<MouseClickEvent>& OnMou
 						mouseClickEvents.end());
 }
 
-//void rb::Input::RemoveKeyCallback(std::function<void(int key, int action)> OnKeyboard)
-//{
-//	assert(std::find(OnKeyboardEvents.begin(), OnKeyboardEvents.end(), OnKeyboard) != OnKeyboardEvents.end() && "OnKeyboard event not found");
-//	OnKeyboardEvents.erase(std::remove(OnKeyboardEvents.begin(), OnKeyboardEvents.end(), OnKeyboard),
-//							OnKeyboardEvents.end());
-//}
-//
-//void rb::Input::RemoveMouseClickCallback(std::function<void(int button, int action, const Vec2& mousePos)> OnMouseClick)
-//{
-//	assert(std::find(OnMouseClickEvents.begin(), OnMouseClickEvents.end(), OnMouseClick) != OnMouseClickEvents.end() && "OnMouseClickEvent not found");
-//	OnMouseClickEvents.erase(std::find(OnMouseClickEvents.begin(), OnMouseClickEvents.end(), OnMouseClick), 
-//							OnMouseClickEvents.end());
-//}
-
 rb::Vec2 rb::Input::GetMousePosition()
 {
 	return mousePosition;

@@ -61,13 +61,16 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	{
 		engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.GetRigidbody());
 	}
-
 }
 
 void rb::R2DGame::DestroyGameObject(std::shared_ptr<GameObject>& gameObject)
 {
 	//Debug::Log("Destroying GameObject");
 	assert(gameObject.get() && "GameObject pointer is null");
+	for (auto& script : gameObject->GetScripts())
+	{
+		script->OnDestroy();
+	}
 	if (gameObject->GetRenderer())
 	{
 		engine->GetRenderEngine()->RemoveRenderer(gameObject->GetRenderer());

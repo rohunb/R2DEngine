@@ -18,7 +18,6 @@ void rb::GameObject::Init()
 	}
 }
 
-
 rb::GameObject::GameObject()
 	:transform(std::make_shared<Transform>())
 {}

@@ -15,7 +15,6 @@ namespace rb
 		explicit Rigidbody2D(const Vec2& velocity);
 
 		void Update(float dt);
-
 	};
 }
 

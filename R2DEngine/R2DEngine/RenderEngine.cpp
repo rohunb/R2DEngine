@@ -98,7 +98,6 @@ void RenderEngine::Render() const
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);*/
-
 	//////////////////////////////////////////////////////////////////////////
 
 	Shader::Unbind();

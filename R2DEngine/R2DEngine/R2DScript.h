@@ -19,6 +19,8 @@ namespace rb
 
 		virtual void Start() = 0;
 		virtual void Update(float dt) = 0;
+		virtual void OnDestroy() = 0;
+
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab, const Vec2& position, float rotation);
 

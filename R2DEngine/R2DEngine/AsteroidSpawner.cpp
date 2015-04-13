@@ -43,3 +43,8 @@ void rb::AsteroidSpawner::Update(float dt)
 	}
 	currentTime += RTime::DeltaTime();
 }
+
+void rb::AsteroidSpawner::OnDestroy()
+{
+
+}

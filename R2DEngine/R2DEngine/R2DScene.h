@@ -26,7 +26,7 @@ namespace rb
 
 		//methods
 		virtual void Start() = 0;
-		virtual void Update(float dt) = 0;
+		virtual void Update(float dt);
 		virtual void Exit() = 0;
 
 		std::shared_ptr<GameObject> Instantiate(const GameObject& prefab);

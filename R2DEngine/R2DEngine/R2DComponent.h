@@ -16,10 +16,7 @@ namespace rb
 		R2DComponent& operator = (R2DComponent&& rhs);
 		virtual ~R2DComponent();
 
-		//get/set
 		std::shared_ptr<class GameObject> GetGameObject() const;
-
-		//methods
 		
 	protected:
 		std::shared_ptr<class GameObject> gameObject;

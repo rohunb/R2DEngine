@@ -50,7 +50,6 @@ void rb::R2DScene::SetupCallbacks(std::function<void(GameObject&)> OnInstantiate
 	this->OnDestroy = OnDestroy;
 }
 
-
 void rb::R2DScene::DestroyAllObjects()
 {
 	Debug::Log("Destroying all scene objs");
@@ -79,7 +78,6 @@ std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab, 
 	sceneObjects.push_back(objClone);
 	assert(OnInstantiate && "Instantiate callback is null");
 	OnInstantiate(*objClone);
-	//Debug::Log("transform: " + ToString(objClone->transform.use_count()) + " sprite " + ToString(objClone->renderer.use_count()) + " rb " + ToString(objClone->rigidbody.use_count()));
 	return objClone;
 }
 void rb::R2DScene::Destroy(std::shared_ptr<GameObject>& gameObject)
@@ -95,20 +93,9 @@ void rb::R2DScene::Destroy(std::shared_ptr<GameObject>& gameObject)
 	//	" renderer: " + ToString(gameObject->GetRenderer().use_count()));
 }
 
-void rb::R2DScene::Start()
-{
-
-}
 void rb::R2DScene::Update(float dt)
 {
 	//Debug::Log("scene Update");
-	/*for (auto& go: sceneObjects)
-	{
-		for (auto& script: go->GetScripts())
-		{
-			script->Update(dt);
-		}
-	}*/
 	size_t numSceneObjs = sceneObjects.size();
 	for (size_t i = 0; i < numSceneObjs; i++)
 	{
@@ -120,7 +107,3 @@ void rb::R2DScene::Update(float dt)
 	}
 }
 
-void rb::R2DScene::Exit()
-{
-
-}

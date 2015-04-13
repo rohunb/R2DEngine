@@ -10,6 +10,7 @@ namespace rb
 	public:
 		virtual void Start() override;
 		virtual void Update(float dt) override;
+		virtual void OnDestroy() override;
 
 	private:
 		std::unique_ptr<GameObject> asteroidPrefab;

@@ -40,7 +40,6 @@ namespace rb
 		template<class T>
 		std::shared_ptr<T> AddScript();
 		
-
 	private:
 		std::vector<std::shared_ptr<class R2DScript>> scripts;
 		std::shared_ptr<Transform> transform;
