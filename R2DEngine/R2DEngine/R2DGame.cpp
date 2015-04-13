@@ -46,7 +46,7 @@ void rb::R2DGame::LoadScene(std::shared_ptr<R2DScene> scene)
 
 void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 {
-	Debug::Log("Register new go");
+	//Debug::Log("Register new go");
 	assert(&gameObject && "GameObject is null");
 	for (auto& script : gameObject.GetScripts())
 	{
@@ -66,7 +66,7 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 
 void rb::R2DGame::DestroyGameObject(std::shared_ptr<GameObject>& gameObject)
 {
-	Debug::Log("Destroying GameObject");
+	//Debug::Log("Destroying GameObject");
 	assert(gameObject.get() && "GameObject pointer is null");
 	if (gameObject->GetRenderer())
 	{
@@ -88,7 +88,7 @@ void rb::R2DGame::OnKeyboard(int key, int action)
 void rb::R2DGame::LoadDefaultResources()
 {
 	ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
-	
+	ShaderManager::LoadShader("PointSprite.vert", "PointSprite.frag", "PointSprite.geom", Shader::ShaderType::PointSprite);
 	
 }
 

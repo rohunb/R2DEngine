@@ -23,21 +23,21 @@ void rb::AsteroidSpawner::Update(float dt)
 
 	if (currentTime >= spawnInterval)
 	{
-		if (counter <= 2000)
+		/*if (counter <= 4000)
 		{
-			for (size_t i = 0; i < 100; i++)
+			for (size_t i = 0; i < 1000; i++)
 			{
 				spawnPos = Random::UnitVector() * Random::RangeFromZero(Screen::HeightToFloat()*0.5f) + Screen::Center();
 				auto asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
 				counter++;
 			}
-		}
+		}*/
 		
-		/*float xPos = Random::Range(0.0f, Screen::WidthToFloat());
+		float xPos = Random::Range(0.0f, Screen::WidthToFloat());
 		float yPos = Screen::HeightToFloat();
 		spawnPos = Vec2(xPos, yPos);
 		auto asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
-		asteroidClone->GetRigidbody()->velocity = RVector2::down * asteroidSpeed;*/
+		asteroidClone->GetRigidbody()->velocity = RVector2::down * asteroidSpeed;
 
 		currentTime = 0.0f;
 	}

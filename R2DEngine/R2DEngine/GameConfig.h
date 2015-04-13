@@ -1,6 +1,8 @@
 #ifndef R_GAME_CONFIG_H_
 #define R_GAME_CONFIG_H_
 
+#define INSTANCED_RENDERING 0
+
 #include "RString.h"
 
 namespace rb

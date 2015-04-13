@@ -7,7 +7,7 @@ using namespace rb;
 
 void rb::GameObject::Init()
 {
-	Debug::Log("GameObject init");
+	//Debug::Log("GameObject init");
 	transform->gameObject = shared_from_this();
 	if(renderer) renderer->gameObject = shared_from_this();
 	if(rigidbody) rigidbody->gameObject = shared_from_this();

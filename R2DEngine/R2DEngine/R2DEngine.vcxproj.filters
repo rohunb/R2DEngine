@@ -121,11 +121,11 @@
     <Filter Include="Engine\Includes">
       <UniqueIdentifier>{60e4874d-a4b2-4026-aea5-cc7b17c1c8c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Shaders">
-      <UniqueIdentifier>{dda4e511-9544-42b9-9344-45789fff9f96}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Gameplay Code">
       <UniqueIdentifier>{384d19df-f0a1-40b4-b799-e79b5b49ba09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shaders">
+      <UniqueIdentifier>{dda4e511-9544-42b9-9344-45789fff9f96}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +234,21 @@
       <Filter>Engine\Shaders</Filter>
     </None>
     <None Include="Assets\Shaders\SpriteShader.vert">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\SpriteShader_Instanced.frag">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\SpriteShader_Instanced.vert">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\PointSprite.frag">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\PointSprite.geom">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\PointSprite.vert">
       <Filter>Engine\Shaders</Filter>
     </None>
   </ItemGroup>

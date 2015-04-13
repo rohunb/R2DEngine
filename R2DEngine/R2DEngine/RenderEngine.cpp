@@ -4,6 +4,7 @@
 #include "RDebug.h"
 #include "SpriteRenderer.h"
 #include "GameObject.h"
+#include "GameConfig.h"
 
 using namespace rb;
 
@@ -22,7 +23,7 @@ rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX
 	int status = glewInit();
 	glGetError();
 	glViewport(windowPosX, windowPosY, windowWidth, windowHeight);
-	glFrontFace(GL_CW);
+	glFrontFace(GL_CCW);
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
@@ -39,31 +40,25 @@ void rb::RenderEngine::PreRender() const
 }
 void RenderEngine::Render() const
 {
-	Debug::Log("Num renderers: " + ToString(spriteRenderers.size()));
-	if (spriteRenderers.size() == 0) return;
+	int numSprites = spriteRenderers.size();
+	//Debug::Log("Num renderers: " + ToString(numSprites));
+	if (numSprites == 0) return;
 
 	//////////////////////////////////////////////////////////////////////////
 	//assuming all sprite use the same shader for now
 	Shader shader = spriteRenderers[0]->GetShader();
 	int numShadersOfSameType = std::count_if(spriteRenderers.begin(), spriteRenderers.end(),
 		[&shader](const std::shared_ptr<SpriteRenderer>& spriteRenderer){return spriteRenderer->GetShader().Type() == shader.Type(); });
-	assert(numShadersOfSameType == spriteRenderers.size() && "All Sprites must use the same shader");
+	assert(numShadersOfSameType == numSprites && "All Sprites must use the same shader");
 	//////////////////////////////////////////////////////////////////////////
-
 	shader.Use();
-	for (auto& renderer: spriteRenderers)
+	shader.SetMat4(Shader::projUniformName, projection);
+	
+	for (auto& renderer : spriteRenderers)
 	{
-		auto trans = renderer->GetGameObject()->GetTransform();
-		Mat4 modelMat = glm::translate(Mat4(1.0f), RVector2::ToVector3(trans->position));
-		////translate to origin and rotate
-		modelMat = glm::translate(modelMat, RVector2::ToVector3(trans->size * -0.5f));
-		modelMat = glm::rotate(modelMat, trans->rotation, RVector3::back);
-		modelMat = glm::translate(modelMat, RVector2::ToVector3(trans->size*0.5f));
-		//scale to size
-		modelMat = glm::scale(modelMat, Vec3(trans->size.x, trans->size.y, 1.0f));
+		Mat4 modelMat = renderer->GetGameObject()->GetTransform()->GetTransformMatrix();
 		//set uniforms
 		shader.SetMat4(Shader::modelUniformName, modelMat);
-		shader.SetMat4(Shader::projUniformName, projection);
 		shader.SetVec4(Shader::spriteColourName, renderer->GetColour().ToVec4());
 		shader.SetInt(Shader::spriteTextureName, 0);
 		renderer->GetTexture().Bind();
@@ -71,6 +66,41 @@ void RenderEngine::Render() const
 		renderer->Render();
 		Texture::Unbind();
 	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//Point Sprite
+	/*std::vector<Vec2> positions;
+	std::vector<Vec2> sizes;
+	const GLsizeiptr verticesLength = numSprites * sizeof(Vec2);
+	positions.reserve(numSprites);
+	sizes.reserve(numSprites);
+	for (auto& sprite: spriteRenderers)
+	{
+		positions.push_back(sprite->GetGameObject()->GetTransform()->position);
+		sizes.push_back(sprite->GetGameObject()->GetTransform()->size);
+	}
+	GLuint VAO, VBO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, verticesLength * 2.0f, nullptr, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, verticesLength, &positions[0]);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+
+	glEnableVertexAttribArray(1);
+	glBufferSubData(GL_ARRAY_BUFFER, verticesLength, verticesLength, &sizes[0]);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)verticesLength);
+
+	glDrawArrays(GL_POINTS, 0, numSprites);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);*/
+
+	//////////////////////////////////////////////////////////////////////////
+
 	Shader::Unbind();
 }
 void rb::RenderEngine::PostRender() const

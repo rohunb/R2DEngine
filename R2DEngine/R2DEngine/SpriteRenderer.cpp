@@ -10,7 +10,7 @@
 using namespace rb;
 
 rb::SpriteRenderer::SpriteRenderer(const Texture& texture, const Shader& shader)
-	: texture(texture), shader(shader)
+	: texture(texture), shader(shader), colour(Colour::white)
 {
 	//Debug::Log("Tex Width: " + ToString(texture.width) + "," + ToString(texture.height));
 	InitGL();
@@ -53,10 +53,21 @@ void rb::SpriteRenderer::InitGL()
 	GLuint VBO;
 	GLfloat vertices[] = {
 		// Pos       // Tex
-		-0.5f, -0.5f, 0.0f, 1.0f,
+		/*-0.5f, -0.5f, 0.0f, 1.0f, 
 		-0.5f, 0.5f, 0.0f, 0.0f,
 		0.5f, -0.5f, 1.0f, 1.0f,
-		0.5f, 0.5f, 1.0f, 0.0f
+		0.5f, 0.5f, 1.0f, 0.0f*/
+
+		//-0.5f, 0.5f, 0.0f, 1.0f, //left top
+		//-0.5f, -0.5f, 0.0f, 0.0f, //left bot
+		//0.5f, 0.5f, 1.0f, 1.0f, //right top
+		//0.5f, -0.5f, 1.0f, 0.0f //right bot
+
+		-0.5f, 0.5f, 0.0f, -1.0f, //left top
+		-0.5f, -0.5f, 0.0f, 0.0f, //left bot
+		0.5f, 0.5f, 1.0f, -1.0f, //right bot
+		0.5f, -0.5f, 1.0f, 0.0f, //right top
+
 	};
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);

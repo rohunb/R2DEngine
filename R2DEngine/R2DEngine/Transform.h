@@ -3,6 +3,7 @@
 
 #include "R2DComponent.h"
 #include "RVector.h"
+#include "RMatrix.h"
 
 namespace rb
 {
@@ -17,6 +18,7 @@ namespace rb
 		Transform(const Vec2& position, float rotation, const Vec2& size);
 
 		void LookAt(const Vec2& targetPosition);
+		Mat4 GetTransformMatrix() const;
 	};
 }
 #endif // R_TRANSFORM_H_
