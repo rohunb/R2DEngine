@@ -94,6 +94,6 @@ void rb::R2DGame::LoadDefaultResources()
 {
 	ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
 	ShaderManager::LoadShader("PointSprite.vert", "PointSprite.frag", "PointSprite.geom", Shader::ShaderType::PointSprite);
-	
+	ShaderManager::LoadShader("AnimatedSprite.vert", "AnimatedSprite.frag", Shader::ShaderType::AnimatedSprite);
 }
 

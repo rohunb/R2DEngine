@@ -98,6 +98,9 @@
     <ClCompile Include="TimedDestroy.cpp">
       <Filter>Gameplay Code</Filter>
     </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -234,6 +237,9 @@
     <ClInclude Include="TimedDestroy.h">
       <Filter>Gameplay Code</Filter>
     </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Engine\GameObjectAndComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\SpriteShader.frag">
@@ -255,6 +261,12 @@
       <Filter>Engine\Shaders</Filter>
     </None>
     <None Include="Assets\Shaders\PointSprite.vert">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\AnimatedSprite.frag">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\AnimatedSprite.vert">
       <Filter>Engine\Shaders</Filter>
     </None>
   </ItemGroup>

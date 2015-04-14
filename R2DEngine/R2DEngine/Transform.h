@@ -16,6 +16,7 @@ namespace rb
 
 		Transform();
 		Transform(const Vec2& position, float rotation, const Vec2& size);
+		//default copy/move/dtors
 
 		void LookAt(const Vec2& targetPosition);
 		Mat4 GetTransformMatrix() const;

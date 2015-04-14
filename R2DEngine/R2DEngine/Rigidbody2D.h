@@ -13,6 +13,7 @@ namespace rb
 
 		Rigidbody2D();
 		explicit Rigidbody2D(const Vec2& velocity);
+		//default copy/move/dtors
 
 		void Update(float dt);
 	};

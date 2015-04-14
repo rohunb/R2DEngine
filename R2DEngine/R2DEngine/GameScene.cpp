@@ -5,7 +5,7 @@
 
 void rb::GameScene::Start()
 {
-	SetBackgroundColour(Colour::black);
+	SetBackgroundColour(Colour::darkGrey);
 
 	asteroidSpawnerPrefab = std::make_unique<GameObject>();
 	asteroidSpawnerPrefab->AddScript<AsteroidSpawner>();

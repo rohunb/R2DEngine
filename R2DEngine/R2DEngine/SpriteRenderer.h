@@ -14,6 +14,10 @@ namespace rb
 		SpriteRenderer() = default;
 		explicit SpriteRenderer(const Texture& texture);
 		SpriteRenderer(const Texture& texture, const Shader& shader);
+		SpriteRenderer(const SpriteRenderer& rhs) = default;
+		SpriteRenderer& operator = (const SpriteRenderer& rhs) = default;
+		SpriteRenderer(const SpriteRenderer&& rhs);
+		SpriteRenderer& operator = (const SpriteRenderer&& rhs);
 		~SpriteRenderer();
 
 		Texture GetTexture() const;
@@ -27,7 +31,7 @@ namespace rb
 		Shader shader;
 		Texture texture;
 		Colour colour;
-		GLuint VAO, texID;
+		GLuint VAO;
 		void InitGL();
 
 	};

@@ -12,14 +12,30 @@ using namespace rb;
 rb::SpriteRenderer::SpriteRenderer(const Texture& texture, const Shader& shader)
 	: texture(texture), shader(shader), colour(Colour::white)
 {
-	//Debug::Log("Tex Width: " + ToString(texture.width) + "," + ToString(texture.height));
 	InitGL();
 }
-
 rb::SpriteRenderer::SpriteRenderer(const Texture& texture)
-	:SpriteRenderer(texture,
+	: SpriteRenderer(texture,
 	ShaderManager::GetShader(Shader::ShaderType::SpriteShader))
 {}
+
+rb::SpriteRenderer::SpriteRenderer(const SpriteRenderer&& rhs)
+	:shader(std::move(rhs.shader)),
+	texture(std::move(rhs.texture)),
+	colour(std::move(rhs.colour)),
+	VAO(std::move(rhs.VAO))
+{}
+
+SpriteRenderer& rb::SpriteRenderer::operator=(const SpriteRenderer&& rhs)
+{
+	shader = std::move(rhs.shader);
+	texture = std::move(rhs.texture);
+	colour = std::move(rhs.colour);
+	VAO = std::move(rhs.VAO);
+	return *this;
+}
+
+
 
 SpriteRenderer::~SpriteRenderer()
 {
@@ -58,7 +74,7 @@ void rb::SpriteRenderer::InitGL()
 	GLuint VBO;
 	GLfloat vertices[] = {
 		// Pos       // Tex
-		/*-0.5f, -0.5f, 0.0f, 1.0f, 
+		/*-0.5f, -0.5f, 0.0f, 1.0f,
 		-0.5f, 0.5f, 0.0f, 0.0f,
 		0.5f, -0.5f, 1.0f, 1.0f,
 		0.5f, 0.5f, 1.0f, 0.0f*/

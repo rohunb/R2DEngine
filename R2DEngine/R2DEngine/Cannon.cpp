@@ -15,7 +15,8 @@ void rb::Cannon::Start()
 	missilePrefab->AddComponent<Rigidbody2D>();
 	missilePrefab->AddScript<TimedDestroy>();
 
-	onMouseClick = Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
+	onMouseClick = Input::RegisterMouseClickCallback(
+		[&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
 	onKeyboard = Input::RegisterKeyCallback([&](int key, int action){OnKeyboard(key, action); });
 }
 
@@ -25,7 +26,7 @@ void rb::Cannon::Update(float dt)
 }
 void Cannon::Fire(const Vec2& targetPos)
 {
-	//cosnt auto& missileClone = Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
+	//const auto& missileClone = Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
 
 	const Vec2 dir = targetPos - gameObject->GetTransform()->position;
 	const float distToTarget = glm::length(dir);
@@ -54,7 +55,7 @@ void rb::Cannon::OnKeyboard(int key, int action)
 
 void rb::Cannon::OnDestroy()
 {
-	Debug::Log("Cannon on destroy");
+	//Debug::Log("Cannon on destroy");
 	Input::RemoveKeyCallback(onKeyboard);
 	Input::RemoveMouseClickCallback(onMouseClick);
 }

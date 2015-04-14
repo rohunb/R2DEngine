@@ -11,7 +11,7 @@ namespace rb
 	class Shader
 	{
 	public:
-		enum class ShaderType { SpriteShader, PointSprite };
+		enum class ShaderType { SpriteShader, PointSprite, AnimatedSprite };
 
 		const static string& modelUniformName;
 		const static string& projUniformName;

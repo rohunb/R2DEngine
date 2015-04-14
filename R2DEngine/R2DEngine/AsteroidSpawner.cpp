@@ -19,7 +19,7 @@ void rb::AsteroidSpawner::Start()
 	asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
 	asteroidPrefab->GetTransform()->size *= 0.3f;
 	asteroidPrefab->AddComponent<Rigidbody2D>();
-	asteroidPrefab->AddComponent<Cannon>();
+	//asteroidPrefab->AddComponent<Cannon>();
 }
 
 void rb::AsteroidSpawner::Update(float dt)
