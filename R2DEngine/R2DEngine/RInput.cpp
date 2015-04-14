@@ -7,6 +7,9 @@ using namespace rb;
 
 std::vector<std::shared_ptr<KeyboardEvent>> rb::Input::keyboardEvents;
 std::vector<std::shared_ptr<MouseClickEvent>> rb::Input::mouseClickEvents;
+std::vector<std::shared_ptr<KeyboardEvent>> rb::Input::keyboardEventsToRemove;
+std::vector<std::shared_ptr<MouseClickEvent>> rb::Input::mouseClickEventsToRemove;
+
 rb::Vec2 rb::Input::mousePosition;
 
 rb::Input::Input(GLFWwindow* window)
@@ -36,25 +39,45 @@ void rb::Input::ClearAllCallbacks()
 {
 	keyboardEvents.clear();
 	mouseClickEvents.clear();
+	keyboardEventsToRemove.clear();
+	mouseClickEventsToRemove.clear();
 }
 
 void rb::Input::RemoveKeyCallback(std::shared_ptr<KeyboardEvent>& OnKeyboard)
 {
 	assert(std::find(keyboardEvents.begin(), keyboardEvents.end(), OnKeyboard) != keyboardEvents.end() && "OnKeyboard not found");
-	keyboardEvents.erase(std::remove(keyboardEvents.begin(), keyboardEvents.end(), OnKeyboard), 
-						keyboardEvents.end());
+	keyboardEventsToRemove.push_back(OnKeyboard);
 }
 
 void rb::Input::RemoveMouseClickCallback(std::shared_ptr<MouseClickEvent>& OnMouseClick)
 {
 	assert(std::find(mouseClickEvents.begin(), mouseClickEvents.end(), OnMouseClick) != mouseClickEvents.end() && "OnMouseClick event not found");
-	mouseClickEvents.erase(std::remove(mouseClickEvents.begin(), mouseClickEvents.end(), OnMouseClick), 
-						mouseClickEvents.end());
+	mouseClickEventsToRemove.push_back(OnMouseClick);
 }
 
 rb::Vec2 rb::Input::GetMousePosition()
 {
 	return mousePosition;
+}
+
+void rb::Input::CleanUp()
+{
+	while (!keyboardEventsToRemove.empty())
+	{
+		auto& OnKeyboard = keyboardEventsToRemove.back();
+		keyboardEventsToRemove.pop_back();
+		assert(std::find(keyboardEvents.begin(), keyboardEvents.end(), OnKeyboard) != keyboardEvents.end() && "OnKeyboard not found");
+		keyboardEvents.erase(std::remove(keyboardEvents.begin(), keyboardEvents.end(), OnKeyboard),
+			keyboardEvents.end());
+	}
+	while (!mouseClickEventsToRemove.empty())
+	{
+		auto& OnMouseClick = mouseClickEventsToRemove.back();
+		mouseClickEventsToRemove.pop_back();
+		assert(std::find(mouseClickEvents.begin(), mouseClickEvents.end(), OnMouseClick) != mouseClickEvents.end() && "OnMouseClick event not found");
+		mouseClickEvents.erase(std::remove(mouseClickEvents.begin(), mouseClickEvents.end(), OnMouseClick),
+			mouseClickEvents.end());
+	}
 }
 
 void rb::Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)

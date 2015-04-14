@@ -28,12 +28,14 @@ namespace rb
 		static void ClearAllCallbacks();
 		static void RemoveKeyCallback(std::shared_ptr<KeyboardEvent>& OnKeyboard);
 		static void RemoveMouseClickCallback(std::shared_ptr<MouseClickEvent>& OnMouseClick);
-
 		static Vec2 GetMousePosition();
+		static void CleanUp();
 
 	private:
 		static std::vector<std::shared_ptr<KeyboardEvent>> keyboardEvents;
 		static std::vector<std::shared_ptr<MouseClickEvent>> mouseClickEvents;
+		static std::vector<std::shared_ptr<KeyboardEvent>> keyboardEventsToRemove;
+		static std::vector<std::shared_ptr<MouseClickEvent>> mouseClickEventsToRemove;
 		static Vec2 mousePosition;
 
 		static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
