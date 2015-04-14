@@ -41,6 +41,10 @@ namespace rb
 		void Init();
 
 		template<class T>
+		std::shared_ptr<T> AddComponent();
+		template<class T>
+		std::shared_ptr<T> GetComponent();
+		template<class T>
 		std::shared_ptr<T> AddScript();
 		template<class T>
 		std::shared_ptr<T> GetScript();

@@ -24,8 +24,8 @@ rb::GameObject::GameObject()
 
 rb::GameObject::GameObject(const Texture& texture)
 	:transform(std::make_shared<Transform>()),
-	renderer(std::make_shared<SpriteRenderer>(texture)),
-	rigidbody(std::make_shared<Rigidbody2D>())
+	renderer(std::make_shared<SpriteRenderer>(texture))
+	//rigidbody(std::make_shared<Rigidbody2D>())
 {
 	transform->size = Vec2(renderer->GetTexture().width, renderer->GetTexture().height);
 }
@@ -114,7 +114,57 @@ std::shared_ptr<Rigidbody2D> rb::GameObject::GetRigidbody() const
 {
 	return rigidbody;
 }
-std::vector<std::shared_ptr<class R2DScript>> rb::GameObject::GetScripts() const
+std::vector<std::shared_ptr<R2DScript>> rb::GameObject::GetScripts() const
 {
 	return scripts;
 }
+
+template<>
+std::shared_ptr<Rigidbody2D> GameObject::AddComponent()
+{
+	assert(!rigidbody && "Rigidbody already attached");
+	rigidbody = std::make_shared<Rigidbody2D>();
+	return rigidbody;
+}
+template<>
+std::shared_ptr<Rigidbody2D> GameObject::GetComponent()
+{
+	return rigidbody;
+}
+template<>
+std::shared_ptr<Transform> GameObject::AddComponent()
+{
+	assert(!transform && "Transform already attached");
+	transform = std::make_shared<Transform>();
+	return transform;
+}
+template<>
+std::shared_ptr<Transform> GameObject::GetComponent()
+{
+	return transform;
+}
+template<>
+std::shared_ptr<SpriteRenderer> GameObject::AddComponent()
+{
+	assert(!renderer && "Sprite Renderer already attached");
+	renderer = std::make_shared<SpriteRenderer>();
+	return renderer;
+}
+template<>
+std::shared_ptr<SpriteRenderer> GameObject::GetComponent()
+{
+	return renderer;
+}
+template<class T>
+std::shared_ptr<T> AddComponent()
+{
+	assert("Must be a built-in component such as Rigidbody2D")
+}
+template<class T>
+std::shared_ptr<T> GetComponent()
+{
+	assert("Must be a built-in component such as Rigidbody2D")
+}
+
+
+

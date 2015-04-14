@@ -12,6 +12,7 @@ void rb::Cannon::Start()
 	missileSpeed = 500.0f;
 	missilePrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Missile"));
 	missilePrefab->GetTransform()->size *= 0.1f;
+	missilePrefab->AddComponent<Rigidbody2D>();
 	missilePrefab->AddScript<TimedDestroy>();
 
 	onMouseClick = Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });

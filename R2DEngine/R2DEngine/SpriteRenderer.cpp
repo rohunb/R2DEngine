@@ -41,6 +41,11 @@ rb::Colour rb::SpriteRenderer::GetColour() const
 	return colour;
 }
 
+void rb::SpriteRenderer::SetColour(const Colour& val)
+{
+	colour = val;
+}
+
 void rb::SpriteRenderer::Render()
 {
 	glBindVertexArray(VAO);

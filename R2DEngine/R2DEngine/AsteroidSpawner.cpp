@@ -4,6 +4,7 @@
 #include "Screen.h"
 #include "RTime.h"
 #include "RRandom.h"
+#include "Cannon.h"
 
 using namespace rb;
 
@@ -17,6 +18,8 @@ void rb::AsteroidSpawner::Start()
 	asteroidVelXRange = 200.0f;
 	asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
 	asteroidPrefab->GetTransform()->size *= 0.3f;
+	asteroidPrefab->AddComponent<Rigidbody2D>();
+	asteroidPrefab->AddComponent<Cannon>();
 }
 
 void rb::AsteroidSpawner::Update(float dt)
@@ -41,7 +44,6 @@ void rb::AsteroidSpawner::Update(float dt)
 		const auto& asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
 		const Vec2 velocity = Vec2(Random::Range(-asteroidVelXRange, asteroidVelXRange), -asteroidVelY);
 		asteroidClone->GetRigidbody()->velocity = velocity;
-
 		currentTime = 0.0f;
 	}
 	currentTime += dt;
