@@ -6,19 +6,6 @@
 
 using namespace rb;
 
-//rb::Cannon::Cannon(Cannon&& rhs)
-//	:missilePrefab(std::move(rhs.missilePrefab)),
-//	missileSpeed(std::move(rhs.missileSpeed)),
-//
-//{
-//
-//}
-
-//Cannon& rb::Cannon::operator=(Cannon&& rhs)
-//{
-//
-//}
-
 void rb::Cannon::Start()
 {
 	//Debug::Log("Cannon start");
@@ -28,7 +15,7 @@ void rb::Cannon::Start()
 	missilePrefab->AddScript<TimedDestroy>();
 
 	onMouseClick = Input::RegisterMouseClickCallback([&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
-	onKeyboard = Input::RegisterKeyCallback([&](int key, int action){OnKeyboard(key, action); });
+	//onKeyboard = Input::RegisterKeyCallback([&](int key, int action){OnKeyboard(key, action); });
 }
 
 void rb::Cannon::Update(float dt)
@@ -37,17 +24,15 @@ void rb::Cannon::Update(float dt)
 }
 void Cannon::Fire(const Vec2& targetPos)
 {
-	//auto missileClone = Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
+	//cosnt auto& missileClone = Instantiate(*missilePrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
 
-	Vec2 dir = targetPos - gameObject->GetTransform()->position;
-	float distToTarget = glm::length(dir);
-	auto missileClone = Instantiate(*missilePrefab, gameObject->GetTransform()->position, 0.0f);
+	const Vec2 dir = targetPos - gameObject->GetTransform()->position;
+	const float distToTarget = glm::length(dir);
+	auto& missileClone = Instantiate(*missilePrefab, gameObject->GetTransform()->position, 0.0f);
 	missileClone->GetRigidbody()->velocity = dir / distToTarget * missileSpeed;
 	missileClone->GetTransform()->LookAt(targetPos);
-	float timeToTarget = distToTarget / missileSpeed;
+	const float timeToTarget = distToTarget / missileSpeed;
 	missileClone->GetScript<TimedDestroy>()->StartDestroyTimer(timeToTarget);
-	//Debug::Log("Dist: " + ToString(distToTarget) + " Time: " + ToString(timeToTarget));
-
 }
 
 void rb::Cannon::OnMouseClick(int button, int action, const Vec2& mousePosition)
@@ -68,8 +53,9 @@ void rb::Cannon::OnKeyboard(int key, int action)
 
 void rb::Cannon::OnDestroy()
 {
+	Debug::Log("Cannon on destroy");
+	//Input::RemoveKeyCallback(onKeyboard);
 	Input::RemoveMouseClickCallback(onMouseClick);
-	Input::RemoveKeyCallback(onKeyboard);
 }
 
 std::unique_ptr<R2DScript> Cannon::Clone() const

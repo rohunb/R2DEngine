@@ -24,7 +24,6 @@ namespace rb
 		float currentTime;
 		float asteroidVelY;
 		float asteroidVelXRange;
-		Vec2 spawnPos;
 		//int counter = 0;
 	};
 }

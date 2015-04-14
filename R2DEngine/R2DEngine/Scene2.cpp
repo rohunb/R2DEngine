@@ -14,7 +14,7 @@ void rb::Scene2::Start()
 
 void rb::Scene2::Update(float dt)
 {
-
+	R2DScene::Update(dt);
 }
 
 void rb::Scene2::Exit()

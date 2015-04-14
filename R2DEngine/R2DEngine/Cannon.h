@@ -11,9 +11,7 @@ namespace rb
 	public:
 		Cannon() = default;
 		Cannon(const Cannon& rhs) = delete;
-		//Cannon(Cannon&& rhs);
 		Cannon& operator = (const Cannon& rhs) = delete;
-		//Cannon& operator = (Cannon&& rhs);
 		~Cannon() = default;
 
 		virtual void Start() override;

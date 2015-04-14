@@ -13,9 +13,8 @@ void rb::AsteroidSpawner::Start()
 
 	currentTime = 0.0f;
 	spawnInterval = 0.5f;
-	spawnPos = Vec2(0.0f);
 	asteroidVelY = 200.0f;
-	asteroidVelXRange = 100.0f;
+	asteroidVelXRange = 200.0f;
 	asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
 	asteroidPrefab->GetTransform()->size *= 0.3f;
 }
@@ -36,11 +35,11 @@ void rb::AsteroidSpawner::Update(float dt)
 			}
 		}*/
 		
-		float xPos = Random::Range(0.0f, Screen::WidthToFloat());
-		float yPos = Screen::HeightToFloat();
-		spawnPos = Vec2(xPos, yPos);
-		auto asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
-		Vec2 velocity = Vec2(Random::Range(-asteroidVelXRange, asteroidVelXRange), -asteroidVelY);
+		const float xPos = Random::Range(0.0f, Screen::WidthToFloat());
+		const float yPos = Screen::HeightToFloat();
+		const Vec2 spawnPos = Vec2(xPos, yPos);
+		const auto& asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
+		const Vec2 velocity = Vec2(Random::Range(-asteroidVelXRange, asteroidVelXRange), -asteroidVelY);
 		asteroidClone->GetRigidbody()->velocity = velocity;
 
 		currentTime = 0.0f;

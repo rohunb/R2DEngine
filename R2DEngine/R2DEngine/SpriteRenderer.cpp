@@ -58,10 +58,10 @@ void rb::SpriteRenderer::InitGL()
 		0.5f, -0.5f, 1.0f, 1.0f,
 		0.5f, 0.5f, 1.0f, 0.0f*/
 
-		-0.5f, 0.5f, 0.0f, -1.0f, //left top
-		-0.5f, -0.5f, 0.0f, 0.0f, //left bot
-		0.5f, 0.5f, 1.0f, -1.0f, //right bot
-		0.5f, -0.5f, 1.0f, 0.0f, //right top
+		-0.5f, 0.5f, 0.0f, 0.0f, //left top
+		-0.5f, -0.5f, 0.0f, 1.0f, //left bot
+		0.5f, 0.5f, 1.0f, 0.0f, //right bot
+		0.5f, -0.5f, 1.0f, 1.0f, //right top
 
 	};
 	glGenVertexArrays(1, &VAO);
