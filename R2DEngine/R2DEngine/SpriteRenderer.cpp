@@ -74,15 +74,10 @@ void rb::SpriteRenderer::InitGL()
 	GLuint VBO;
 	GLfloat vertices[] = {
 		// Pos       // Tex
-		/*-0.5f, -0.5f, 0.0f, 1.0f,
-		-0.5f, 0.5f, 0.0f, 0.0f,
-		0.5f, -0.5f, 1.0f, 1.0f,
-		0.5f, 0.5f, 1.0f, 0.0f*/
-
 		-0.5f, 0.5f, 0.0f, 0.0f, //left top
 		-0.5f, -0.5f, 0.0f, 1.0f, //left bot
-		0.5f, 0.5f, 1.0f, 0.0f, //right bot
-		0.5f, -0.5f, 1.0f, 1.0f, //right top
+		0.5f, 0.5f, 1.0f, 0.0f, //right top
+		0.5f, -0.5f, 1.0f, 1.0f, //right bot
 
 	};
 	glGenVertexArrays(1, &VAO);

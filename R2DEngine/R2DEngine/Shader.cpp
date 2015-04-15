@@ -54,6 +54,11 @@ void rb::Shader::SetInt(const string& uniforName, int value)
 	glUniform1i(GetUniformLoc(uniforName), value);
 }
 
+void rb::Shader::SetVec2(const string& uniformName, const Vec2& value)
+{
+	glUniform2f(GetUniformLoc(uniformName), value.x, value.y);
+}
+
 void rb::Shader::SetVec3(const string& uniformName, const Vec3& value)
 {
 	glUniform3f(GetUniformLoc(uniformName), value.x, value.y, value.z);
@@ -72,6 +77,7 @@ void rb::Shader::SetMat4(const string& uniformName, const Mat4& value)
 GLint rb::Shader::GetUniformLoc(const string& uniformName)
 {
 	GLint loc = glGetUniformLocation(program, uniformName.c_str());
+	if(loc < 0) Debug::Error("Uniform location not found for " + uniformName);
 	assert(loc >= 0 && "Uniform location not found");
 	return loc;
 }

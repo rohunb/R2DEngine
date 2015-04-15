@@ -32,6 +32,7 @@ namespace rb
 		static void Unbind();
 		void SetFloat(const string& uniformName, float value);
 		void SetInt(const string& uniforName, int value);
+		void SetVec2(const string& uniformName, const Vec2& value);
 		void SetVec3(const string& uniformName, const Vec3& value);
 		void SetVec4(const string& uniformName, const Vec4& value);
 		void SetMat4(const string& uniformName, const Mat4& value);

@@ -6,6 +6,8 @@
 #include "RenderEngine.h"
 #include "RInput.h"
 #include "PhysicsEngine.h"
+//temp
+#include "AnimatedSprite.h"
 
 namespace rb
 {
@@ -29,6 +31,9 @@ namespace rb
 		std::unique_ptr <RenderEngine> renderEngine;
 		std::unique_ptr <PhysicsEngine> physicsEngine;
 		std::unique_ptr <Input> input;
+
+		//temp
+		std::unique_ptr<AnimatedSprite> animSprite;
 
 	};
 }

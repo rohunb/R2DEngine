@@ -8,22 +8,25 @@
 
 namespace rb
 {
-	class AnimatedSprite : public R2DComponent
+	class AnimatedSprite// : public R2DComponent
 	{
 	public:
 		AnimatedSprite()=default;
-		AnimatedSprite(const Texture& spriteSheet, int sheetWidth, int sheetHeight, int numCells, float frameDuration, bool loop);
+		AnimatedSprite(const Texture& spriteSheet, int sheetWidth, int sheetHeight, int numFrames, float frameDuration, bool loop);
 		//default copy/move/dtors
 
+		void Update(float dt);
+		void Render();
+
 	private:
-		int sheetWidth, sheetHeight, numCells;
-		float frameDuration;
+		int sheetWidth, sheetHeight, numFrames, currFrame;
+		float frameDuration, currentTime;
+		Vec2 gridPos;
 		bool loop;
 		Shader shader;
 		Texture spriteSheet;
 		Colour colour;
 		GLuint VAO;
-
 		void InitGL();
 	};
 }
