@@ -24,7 +24,9 @@ namespace rb
 		Shader GetShader() const;
 		Colour GetColour() const;
 		void SetColour(const Colour& val);
+		bool IsAnimated() const;
 
+		void EnableAnimation();
 		void Render();
 
 	private:
@@ -32,6 +34,7 @@ namespace rb
 		Texture texture;
 		Colour colour;
 		GLuint VAO;
+		bool animated=false;
 		void InitGL();
 
 	};

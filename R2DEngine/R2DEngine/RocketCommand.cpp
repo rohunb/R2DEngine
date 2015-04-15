@@ -47,6 +47,8 @@ void rb::RocketCommand::LoadResources()
 {
 	TextureManager::LoadTexture("Missile", "Missile.png");
 	TextureManager::LoadTexture("Asteroid", "asteroid.png");
+	TextureManager::LoadTexture("Explosion", "explosion.png");
+
 }
 
 

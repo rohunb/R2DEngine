@@ -98,7 +98,7 @@
     <ClCompile Include="TimedDestroy.cpp">
       <Filter>Gameplay Code</Filter>
     </ClCompile>
-    <ClCompile Include="AnimatedSprite.cpp">
+    <ClCompile Include="SpriteAnimator.cpp">
       <Filter>Engine\GameObjectAndComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -237,7 +237,7 @@
     <ClInclude Include="TimedDestroy.h">
       <Filter>Gameplay Code</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatedSprite.h">
+    <ClInclude Include="SpriteAnimator.h">
       <Filter>Engine\GameObjectAndComponents</Filter>
     </ClInclude>
   </ItemGroup>

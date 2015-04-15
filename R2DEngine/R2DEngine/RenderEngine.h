@@ -35,7 +35,7 @@ namespace rb
 		Mat4 projection;
 		static Colour clearColour;
 		std::vector <std::shared_ptr<class SpriteRenderer>> spriteRenderers;
-		std::vector <std::shared_ptr<class AnimatedSprite>> animatedSprites;
+		std::vector <std::shared_ptr<class SpriteAnimator>> animatedSprites;
 	};
 }
 

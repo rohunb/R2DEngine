@@ -20,11 +20,18 @@ namespace rb
 		virtual std::unique_ptr<R2DScript> Clone() const override;
 
 	private:
-		std::unique_ptr<GameObject> missilePrefab;
 		float missileSpeed;
+
+		//prefabs
+		std::unique_ptr<GameObject> missilePrefab;
+		std::unique_ptr<GameObject> explosionPrefab;
 		std::shared_ptr<MouseClickEvent> onMouseClick;
 		std::shared_ptr<KeyboardEvent> onKeyboard;
+
+		//methods
 		void Fire(const Vec2& targetPos);
+
+		//callbacks
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
 		void OnKeyboard(int key, int action);
 

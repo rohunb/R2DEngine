@@ -11,6 +11,10 @@ void rb::GameObject::Init()
 	transform->gameObject = shared_from_this();
 	if(renderer) renderer->gameObject = shared_from_this();
 	if(rigidbody) rigidbody->gameObject = shared_from_this();
+	if (animator)
+	{
+		animator->gameObject = shared_from_this();
+	}
 	for (auto& script : scripts)
 	{
 		script->gameObject = shared_from_this();
@@ -25,7 +29,6 @@ rb::GameObject::GameObject()
 rb::GameObject::GameObject(const Texture& texture)
 	:transform(std::make_shared<Transform>()),
 	renderer(std::make_shared<SpriteRenderer>(texture))
-	//rigidbody(std::make_shared<Rigidbody2D>())
 {
 	transform->size = Vec2(renderer->GetTexture().width, renderer->GetTexture().height);
 }
@@ -38,6 +41,10 @@ rb::GameObject::GameObject(GameObject&& rhs)
 	{
 		renderer=std::move(rhs.renderer);
 	}
+	if (rhs.animator)
+	{
+		animator = std::move(rhs.animator);
+	}
 	if (rhs.rigidbody)
 	{
 		rigidbody=std::move(rhs.rigidbody);
@@ -49,6 +56,10 @@ rb::GameObject::GameObject(const GameObject& rhs)
 	if (rhs.renderer)
 	{
 		renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+	}
+	if (rhs.animator)
+	{
+		animator = std::make_shared<SpriteAnimator>(*(rhs.animator));
 	}
 	if (rhs.rigidbody)
 	{
@@ -114,6 +125,10 @@ std::shared_ptr<Rigidbody2D> rb::GameObject::GetRigidbody() const
 {
 	return rigidbody;
 }
+std::shared_ptr<SpriteAnimator> rb::GameObject::GetAnimator() const
+{
+	return animator;
+}
 std::vector<std::shared_ptr<R2DScript>> rb::GameObject::GetScripts() const
 {
 	return scripts;
@@ -154,6 +169,18 @@ template<>
 std::shared_ptr<SpriteRenderer> GameObject::GetComponent()
 {
 	return renderer;
+}
+template<>
+std::shared_ptr<SpriteAnimator> GameObject::AddComponent()
+{
+	assert(!animator && "Animator already attached");
+	animator = std::make_shared<SpriteAnimator>();
+	return animator;
+}
+template<>
+std::shared_ptr<SpriteAnimator> GameObject::GetComponent()
+{
+	return animator;
 }
 template<class T>
 std::shared_ptr<T> AddComponent()

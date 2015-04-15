@@ -9,7 +9,7 @@
 #include "SpriteRenderer.h"
 #include "Texture.h"
 #include "Rigidbody2D.h"
-//#include "RDebug.h"
+#include "SpriteAnimator.h"
 
 namespace rb
 {
@@ -33,6 +33,8 @@ namespace rb
 		std::shared_ptr<Transform> GetTransform() const;
 		std::shared_ptr<SpriteRenderer> GetRenderer() const;
 		std::shared_ptr<Rigidbody2D> GetRigidbody() const;
+		std::shared_ptr<SpriteAnimator> GetAnimator() const;
+
 		void SetTransform(const Vec2& position, float rotation = 0.0f);
 		void SetTransform(const Vec2& position, float rotation, const Vec2& size);
 		std::vector<std::shared_ptr<class R2DScript>> GetScripts() const;
@@ -54,6 +56,7 @@ namespace rb
 		std::shared_ptr<Transform> transform;
 		std::shared_ptr<SpriteRenderer> renderer;
 		std::shared_ptr<Rigidbody2D> rigidbody;
+		std::shared_ptr<SpriteAnimator> animator;
 	};
 
 	template<class T>

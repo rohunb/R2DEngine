@@ -40,28 +40,27 @@ void rb::RenderEngine::PreRender() const
 }
 void RenderEngine::Render() const
 {
-	int numSprites = spriteRenderers.size();
+	const int numSprites = spriteRenderers.size();
 	//Debug::Log("Num renderers: " + ToString(numSprites));
 	if (numSprites == 0) return;
 
-	//////////////////////////////////////////////////////////////////////////
-	//assuming all sprite use the same shader for now
-	Shader shader = spriteRenderers[0]->GetShader();
-	int numShadersOfSameType = std::count_if(spriteRenderers.begin(), spriteRenderers.end(),
-		[&shader](const std::shared_ptr<SpriteRenderer>& spriteRenderer){return spriteRenderer->GetShader().Type() == shader.Type(); });
-	assert(numShadersOfSameType == numSprites && "All Sprites must use the same shader");
-	//////////////////////////////////////////////////////////////////////////
-	shader.Use();
-	shader.SetMat4(Shader::projUniformName, projection);
 	
 	for (auto& renderer : spriteRenderers)
 	{
+		Shader shader = renderer->GetShader();
+		shader.Use();
+		shader.SetMat4(Shader::projUniformName, projection);
 		Mat4 modelMat = renderer->GetGameObject()->GetTransform()->GetTransformMatrix();
 		//set uniforms
 		shader.SetMat4(Shader::modelUniformName, modelMat);
 		shader.SetVec4(Shader::spriteColourName, renderer->GetColour().ToVec4());
 		shader.SetInt(Shader::spriteTextureName, 0);
 		renderer->GetTexture().Bind();
+		if (renderer->IsAnimated())
+		{
+			assert(renderer->GetGameObject()->GetAnimator() && "Sprite is marked as animation but has no Animator");
+			renderer->GetGameObject()->GetAnimator()->SetShaderValues(shader);
+		}
 		//render
 		renderer->Render();
 		Texture::Unbind();

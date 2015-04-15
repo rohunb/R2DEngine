@@ -115,6 +115,10 @@ void rb::R2DScene::Update(float dt)
 	size_t numSceneObjs = sceneObjects.size();
 	for (size_t i = 0; i < numSceneObjs; i++)
 	{
+		if (auto& animator = sceneObjects[i]->GetAnimator())
+		{
+			animator->Update(dt);
+		}
 		size_t numScripts = sceneObjects[i]->GetScripts().size();
 		for (size_t j = 0; j < numScripts; j++)
 		{

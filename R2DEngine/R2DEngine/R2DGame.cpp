@@ -52,17 +52,23 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	for (auto& script : gameObject.GetScripts())
 	{
 		script->currentScene = currentScene;
-		Debug::Log("Add Script: script ref count: " + ToString(script.use_count()));
+		//Debug::Log("Add Script: script ref count: " + ToString(script.use_count()));
 	}
+
 	gameObject.Init();
 	if (gameObject.GetRenderer())
 	{
+		if (gameObject.GetAnimator())
+		{
+			gameObject.GetRenderer()->EnableAnimation();
+		}
 		engine->GetRenderEngine()->AddNewRenderer(gameObject.GetRenderer());
 	}
 	if (gameObject.GetRigidbody())
 	{
 		engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.GetRigidbody());
 	}
+
 }
 
 void rb::R2DGame::DestroyGameObject(std::shared_ptr<GameObject>& gameObject)
@@ -92,8 +98,8 @@ void rb::R2DGame::OnKeyboard(int key, int action)
 }
 void rb::R2DGame::LoadDefaultResources()
 {
-	//ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
 	ShaderManager::LoadShader("PointSprite.vert", "PointSprite.frag", "PointSprite.geom", Shader::ShaderType::PointSprite);
-	
+	ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
+	ShaderManager::LoadShader("AnimatedSprite.vert", "AnimatedSprite.frag", Shader::ShaderType::AnimatedSprite);
 }
 

@@ -5,10 +5,6 @@
 #include "Screen.h"
 #include "RTime.h"
 
-//temp
-#include "TextureManager.h"
-#include "ShaderManager.h"
-
 using namespace rb;
 
 rb::R2DEngine::R2DEngine()
@@ -18,12 +14,6 @@ rb::R2DEngine::R2DEngine()
 	renderEngine = std::make_unique<RenderEngine>(GameConfig::windowWidth, GameConfig::windowHeight, GameConfig::windowPosX, GameConfig::windowPosY, GameConfig::windowName);
 	physicsEngine = std::make_unique<PhysicsEngine>();
 	input = std::make_unique<Input>(renderEngine->Window());
-
-	//temp
-	ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
-	ShaderManager::LoadShader("AnimatedSprite.vert", "AnimatedSprite.frag", Shader::ShaderType::AnimatedSprite);
-	TextureManager::LoadTexture("Explosion","explosion.png");
-	animSprite = std::make_unique<AnimatedSprite>(TextureManager::GetTexture("Explosion"), 8, 3, 24, 0.05f, false);
 }
 
 RenderEngine* rb::R2DEngine::GetRenderEngine()
@@ -51,8 +41,6 @@ void rb::R2DEngine::Run(std::function<void(float)> OnUpdate)
 		//render
 		renderEngine->PreRender();
 		renderEngine->Render();
-		animSprite->Render();
-		//temp
 		renderEngine->PostRender();
 		
 		//update
@@ -60,8 +48,6 @@ void rb::R2DEngine::Run(std::function<void(float)> OnUpdate)
 		assert(OnUpdate && "Update Method is null");
 		OnUpdate(RTime::deltaTime);
 		//temp
-		animSprite->Update(RTime::deltaTime);
-
 		Input::CleanUp();
 	}
 	glfwTerminate();

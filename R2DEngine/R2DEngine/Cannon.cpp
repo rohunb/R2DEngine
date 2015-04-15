@@ -15,6 +15,11 @@ void rb::Cannon::Start()
 	missilePrefab->AddComponent<Rigidbody2D>();
 	missilePrefab->AddScript<TimedDestroy>();
 
+	explosionPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Explosion"));
+	explosionPrefab->GetTransform()->size = Vec2(100.0f);
+	auto& anim = explosionPrefab->AddComponent<SpriteAnimator>();
+	anim->Initialize(8, 3, 24, 0.05f, true);
+
 	onMouseClick = Input::RegisterMouseClickCallback(
 		[&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
 	onKeyboard = Input::RegisterKeyCallback([&](int key, int action){OnKeyboard(key, action); });
@@ -42,6 +47,7 @@ void rb::Cannon::OnMouseClick(int button, int action, const Vec2& mousePosition)
 	if (action == GLFW_PRESS)
 	{
 		Fire(Screen::ToWorldCoords(mousePosition));
+		Instantiate(*explosionPrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
 	}
 }
 

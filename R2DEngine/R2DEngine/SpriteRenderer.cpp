@@ -62,6 +62,17 @@ void rb::SpriteRenderer::SetColour(const Colour& val)
 	colour = val;
 }
 
+bool rb::SpriteRenderer::IsAnimated() const
+{
+	return animated;
+}
+
+void rb::SpriteRenderer::EnableAnimation()
+{
+	shader = ShaderManager::GetShader(Shader::ShaderType::AnimatedSprite);
+	animated = true;
+}
+
 void rb::SpriteRenderer::Render()
 {
 	glBindVertexArray(VAO);
