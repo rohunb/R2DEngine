@@ -44,7 +44,7 @@ void RenderEngine::Render() const
 	//Debug::Log("Num renderers: " + ToString(numSprites));
 	if (numSprites == 0) return;
 
-	
+
 	for (auto& renderer : spriteRenderers)
 	{
 		Shader shader = renderer->GetShader();
@@ -58,11 +58,19 @@ void RenderEngine::Render() const
 		renderer->GetTexture().Bind();
 		if (renderer->IsAnimated())
 		{
-			assert(renderer->GetGameObject()->GetAnimator() && "Sprite is marked as animation but has no Animator");
-			renderer->GetGameObject()->GetAnimator()->SetShaderValues(shader);
+			auto& anim = renderer->GetGameObject()->GetAnimator();
+			assert(anim && "Sprite is marked as animation but has no Animator");
+			if (!anim->IsAnimationComplete())
+			{
+				anim->SetShaderValues(shader);
+				renderer->Render();
+			}
 		}
 		//render
-		renderer->Render();
+		else
+		{
+			renderer->Render();
+		}
 		Texture::Unbind();
 	}
 
@@ -75,8 +83,8 @@ void RenderEngine::Render() const
 	sizes.reserve(numSprites);
 	for (auto& sprite: spriteRenderers)
 	{
-		positions.push_back(sprite->GetGameObject()->GetTransform()->position);
-		sizes.push_back(sprite->GetGameObject()->GetTransform()->size);
+	positions.push_back(sprite->GetGameObject()->GetTransform()->position);
+	sizes.push_back(sprite->GetGameObject()->GetTransform()->size);
 	}
 	GLuint VAO, VBO;
 	glGenVertexArrays(1, &VAO);
@@ -125,5 +133,5 @@ void rb::RenderEngine::RemoveRenderer(std::shared_ptr<class SpriteRenderer>& ren
 {
 	assert(std::find(spriteRenderers.begin(), spriteRenderers.end(), renderer) != spriteRenderers.end() && "SpriteRenderer not present in RenderEngine");
 	spriteRenderers.erase(std::remove(spriteRenderers.begin(), spriteRenderers.end(), renderer),
-						spriteRenderers.end());
+		spriteRenderers.end());
 }

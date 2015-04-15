@@ -99,6 +99,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="RocketCommand.cpp" />
+    <ClCompile Include="TimedAction.cpp" />
     <ClCompile Include="TimedDestroy.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
@@ -136,6 +137,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="RocketCommand.h" />
+    <ClInclude Include="TimedAction.h" />
     <ClInclude Include="TimedDestroy.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>

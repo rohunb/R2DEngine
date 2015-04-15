@@ -13,6 +13,8 @@ namespace rb
 		SpriteAnimator(int sheetWidth, int sheetHeight, int numFrames, float frameDuration, bool loop);
 		//default copy/move/dtors
 
+		bool IsAnimationComplete() const;
+
 		void Initialize(int sheetWidth, int sheetHeight, int numFrames, float frameDuration, bool loop);
 		void Update(float dt);
 		
@@ -24,6 +26,7 @@ namespace rb
 		float frameDuration, currentTime;
 		Vec2 gridPos;
 		bool loop;
+		bool animationComplete=false;
 		/*Shader shader;
 		Texture spriteSheet;
 		Colour colour;

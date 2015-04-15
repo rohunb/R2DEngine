@@ -3,6 +3,7 @@
 #include "Screen.h"
 #include "RDebug.h"
 #include "TimedDestroy.h"
+#include "TimedAction.h"
 
 using namespace rb;
 
@@ -14,11 +15,13 @@ void rb::Cannon::Start()
 	missilePrefab->GetTransform()->size *= 0.1f;
 	missilePrefab->AddComponent<Rigidbody2D>();
 	missilePrefab->AddScript<TimedDestroy>();
+	missilePrefab->AddScript<TimedAction>();
 
 	explosionPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Explosion"));
-	explosionPrefab->GetTransform()->size = Vec2(100.0f);
+	explosionPrefab->GetTransform()->size = Vec2(120.0f);
 	auto& anim = explosionPrefab->AddComponent<SpriteAnimator>();
-	anim->Initialize(8, 3, 24, 0.05f, true);
+	anim->Initialize(8, 3, 20, 0.01f, false);
+	explosionPrefab->AddScript<TimedDestroy>();
 
 	onMouseClick = Input::RegisterMouseClickCallback(
 		[&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
@@ -39,6 +42,15 @@ void Cannon::Fire(const Vec2& targetPos)
 	missileClone->GetRigidbody()->velocity = dir / distToTarget * missileSpeed;
 	missileClone->GetTransform()->LookAt(targetPos);
 	const float timeToTarget = distToTarget / missileSpeed;
+	assert(missileClone->GetScript<TimedAction>());
+	missileClone->GetScript<TimedAction>()->SetTimedAction(
+	[=]()
+	{
+		auto& explosionClone = Instantiate(*explosionPrefab, targetPos, 0.0f);
+		assert(explosionClone->GetScript<TimedDestroy>());
+		explosionClone->GetScript<TimedDestroy>()->StartDestroyTimer(2.0f);
+	}, timeToTarget);
+	assert(missileClone->GetScript<TimedDestroy>());
 	missileClone->GetScript<TimedDestroy>()->StartDestroyTimer(timeToTarget);
 }
 
@@ -47,7 +59,7 @@ void rb::Cannon::OnMouseClick(int button, int action, const Vec2& mousePosition)
 	if (action == GLFW_PRESS)
 	{
 		Fire(Screen::ToWorldCoords(mousePosition));
-		Instantiate(*explosionPrefab, Screen::ToWorldCoords(mousePosition), 0.0f);
+		
 	}
 }
 
