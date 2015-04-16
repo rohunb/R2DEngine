@@ -5,7 +5,7 @@
 
 namespace rb
 {
-#define PHYSICS_DEBUG_DRAW 0
+#define PHYSICS_DEBUG_DRAW 1
 
 	struct GameConfig
 	{

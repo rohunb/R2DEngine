@@ -7,10 +7,9 @@ rb::Collider::Collider(Collider&& rhs)
 	*this = rhs;
 }
 
-
-void rb::Collider::Init()
+Collider::ColliderType rb::Collider::GetType() const
 {
-
+	return type;
 }
 
 Collider& rb::Collider::operator=(Collider&& rhs)

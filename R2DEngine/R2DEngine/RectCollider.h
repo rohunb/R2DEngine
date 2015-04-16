@@ -10,7 +10,6 @@ namespace rb
 	public:
 
 		virtual std::unique_ptr<Collider> Clone() const override;
-		virtual void Init() override;
 
 	};
 }

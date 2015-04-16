@@ -9,6 +9,8 @@ namespace rb
 	class Collider : public R2DComponent
 	{
 	public:
+		enum class ColliderType {Circle, Rect};
+
 		Collider() = default;
 		Collider(const Collider& rhs) = default;
 		Collider& operator = (const Collider& rhs) = default;
@@ -16,10 +18,11 @@ namespace rb
 		Collider& operator = (Collider&& rhs);
 		virtual ~Collider() = default;
 
+		Collider::ColliderType GetType() const;
 		virtual std::unique_ptr<Collider> Clone() const = 0;
-		virtual void Init();
 
 	protected:
+		ColliderType type;
 	};
 }
 

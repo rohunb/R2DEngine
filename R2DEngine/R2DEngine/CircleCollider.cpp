@@ -11,7 +11,9 @@ rb::CircleCollider::CircleCollider()
 
 rb::CircleCollider::CircleCollider(float radius)
 	: radius(radius)
-{}
+{
+	Collider::type = ColliderType::Circle;
+}
 
 rb::CircleCollider::CircleCollider(const CircleCollider& rhs)
 	: radius(rhs.radius)
@@ -29,11 +31,6 @@ CircleCollider& rb::CircleCollider::operator=(CircleCollider&& rhs)
 {
 	radius = rhs.radius;
 	return *this;
-}
-
-void rb::CircleCollider::Init()
-{
-
 }
 
 float rb::CircleCollider::GetRadius() const

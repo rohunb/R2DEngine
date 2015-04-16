@@ -50,32 +50,6 @@ void RenderEngine::Render() const
 
 	for (auto& renderer : spriteRenderers)
 	{
-#if PHYSICS_DEBUG_DRAW
-		/*if (renderer->IsAnimated())
-		{
-			Debug::Log("animated");
-		}*/
-		auto& col = std::dynamic_pointer_cast<CircleCollider>(renderer->GetGameObject()->GetCollider());
-		if (col)
-		{
-			Shader colShader = ShaderManager::GetShader(Shader::ShaderType::SpriteShader);
-			colShader.Use();
-			colShader.SetMat4(Shader::projUniformName, projection);
-			auto& trans = renderer->GetGameObject()->GetTransform();
-			Mat4 modelMat = glm::translate(Mat4(1.0f), RVector2::ToVector3(trans->position));
-			modelMat = glm::rotate(modelMat, trans->rotation, RVector3::back);
-			modelMat = glm::scale(modelMat, Vec3(col->GetRadius(),col->GetRadius(), 1.0f));
-			colShader.SetMat4(Shader::modelUniformName, modelMat);
-			colShader.SetVec4(Shader::spriteColourName, Colour::red.ToVec4());
-			colShader.SetInt(Shader::spriteTextureName, 0);
-			TextureManager::GetTexture("CircleCollider").Bind();
-			//Debug::Log("render col");
-			renderer->Render();
-			Texture::Unbind();
-			Shader::Unbind();
-		}
-#endif // PHYSICS_DEBUG_DRAW
-
 		Shader shader = renderer->GetShader();
 		shader.Use();
 		shader.SetMat4(Shader::projUniformName, projection);
@@ -101,6 +75,33 @@ void RenderEngine::Render() const
 			renderer->Render();
 		}
 		Texture::Unbind();
+		Shader::Unbind();
+
+#if PHYSICS_DEBUG_DRAW
+		/*if (renderer->IsAnimated())
+		{
+		Debug::Log("animated");
+		}*/
+		auto& col = std::dynamic_pointer_cast<CircleCollider>(renderer->GetGameObject()->GetCollider());
+		if (col)
+		{
+			Shader colShader = ShaderManager::GetShader(Shader::ShaderType::SpriteShader);
+			colShader.Use();
+			colShader.SetMat4(Shader::projUniformName, projection);
+			auto& trans = renderer->GetGameObject()->GetTransform();
+			Mat4 modelMat = glm::translate(Mat4(1.0f), RVector2::ToVector3(trans->position));
+			modelMat = glm::rotate(modelMat, trans->rotation, RVector3::back);
+			modelMat = glm::scale(modelMat, Vec3(col->GetRadius(), col->GetRadius(), 1.0f));
+			colShader.SetMat4(Shader::modelUniformName, modelMat);
+			colShader.SetVec4(Shader::spriteColourName, Colour::red.ToVec4());
+			colShader.SetInt(Shader::spriteTextureName, 0);
+			TextureManager::GetTexture("CircleCollider").Bind();
+			//Debug::Log("render col");
+			renderer->Render();
+			Texture::Unbind();
+			Shader::Unbind();
+		}
+#endif // PHYSICS_DEBUG_DRAW
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -136,7 +137,8 @@ void RenderEngine::Render() const
 	glBindVertexArray(0);*/
 	//////////////////////////////////////////////////////////////////////////
 
-	Shader::Unbind();
+
+
 }
 void rb::RenderEngine::PostRender() const
 {

@@ -20,8 +20,6 @@ namespace rb
 		void SetRadius(float val);
 
 		virtual std::unique_ptr<Collider> Clone() const override;
-		virtual void Init() override;
-
 
 	private:
 		float radius;

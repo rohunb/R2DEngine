@@ -13,16 +13,9 @@ void rb::GameObject::Init()
 	transform->gameObject = shared_from_this();
 	if(renderer) renderer->gameObject = shared_from_this();
 	if(rigidbody) rigidbody->gameObject = shared_from_this();
-	if (animator)
-	{
-		animator->gameObject = shared_from_this();
-	}
-	//if collider
-	if (collider)
-	{
-		collider->gameObject = shared_from_this();
-		collider->Init();
-	}
+	if (animator) animator->gameObject = shared_from_this();
+	if (collider) collider->gameObject = shared_from_this();
+	
 	for (auto& script : scripts)
 	{
 		script->gameObject = shared_from_this();
