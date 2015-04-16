@@ -6,6 +6,7 @@
 #include "RRandom.h"
 #include "Cannon.h"
 #include "CircleCollider.h"
+#include "TimedDestroy.h"
 
 using namespace rb;
 
@@ -14,12 +15,13 @@ void rb::AsteroidSpawner::Start()
 	Debug::Log("Asteroid spawner start");
 
 	currentTime = 0.0f;
-	spawnInterval = 0.5f;
+	spawnInterval = 2.5f;
 	asteroidVelY = 200.0f;
 	asteroidVelXRange = 200.0f;
 	asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
 	asteroidPrefab->GetTransform()->size *= 0.3f;
 	asteroidPrefab->AddComponent<Rigidbody2D>();
+	asteroidPrefab->AddScript<TimedDestroy>();
 	auto& col = asteroidPrefab->AddComponent<CircleCollider>();
 	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.6f);
 }
@@ -46,6 +48,8 @@ void rb::AsteroidSpawner::Update(float dt)
 		const auto& asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
 		const Vec2 velocity = Vec2(Random::Range(-asteroidVelXRange, asteroidVelXRange), -asteroidVelY);
 		asteroidClone->GetRigidbody()->velocity = velocity;
+		auto& timedDestroy = asteroidClone->GetScript<TimedDestroy>();
+		timedDestroy->StartDestroyTimer(5.0f);
 		currentTime = 0.0f;
 	}
 	currentTime += dt;

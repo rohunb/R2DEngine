@@ -1,6 +1,7 @@
 #ifndef R_COLLIDER_H_
 #define R_COLLIDER_H_
 
+#include <functional>
 #include "R2DComponent.h"
 #include "GameConfig.h"
 
@@ -9,6 +10,7 @@ namespace rb
 	class Collider : public R2DComponent
 	{
 	public:
+		typedef std::function<void(const Collider&)>  CollisionCallback;
 		enum class ColliderType {Circle, Rect};
 
 		Collider() = default;
@@ -21,8 +23,12 @@ namespace rb
 		Collider::ColliderType GetType() const;
 		virtual std::unique_ptr<Collider> Clone() const = 0;
 
+		void RegisterCollisionCallback(const CollisionCallback& OnCollision);
+		void OnCollisionEnter(const Collider& otherCol);
+
 	protected:
 		ColliderType type;
+		CollisionCallback OnCollision;
 	};
 }
 

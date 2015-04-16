@@ -25,8 +25,8 @@ namespace rb
 
 	private:
 		std::vector < std::shared_ptr<class Rigidbody2D>> rigidbodies;
-		std::vector <std::shared_ptr<class Collider>> colliders;
-
+		std::vector <std::shared_ptr<class CircleCollider>> circleColliders;
+		std::vector<std::shared_ptr<class RectCollider>> rectColliders;
 		bool CheckCollision(const class CircleCollider& colA, const class CircleCollider& colB);
 	};
 }

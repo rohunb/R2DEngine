@@ -62,6 +62,7 @@ void rb::R2DScene::DestroyAllObjects()
 void rb::R2DScene::RemoveDestroyedObjects()
 {
 	int i = sceneObjects.size() - 1;
+	assert(i < sceneObjects.size());
 	while (i >= 0 )
 	{
 		if (sceneObjects[i]->destroyed)

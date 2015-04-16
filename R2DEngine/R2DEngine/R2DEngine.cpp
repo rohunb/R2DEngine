@@ -47,7 +47,6 @@ void rb::R2DEngine::Run(std::function<void(float)> OnUpdate)
 		physicsEngine->Update(RTime::deltaTime);
 		assert(OnUpdate && "Update Method is null");
 		OnUpdate(RTime::deltaTime);
-		//temp
 		Input::CleanUp();
 	}
 	glfwTerminate();

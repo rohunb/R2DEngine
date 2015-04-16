@@ -32,14 +32,11 @@ void rb::R2DGame::Update(float dt)
 
 void rb::R2DGame::LoadScene(std::shared_ptr<R2DScene> scene)
 {
+	assert(scene && "scene is null");
 	if (currentScene.get())
 	{
 		currentScene->DestroyAllObjects();
 		currentScene->Exit();
-	}
-	else
-	{
-		Debug::Log("Current scene is null");
 	}
 	currentScene = scene;
 	scene->Start();
