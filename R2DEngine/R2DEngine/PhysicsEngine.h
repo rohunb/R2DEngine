@@ -18,10 +18,13 @@ namespace rb
 
 		void AddNewRigidbody(std::shared_ptr<class Rigidbody2D>& rigidbody);
 		void RemoveRigidbody(std::shared_ptr<class Rigidbody2D>& rigidbody);
+		void AddNewCollider(std::shared_ptr<class Collider>& collider);
+		void RemoveCollider(std::shared_ptr<class Collider>& collider);
 		void Update(float dt);
 
 	private:
 		std::vector < std::shared_ptr<class Rigidbody2D>> rigidbodies;
+		std::vector <std::shared_ptr<class Collider>> colliders;
 	};
 }
 

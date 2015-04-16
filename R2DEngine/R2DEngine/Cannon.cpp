@@ -4,6 +4,7 @@
 #include "RDebug.h"
 #include "TimedDestroy.h"
 #include "TimedAction.h"
+#include "CircleCollider.h"
 
 using namespace rb;
 
@@ -17,11 +18,14 @@ void rb::Cannon::Start()
 	missilePrefab->AddScript<TimedDestroy>();
 	missilePrefab->AddScript<TimedAction>();
 
-	explosionPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Explosion"));
-	explosionPrefab->GetTransform()->size = Vec2(120.0f);
+	auto& explodeTex = TextureManager::GetTexture("Explosion");
+	explosionPrefab = std::make_unique<GameObject>(explodeTex);
+	explosionPrefab->GetTransform()->size = Vec2(80.0f);
 	auto& anim = explosionPrefab->AddComponent<SpriteAnimator>();
 	anim->Initialize(8, 3, 20, 0.01f, false);
 	explosionPrefab->AddScript<TimedDestroy>();
+	auto& col = explosionPrefab->AddComponent<CircleCollider>();
+	col->SetRadius(explosionPrefab->GetTransform()->size.x);
 
 	onMouseClick = Input::RegisterMouseClickCallback(
 		[&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
@@ -46,9 +50,9 @@ void Cannon::Fire(const Vec2& targetPos)
 	missileClone->GetScript<TimedAction>()->SetTimedAction(
 	[=]()
 	{
-		auto& explosionClone = Instantiate(*explosionPrefab, targetPos, 0.0f);
+		auto& explosionClone = std::move(Instantiate(*explosionPrefab, targetPos, 0.0f));
 		assert(explosionClone->GetScript<TimedDestroy>());
-		explosionClone->GetScript<TimedDestroy>()->StartDestroyTimer(2.0f);
+		explosionClone->GetScript<TimedDestroy>()->StartDestroyTimer(1.0f);
 	}, timeToTarget);
 	assert(missileClone->GetScript<TimedDestroy>());
 	missileClone->GetScript<TimedDestroy>()->StartDestroyTimer(timeToTarget);

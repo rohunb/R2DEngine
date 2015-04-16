@@ -10,6 +10,7 @@
 #include "Texture.h"
 #include "Rigidbody2D.h"
 #include "SpriteAnimator.h"
+#include "Collider.h"
 
 namespace rb
 {
@@ -34,6 +35,7 @@ namespace rb
 		std::shared_ptr<SpriteRenderer> GetRenderer() const;
 		std::shared_ptr<Rigidbody2D> GetRigidbody() const;
 		std::shared_ptr<SpriteAnimator> GetAnimator() const;
+		std::shared_ptr<Collider> GetCollider() const;
 
 		void SetTransform(const Vec2& position, float rotation = 0.0f);
 		void SetTransform(const Vec2& position, float rotation, const Vec2& size);
@@ -57,6 +59,7 @@ namespace rb
 		std::shared_ptr<SpriteRenderer> renderer;
 		std::shared_ptr<Rigidbody2D> rigidbody;
 		std::shared_ptr<SpriteAnimator> animator;
+		std::shared_ptr<Collider> collider;
 	};
 
 	template<class T>

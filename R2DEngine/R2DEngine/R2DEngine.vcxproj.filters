@@ -21,10 +21,10 @@
       <Filter>Engine\Includes</Filter>
     </ClCompile>
     <ClCompile Include="R2DComponent.cpp">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Engine\RenderingComponents</Filter>
@@ -47,11 +47,8 @@
     <ClCompile Include="Colour.cpp">
       <Filter>Engine\RenderingComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Engine\GameObjectAndComponents</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="RVector.cpp">
       <Filter>Engine\Includes</Filter>
@@ -72,10 +69,10 @@
       <Filter>Engine\EngineCore</Filter>
     </ClCompile>
     <ClCompile Include="Rigidbody2D.cpp">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="R2DScript.cpp">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="RTime.cpp">
       <Filter>Engine\EngineComponents</Filter>
@@ -84,7 +81,7 @@
       <Filter>Engine\EngineComponents</Filter>
     </ClCompile>
     <ClCompile Include="SpriteAnimator.cpp">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>Gameplay Code\Scenes</Filter>
@@ -104,6 +101,18 @@
     <ClCompile Include="TimedAction.cpp">
       <Filter>Gameplay Code\Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Engine\EngineCore</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RectCollider.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -117,9 +126,6 @@
     </Filter>
     <Filter Include="Engine\Config">
       <UniqueIdentifier>{c399758d-02c2-4adc-97db-7c1b2643a3e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\GameObjectAndComponents">
-      <UniqueIdentifier>{64115d0c-f7dd-41ab-b28f-a38126acbabc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\RenderingComponents">
       <UniqueIdentifier>{9dc13228-7938-4f6c-b64c-0c983bfaa24d}</UniqueIdentifier>
@@ -142,6 +148,9 @@
     <Filter Include="Gameplay Code\Scripts">
       <UniqueIdentifier>{bacbbff4-ea01-4601-8cf6-6a60af58c9cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{64115d0c-f7dd-41ab-b28f-a38126acbabc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="R2DEngine.h">
@@ -163,10 +172,10 @@
       <Filter>Engine\EngineComponents</Filter>
     </ClInclude>
     <ClInclude Include="R2DComponent.h">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Engine\RenderingComponents</Filter>
@@ -195,11 +204,8 @@
     <ClInclude Include="RVector.h">
       <Filter>Engine\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Engine\GameObjectAndComponents</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="RMatrix.h">
       <Filter>Engine\Includes</Filter>
@@ -220,10 +226,10 @@
       <Filter>Engine\EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="Rigidbody2D.h">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="R2DScript.h">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="RTime.h">
       <Filter>Engine\EngineComponents</Filter>
@@ -232,7 +238,7 @@
       <Filter>Engine\EngineComponents</Filter>
     </ClInclude>
     <ClInclude Include="SpriteAnimator.h">
-      <Filter>Engine\GameObjectAndComponents</Filter>
+      <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>Gameplay Code\Scenes</Filter>
@@ -251,6 +257,18 @@
     </ClInclude>
     <ClInclude Include="TimedAction.h">
       <Filter>Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Engine\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RectCollider.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCollider.h">
+      <Filter>Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

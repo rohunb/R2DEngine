@@ -2,6 +2,8 @@
 #include "Texture.h"
 #include "RDebug.h"
 #include "R2DScript.h"
+#include "CircleCollider.h"
+#include "RectCollider.h"
 
 using namespace rb;
 
@@ -14,6 +16,12 @@ void rb::GameObject::Init()
 	if (animator)
 	{
 		animator->gameObject = shared_from_this();
+	}
+	//if collider
+	if (collider)
+	{
+		collider->gameObject = shared_from_this();
+		collider->Init();
 	}
 	for (auto& script : scripts)
 	{
@@ -33,38 +41,14 @@ rb::GameObject::GameObject(const Texture& texture)
 	transform->size = Vec2(renderer->GetTexture().width, renderer->GetTexture().height);
 }
 
-rb::GameObject::GameObject(GameObject&& rhs)
-	: transform(std::move(rhs.transform)),
-	scripts(std::move(rhs.scripts))
-{
-	if (rhs.renderer)
-	{
-		renderer=std::move(rhs.renderer);
-	}
-	if (rhs.animator)
-	{
-		animator = std::move(rhs.animator);
-	}
-	if (rhs.rigidbody)
-	{
-		rigidbody=std::move(rhs.rigidbody);
-	}
-}
 rb::GameObject::GameObject(const GameObject& rhs)
 	:transform(std::make_shared<Transform>(*(rhs.transform)))
 {
-	if (rhs.renderer)
-	{
-		renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
-	}
-	if (rhs.animator)
-	{
-		animator = std::make_shared<SpriteAnimator>(*(rhs.animator));
-	}
-	if (rhs.rigidbody)
-	{
-		rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
-	}
+	if (rhs.renderer) renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+	if (rhs.animator) animator = std::make_shared<SpriteAnimator>(*(rhs.animator));
+	if (rhs.rigidbody) rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
+	if (rhs.collider) collider = rhs.collider->Clone();
+
 	scripts.reserve(rhs.scripts.size());
 	for (auto& rhsScript: rhs.scripts)
 	{
@@ -75,28 +59,34 @@ rb::GameObject::GameObject(const GameObject& rhs)
 GameObject& rb::GameObject::operator=(const GameObject& rhs)
 {
 	transform = std::make_shared<Transform>(*(rhs.transform));
-	if (rhs.renderer)
+	if (rhs.renderer) renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+	if (rhs.animator) animator = std::make_shared<SpriteAnimator>(*(rhs.animator));
+	if (rhs.rigidbody) rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
+	if (rhs.collider) collider = rhs.collider->Clone();
+	scripts.reserve(rhs.scripts.size());
+	for (auto& rhsScript : rhs.scripts)
 	{
-		renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
+		scripts.push_back(rhsScript->Clone());
 	}
-	if (rhs.rigidbody)
-	{
-		rigidbody = std::make_shared<Rigidbody2D>(*(rhs.rigidbody));
-	}
-	scripts = rhs.scripts;
 	return *this;
+}
+
+rb::GameObject::GameObject(GameObject&& rhs)
+	: transform(std::move(rhs.transform)),
+	scripts(std::move(rhs.scripts))
+{
+	if (rhs.renderer) renderer = std::move(rhs.renderer);
+	if (rhs.animator) animator = std::move(rhs.animator);
+	if (rhs.rigidbody) rigidbody = std::move(rhs.rigidbody);
+	if (rhs.collider) collider = std::move(rhs.collider);
 }
 GameObject& rb::GameObject::operator=(GameObject&& rhs)
 {
 	transform = std::move(rhs.transform);
-	if (rhs.renderer)
-	{
-		renderer = std::move(rhs.renderer);
-	}
-	if (rhs.rigidbody)
-	{
-		rigidbody = std::move(rhs.rigidbody);
-	}
+	if (rhs.renderer) renderer = std::move(rhs.renderer);
+	if (rhs.animator) animator = std::move(rhs.animator);
+	if (rhs.rigidbody) rigidbody = std::move(rhs.rigidbody);
+	if (rhs.collider) collider = std::move(rhs.collider);
 	scripts = std::move(rhs.scripts);
 	return *this;
 }
@@ -132,6 +122,11 @@ std::shared_ptr<SpriteAnimator> rb::GameObject::GetAnimator() const
 std::vector<std::shared_ptr<R2DScript>> rb::GameObject::GetScripts() const
 {
 	return scripts;
+}
+
+std::shared_ptr<Collider> rb::GameObject::GetCollider() const
+{
+	return collider;
 }
 
 template<>
@@ -181,6 +176,18 @@ template<>
 std::shared_ptr<SpriteAnimator> GameObject::GetComponent()
 {
 	return animator;
+}
+template<>
+std::shared_ptr<CircleCollider> GameObject::AddComponent()
+{
+	assert(!collider && "Collidor already attached");
+	collider = std::make_shared<CircleCollider>();
+	return std::dynamic_pointer_cast<CircleCollider>(collider);
+}
+template<>
+std::shared_ptr<CircleCollider> GameObject::GetComponent()
+{
+	return std::dynamic_pointer_cast<CircleCollider>(collider);
 }
 template<class T>
 std::shared_ptr<T> AddComponent()

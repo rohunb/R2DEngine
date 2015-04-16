@@ -48,13 +48,13 @@ void rb::R2DGame::LoadScene(std::shared_ptr<R2DScene> scene)
 void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 {
 	//Debug::Log("Register new go");
-	assert(&gameObject && "GameObject is null");
+	assert(&gameObject && !gameObject.destroyed && "GameObject is null or destroyed");
+
 	for (auto& script : gameObject.GetScripts())
 	{
 		script->currentScene = currentScene;
 		//Debug::Log("Add Script: script ref count: " + ToString(script.use_count()));
 	}
-
 	gameObject.Init();
 	if (gameObject.GetRenderer())
 	{
@@ -68,7 +68,10 @@ void rb::R2DGame::RegisterNewGameObject(GameObject& gameObject)
 	{
 		engine->GetPhysicsEngine()->AddNewRigidbody(gameObject.GetRigidbody());
 	}
-
+	if (gameObject.GetCollider())
+	{
+		engine->GetPhysicsEngine()->AddNewCollider(gameObject.GetCollider());
+	}
 }
 
 void rb::R2DGame::DestroyGameObject(std::shared_ptr<GameObject>& gameObject)
@@ -87,6 +90,10 @@ void rb::R2DGame::DestroyGameObject(std::shared_ptr<GameObject>& gameObject)
 	{
 		engine->GetPhysicsEngine()->RemoveRigidbody(gameObject->GetRigidbody());
 	}
+	if (gameObject->GetCollider())
+	{
+		engine->GetPhysicsEngine()->RemoveCollider(gameObject->GetCollider());
+	}
 }
 
 void rb::R2DGame::OnKeyboard(int key, int action)
@@ -101,5 +108,8 @@ void rb::R2DGame::LoadDefaultResources()
 	ShaderManager::LoadShader("PointSprite.vert", "PointSprite.frag", "PointSprite.geom", Shader::ShaderType::PointSprite);
 	ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
 	ShaderManager::LoadShader("AnimatedSprite.vert", "AnimatedSprite.frag", Shader::ShaderType::AnimatedSprite);
+
+	TextureManager::LoadTexture("RectCollider", "Square.png");
+	TextureManager::LoadTexture("CircleCollider", "Circle.png");
 }
 

@@ -67,6 +67,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="RectCollider.cpp" />
     <ClCompile Include="SpriteAnimator.cpp" />
     <ClCompile Include="AssetPaths.cpp" />
     <ClCompile Include="AsteroidSpawner.cpp" />
@@ -104,6 +107,9 @@
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="RectCollider.h" />
     <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="AssetPaths.h" />
     <ClInclude Include="AsteroidSpawner.h" />

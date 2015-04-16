@@ -5,6 +5,8 @@
 
 namespace rb
 {
+#define PHYSICS_DEBUG_DRAW 1
+
 	struct GameConfig
 	{
 		static const int windowWidth;
