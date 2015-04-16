@@ -5,7 +5,7 @@
 #define GLM_FORCE_RADIANS
 #endif // !GLM_FORCE_RADIANS
 
-#include <glm/common.hpp>
+#include <glm/glm.hpp>
 
 namespace rb
 {

@@ -2,7 +2,10 @@
 #include <algorithm>
 #include <assert.h>
 #include "Rigidbody2D.h"
-#include "Collider.h"
+#include "CircleCollider.h"
+#include "GameObject.h"
+#include "Transform.h"
+#include "RVector.h"
 
 using namespace rb;
 
@@ -18,13 +21,13 @@ void rb::PhysicsEngine::RemoveRigidbody(std::shared_ptr<Rigidbody2D>& rigidbody)
 	rigidbodies.erase(std::remove(rigidbodies.begin(), rigidbodies.end(), rigidbody),
 						rigidbodies.end());
 }
-void rb::PhysicsEngine::AddNewCollider(std::shared_ptr<class Collider>& collider)
+void rb::PhysicsEngine::AddNewCollider(std::shared_ptr<Collider>& collider)
 {
 	assert(std::find(colliders.begin(), colliders.end(), collider) == colliders.end() && "Collider already added to Physics Engine");
 	colliders.push_back(collider);
 }
 
-void rb::PhysicsEngine::RemoveCollider(std::shared_ptr<class Collider>& collider)
+void rb::PhysicsEngine::RemoveCollider(std::shared_ptr<Collider>& collider)
 {
 	assert(std::find(colliders.begin(), colliders.end(), collider) != colliders.end() && "Collider not found");
 	colliders.erase(std::remove(colliders.begin(), colliders.end(), collider), 
@@ -37,4 +40,10 @@ void rb::PhysicsEngine::Update(float dt)
 	{
 		rigidbody->Update(dt);
 	}
+}
+
+bool rb::PhysicsEngine::CheckCollision(const CircleCollider& colA, const CircleCollider& colB)
+{
+	float distBetweenCircles = glm::distance(colA.GetGameObject()->GetTransform()->position, colB.GetGameObject()->GetTransform()->position);
+	return distBetweenCircles < colA.GetRadius() + colB.GetRadius();
 }

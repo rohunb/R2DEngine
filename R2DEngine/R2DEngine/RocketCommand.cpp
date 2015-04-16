@@ -26,7 +26,7 @@ void rb::RocketCommand::StartGame()
 }
 void rb::RocketCommand::OnKeyboard(int key, int action)
 {
-	Debug::Log("OnKeyboard: key " + ToString(key) + " action " + ToString(action));
+	//Debug::Log("OnKeyboard: key " + ToString(key) + " action " + ToString(action));
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 	{
 		LoadScene(scene2);

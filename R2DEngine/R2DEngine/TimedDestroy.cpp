@@ -26,7 +26,7 @@ void rb::TimedDestroy::OnDestroy()
 
 void rb::TimedDestroy::StartDestroyTimer(float timeToDestroy)
 {
-	Debug::Log("Start Timer :" + ToString(timeToDestroy));
+	//Debug::Log("Start Timer :" + ToString(timeToDestroy));
 	startTimer = true;
 	currentTime = 0.0f;
 	this->timeToDestroy = timeToDestroy;

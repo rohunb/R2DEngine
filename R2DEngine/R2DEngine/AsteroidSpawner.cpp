@@ -5,6 +5,7 @@
 #include "RTime.h"
 #include "RRandom.h"
 #include "Cannon.h"
+#include "CircleCollider.h"
 
 using namespace rb;
 
@@ -19,7 +20,8 @@ void rb::AsteroidSpawner::Start()
 	asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
 	asteroidPrefab->GetTransform()->size *= 0.3f;
 	asteroidPrefab->AddComponent<Rigidbody2D>();
-	//asteroidPrefab->AddComponent<Cannon>();
+	auto& col = asteroidPrefab->AddComponent<CircleCollider>();
+	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.6f);
 }
 
 void rb::AsteroidSpawner::Update(float dt)

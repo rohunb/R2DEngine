@@ -22,7 +22,7 @@ void rb::Cannon::Start()
 	explosionPrefab = std::make_unique<GameObject>(explodeTex);
 	explosionPrefab->GetTransform()->size = Vec2(80.0f);
 	auto& anim = explosionPrefab->AddComponent<SpriteAnimator>();
-	anim->Initialize(8, 3, 20, 0.01f, false);
+	anim->Initialize(8, 3, 20, 0.017f, false);
 	explosionPrefab->AddScript<TimedDestroy>();
 	auto& col = explosionPrefab->AddComponent<CircleCollider>();
 	col->SetRadius(explosionPrefab->GetTransform()->size.x);

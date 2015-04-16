@@ -21,10 +21,13 @@ namespace rb
 		void AddNewCollider(std::shared_ptr<class Collider>& collider);
 		void RemoveCollider(std::shared_ptr<class Collider>& collider);
 		void Update(float dt);
+		
 
 	private:
 		std::vector < std::shared_ptr<class Rigidbody2D>> rigidbodies;
 		std::vector <std::shared_ptr<class Collider>> colliders;
+
+		bool CheckCollision(const class CircleCollider& colA, const class CircleCollider& colB);
 	};
 }
 

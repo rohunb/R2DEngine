@@ -42,7 +42,7 @@ void rb::SpriteAnimator::Update(float dt)
 
 void rb::SpriteAnimator::SetShaderValues(Shader& shader)
 {
-	Debug::Log("Grid pos" + ToString(gridPos));
+	//Debug::Log("Grid pos" + ToString(gridPos));
 	shader.SetVec4("uFrameInfo", Vec4(static_cast<float>(sheetWidth), static_cast<float>(sheetHeight), gridPos.x, gridPos.y));
 }
 bool rb::SpriteAnimator::IsAnimationComplete() const

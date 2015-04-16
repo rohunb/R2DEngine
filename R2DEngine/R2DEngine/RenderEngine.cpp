@@ -51,10 +51,10 @@ void RenderEngine::Render() const
 	for (auto& renderer : spriteRenderers)
 	{
 #if PHYSICS_DEBUG_DRAW
-		if (renderer->IsAnimated())
+		/*if (renderer->IsAnimated())
 		{
 			Debug::Log("animated");
-		}
+		}*/
 		auto& col = std::dynamic_pointer_cast<CircleCollider>(renderer->GetGameObject()->GetCollider());
 		if (col)
 		{
@@ -69,7 +69,7 @@ void RenderEngine::Render() const
 			colShader.SetVec4(Shader::spriteColourName, Colour::red.ToVec4());
 			colShader.SetInt(Shader::spriteTextureName, 0);
 			TextureManager::GetTexture("CircleCollider").Bind();
-			Debug::Log("render col");
+			//Debug::Log("render col");
 			renderer->Render();
 			Texture::Unbind();
 			Shader::Unbind();
