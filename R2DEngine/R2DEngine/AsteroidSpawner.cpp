@@ -15,15 +15,15 @@ void rb::AsteroidSpawner::Start()
 	Debug::Log("Asteroid spawner start");
 
 	currentTime = 0.0f;
-	spawnInterval = 2.5f;
+	spawnInterval = 0.5f;
 	asteroidVelY = 200.0f;
 	asteroidVelXRange = 200.0f;
 	asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
 	asteroidPrefab->GetTransform()->size *= 0.3f;
 	asteroidPrefab->AddComponent<Rigidbody2D>();
 	asteroidPrefab->AddScript<TimedDestroy>();
-	/*auto& col = asteroidPrefab->AddComponent<CircleCollider>();
-	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.6f);*/
+	auto& col = asteroidPrefab->AddComponent<CircleCollider>();
+	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.6f);
 
 	/*size_t count = 500;
 	for (size_t i = 0; i < count; ++i)

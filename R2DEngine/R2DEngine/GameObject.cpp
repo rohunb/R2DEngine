@@ -96,7 +96,7 @@ void rb::GameObject::SetTransform(const Vec2& position, float rotation, const Ve
 	transform->size = size;
 }
 
-std::shared_ptr<Transform> rb::GameObject::GetTransform() const
+const std::shared_ptr<Transform>& rb::GameObject::GetTransform() const
 {
 	return transform;
 }

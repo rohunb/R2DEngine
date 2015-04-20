@@ -20,9 +20,10 @@ void rb::Cannon::Start()
 
 	auto& explodeTex = TextureManager::GetTexture("Explosion");
 	explosionPrefab = std::make_unique<GameObject>(explodeTex);
-	explosionPrefab->GetTransform()->size = Vec2(80.0f);
+	explosionPrefab->GetTransform()->size = Vec2(180.0f);
 	auto& anim = explosionPrefab->AddComponent<SpriteAnimator>();
-	anim->Initialize(8, 3, 20, 0.017f, false);
+	//anim->Initialize(8, 3, 20, 0.02f, false);
+	anim->Initialize(8, 8, 64, 0.01f, false);
 	explosionPrefab->AddScript<TimedDestroy>();
 	auto& col = explosionPrefab->AddComponent<CircleCollider>();
 	col->SetRadius(explosionPrefab->GetTransform()->size.x);

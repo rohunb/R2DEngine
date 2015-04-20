@@ -50,7 +50,7 @@ void RenderEngine::Render() const
 
 	for (auto& renderer : spriteRenderers)
 	{
-		Shader shader = renderer->GetShader();
+		auto& shader = renderer->GetShader();
 		shader.Use();
 		shader.SetMat4(Shader::projUniformName, projection);
 		Mat4 modelMat = renderer->GetGameObject()->GetTransform()->GetTransformMatrix();

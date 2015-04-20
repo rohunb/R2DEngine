@@ -29,7 +29,8 @@ rb::R2DComponent::~R2DComponent()
 {
 
 }
-std::shared_ptr<GameObject> rb::R2DComponent::GetGameObject() const
+const std::shared_ptr<GameObject>& rb::R2DComponent::GetGameObject() const
 {
+
 	return gameObject;
 }
