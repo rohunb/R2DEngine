@@ -37,6 +37,7 @@ namespace rb
 		bool animated=false;
 		void InitGL();
 
+		friend class RenderEngine;
 	};
 }
 #endif // !R_SPRITE_RENDERER_H_

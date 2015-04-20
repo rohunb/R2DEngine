@@ -66,14 +66,10 @@ void RenderEngine::Render() const
 			if (!anim->IsAnimationComplete())
 			{
 				anim->SetShaderValues(shader);
-				renderer->Render();
 			}
 		}
 		//render
-		else
-		{
-			renderer->Render();
-		}
+		renderer->Render();
 		Texture::Unbind();
 		Shader::Unbind();
 
@@ -140,6 +136,47 @@ void RenderEngine::Render() const
 
 
 }
+void rb::RenderEngine::SortSprites()
+{
+	
+}
+
+
+void rb::RenderEngine::SetupBatches()
+{
+	//clear batches
+	for (auto& shaderBatch: shaderBatches)
+	{
+		shaderBatch->textureBatches.clear();
+	}
+	shaderBatches.clear();
+	
+	//sort sprites by shader first
+	std::stable_sort(spriteRenderers.begin(), spriteRenderers.end(), 
+		[](const std::shared_ptr<SpriteRenderer>& a, const std::shared_ptr<SpriteRenderer>& b)
+	{
+		return a->GetShader().Program() > b->GetShader().Program();
+	});
+
+	//setup the shader batches
+	//add first shaderBatch with the first sprite's info
+	shaderBatches.push_back(std::make_shared<ShaderBatch>(spriteRenderers[0]->GetShader()));
+	for (size_t i = 1; i < spriteRenderers.size(); ++i)
+	{
+		//add to last shaderBatch if using the same shader
+		if (spriteRenderers[i]->GetShader().Program() == shaderBatches.back()->shader.Program())
+		{
+			shaderBatches.back()->textureBatches.push_back(std::make_shared<TextureBatch>(spriteRenderers[i]->GetTexture().textureID));
+		}
+		else //new shaderBatch - setup texture batches for previous shader batch
+		{
+			auto& shaderBatch = shaderBatches.back();
+
+			//sort 
+		}
+	}
+}
+
 void rb::RenderEngine::PostRender() const
 {
 	glfwSwapBuffers(window);

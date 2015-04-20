@@ -155,8 +155,8 @@
     <None Include="Assets\Shaders\PointSprite.vert" />
     <None Include="Assets\Shaders\SpriteShader.frag" />
     <None Include="Assets\Shaders\SpriteShader.vert" />
-    <None Include="Assets\Shaders\SpriteShader_Instanced.frag" />
-    <None Include="Assets\Shaders\SpriteShader_Instanced.vert" />
+    <None Include="Assets\Shaders\InstancedSprite.frag" />
+    <None Include="Assets\Shaders\InstancedSprite.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

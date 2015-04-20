@@ -102,9 +102,10 @@ void rb::R2DGame::OnKeyboard(int key, int action)
 }
 void rb::R2DGame::LoadDefaultResources()
 {
-	ShaderManager::LoadShader("PointSprite.vert", "PointSprite.frag", "PointSprite.geom", Shader::ShaderType::PointSprite);
+	//ShaderManager::LoadShader("PointSprite.vert", "PointSprite.frag", "PointSprite.geom", Shader::ShaderType::PointSprite);
 	ShaderManager::LoadShader("SpriteShader.vert", "SpriteShader.frag", Shader::ShaderType::SpriteShader);
 	ShaderManager::LoadShader("AnimatedSprite.vert", "AnimatedSprite.frag", Shader::ShaderType::AnimatedSprite);
+	ShaderManager::LoadShader("InstancedSprite.vert", "InstancedSprite.frag", Shader::ShaderType::InstancedSprite);
 
 	TextureManager::LoadTexture("RectCollider", "Square.png");
 	TextureManager::LoadTexture("CircleCollider", "Circle.png");

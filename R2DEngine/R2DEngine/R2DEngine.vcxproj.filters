@@ -278,12 +278,6 @@
     <None Include="Assets\Shaders\SpriteShader.vert">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\SpriteShader_Instanced.frag">
-      <Filter>Engine\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\SpriteShader_Instanced.vert">
-      <Filter>Engine\Shaders</Filter>
-    </None>
     <None Include="Assets\Shaders\PointSprite.frag">
       <Filter>Engine\Shaders</Filter>
     </None>
@@ -297,6 +291,12 @@
       <Filter>Engine\Shaders</Filter>
     </None>
     <None Include="Assets\Shaders\AnimatedSprite.vert">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\InstancedSprite.vert">
+      <Filter>Engine\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\InstancedSprite.frag">
       <Filter>Engine\Shaders</Filter>
     </None>
   </ItemGroup>

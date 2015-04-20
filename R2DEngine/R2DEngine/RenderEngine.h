@@ -8,6 +8,7 @@
 #include "RString.h"
 #include "Colour.h"
 #include "RMatrix.h"
+#include "Shader.h"
 
 namespace rb
 {
@@ -36,7 +37,32 @@ namespace rb
 		static Colour clearColour;
 		std::vector <std::shared_ptr<class SpriteRenderer>> spriteRenderers;
 		std::vector <std::shared_ptr<class SpriteAnimator>> animatedSprites;
+
+		struct TextureBatch
+		{
+			GLuint texID;
+			std::vector<Mat4> modelMatrices;
+			std::vector<Vec4> colours;
+			TextureBatch(GLuint texID) :texID(texID){}
+		};
+		struct ShaderBatch
+		{
+			Shader shader;
+			std::vector<std::shared_ptr<TextureBatch>> textureBatches;
+			ShaderBatch(const Shader& shader) : shader(shader){}
+		};
+
+		std::vector <std::shared_ptr<ShaderBatch>> shaderBatches;
+
+		void SortSprites();
+		void SetupBatches();
+
+		
+
+
 	};
+
+
 }
 
 #endif // !R_RENDER_ENGINE_H_

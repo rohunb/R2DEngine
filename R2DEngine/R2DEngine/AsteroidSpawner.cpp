@@ -22,26 +22,35 @@ void rb::AsteroidSpawner::Start()
 	asteroidPrefab->GetTransform()->size *= 0.3f;
 	asteroidPrefab->AddComponent<Rigidbody2D>();
 	asteroidPrefab->AddScript<TimedDestroy>();
-	auto& col = asteroidPrefab->AddComponent<CircleCollider>();
-	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.6f);
+	/*auto& col = asteroidPrefab->AddComponent<CircleCollider>();
+	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.6f);*/
+
+	/*size_t count = 500;
+	for (size_t i = 0; i < count; ++i)
+	{
+		Vec2 spawnPos = Random::UnitVector() * Random::RangeFromZero(Screen::HeightToFloat()*0.5f) + Screen::Center();
+		Instantiate(*asteroidPrefab, spawnPos, 0.0f);
+	}*/
 }
 
 void rb::AsteroidSpawner::Update(float dt)
 {
 	//Debug::Log("Asteroid spawner update");
 
+	//return;
+
 	if (currentTime >= spawnInterval)
 	{
 		/*if (counter <= 4000)
 		{
-			for (size_t i = 0; i < 1000; i++)
-			{
-				spawnPos = Random::UnitVector() * Random::RangeFromZero(Screen::HeightToFloat()*0.5f) + Screen::Center();
-				auto asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
-				counter++;
-			}
+		for (size_t i = 0; i < 1000; i++)
+		{
+		spawnPos = Random::UnitVector() * Random::RangeFromZero(Screen::HeightToFloat()*0.5f) + Screen::Center();
+		auto asteroidClone = Instantiate(*asteroidPrefab, spawnPos, 0.0f);
+		counter++;
+		}
 		}*/
-		
+
 		const float xPos = Random::Range(0.0f, Screen::WidthToFloat());
 		const float yPos = Screen::HeightToFloat();
 		const Vec2 spawnPos = Vec2(xPos, yPos);

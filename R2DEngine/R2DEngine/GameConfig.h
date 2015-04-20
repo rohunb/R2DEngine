@@ -6,6 +6,7 @@
 namespace rb
 {
 #define PHYSICS_DEBUG_DRAW 0
+#define INSTANCED_SPRITES 1
 
 	struct GameConfig
 	{
