@@ -11,6 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Performance2.psess = Performance2.psess
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RocketCommand", "RocketCommand\RocketCommand.vcxproj", "{5E3F0DB8-B2CB-426A-A6B4-5F7502E46FF6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DBE01C94-7359-4B89-B039-C03D3D19D12A} = {DBE01C94-7359-4B89-B039-C03D3D19D12A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,11 +26,12 @@ Global
 		{DBE01C94-7359-4B89-B039-C03D3D19D12A}.Debug|Win32.Build.0 = Debug|Win32
 		{DBE01C94-7359-4B89-B039-C03D3D19D12A}.Release|Win32.ActiveCfg = Release|Win32
 		{DBE01C94-7359-4B89-B039-C03D3D19D12A}.Release|Win32.Build.0 = Release|Win32
+		{5E3F0DB8-B2CB-426A-A6B4-5F7502E46FF6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5E3F0DB8-B2CB-426A-A6B4-5F7502E46FF6}.Debug|Win32.Build.0 = Debug|Win32
+		{5E3F0DB8-B2CB-426A-A6B4-5F7502E46FF6}.Release|Win32.ActiveCfg = Release|Win32
+		{5E3F0DB8-B2CB-426A-A6B4-5F7502E46FF6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

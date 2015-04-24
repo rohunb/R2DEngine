@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="R2DEngine.cpp">
       <Filter>Engine\EngineCore</Filter>
     </ClCompile>
@@ -53,9 +52,6 @@
     <ClCompile Include="RVector.cpp">
       <Filter>Engine\Includes</Filter>
     </ClCompile>
-    <ClCompile Include="RocketCommand.cpp">
-      <Filter>Gameplay Code</Filter>
-    </ClCompile>
     <ClCompile Include="R2DGame.cpp">
       <Filter>Engine\EngineCore</Filter>
     </ClCompile>
@@ -82,24 +78,6 @@
     </ClCompile>
     <ClCompile Include="SpriteAnimator.cpp">
       <Filter>Engine\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Gameplay Code\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene2.cpp">
-      <Filter>Gameplay Code\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="AsteroidSpawner.cpp">
-      <Filter>Gameplay Code\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="Cannon.cpp">
-      <Filter>Gameplay Code\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="TimedDestroy.cpp">
-      <Filter>Gameplay Code\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="TimedAction.cpp">
-      <Filter>Gameplay Code\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Engine\EngineCore</Filter>
@@ -136,17 +114,8 @@
     <Filter Include="Engine\Includes">
       <UniqueIdentifier>{60e4874d-a4b2-4026-aea5-cc7b17c1c8c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Gameplay Code">
-      <UniqueIdentifier>{384d19df-f0a1-40b4-b799-e79b5b49ba09}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Shaders">
       <UniqueIdentifier>{dda4e511-9544-42b9-9344-45789fff9f96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Gameplay Code\Scenes">
-      <UniqueIdentifier>{66b9014d-ba3e-49f7-81d2-6a3396d9d971}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Gameplay Code\Scripts">
-      <UniqueIdentifier>{bacbbff4-ea01-4601-8cf6-6a60af58c9cc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Components">
       <UniqueIdentifier>{64115d0c-f7dd-41ab-b28f-a38126acbabc}</UniqueIdentifier>
@@ -210,9 +179,6 @@
     <ClInclude Include="RMatrix.h">
       <Filter>Engine\Includes</Filter>
     </ClInclude>
-    <ClInclude Include="RocketCommand.h">
-      <Filter>Gameplay Code</Filter>
-    </ClInclude>
     <ClInclude Include="R2DGame.h">
       <Filter>Engine\EngineCore</Filter>
     </ClInclude>
@@ -239,24 +205,6 @@
     </ClInclude>
     <ClInclude Include="SpriteAnimator.h">
       <Filter>Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Gameplay Code\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene2.h">
-      <Filter>Gameplay Code\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="AsteroidSpawner.h">
-      <Filter>Gameplay Code\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="Cannon.h">
-      <Filter>Gameplay Code\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedDestroy.h">
-      <Filter>Gameplay Code\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedAction.h">
-      <Filter>Gameplay Code\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Engine\EngineCore</Filter>

@@ -1,6 +1,9 @@
 R2DEngine/R2DEngine/Debug
 R2DEngine/R2DEngine/Release
 R2DEngine/Debug
+R2DEngine/RocketCommand/Debug
+R2DEngine/RocketCommand/Release
+
 *.vspx
 *.psess
 *.tmp

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{f072c811-4b2e-4740-9905-7d074f561c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{df98aafb-7463-44e9-bd1e-a48fa3ad9418}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\R2DEngine\GameScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\R2DEngine\Scene2.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\R2DEngine\AsteroidSpawner.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\R2DEngine\Cannon.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\R2DEngine\TimedAction.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\R2DEngine\TimedDestroy.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\R2DEngine\RocketCommand.cpp" />
+    <ClCompile Include="..\R2DEngine\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\R2DEngine\GameScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\R2DEngine\Scene2.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\R2DEngine\AsteroidSpawner.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\R2DEngine\Cannon.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\R2DEngine\TimedAction.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\R2DEngine\TimedDestroy.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\R2DEngine\RocketCommand.h" />
+  </ItemGroup>
+</Project>

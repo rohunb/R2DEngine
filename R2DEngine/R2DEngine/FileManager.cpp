@@ -12,6 +12,7 @@ string rb::FileManager::ReadFile(const string& path)
 	string fileContents;
 	try
 	{
+		Debug::Log("Reading file at " + path);
 		ifstream file(path);
 		assert(!file.fail() && "File not found");
 		stringstream stream;
