@@ -139,15 +139,15 @@
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\AnimatedSprite.frag" />
-    <None Include="Assets\Shaders\AnimatedSprite.vert" />
-    <None Include="Assets\Shaders\PointSprite.frag" />
-    <None Include="Assets\Shaders\PointSprite.geom" />
-    <None Include="Assets\Shaders\PointSprite.vert" />
-    <None Include="Assets\Shaders\SpriteShader.frag" />
-    <None Include="Assets\Shaders\SpriteShader.vert" />
-    <None Include="Assets\Shaders\InstancedSprite.frag" />
-    <None Include="Assets\Shaders\InstancedSprite.vert" />
+    <None Include="..\Assets\Shaders\AnimatedSprite.frag" />
+    <None Include="..\Assets\Shaders\AnimatedSprite.vert" />
+    <None Include="..\Assets\Shaders\InstancedSprite.frag" />
+    <None Include="..\Assets\Shaders\InstancedSprite.vert" />
+    <None Include="..\Assets\Shaders\PointSprite.frag" />
+    <None Include="..\Assets\Shaders\PointSprite.geom" />
+    <None Include="..\Assets\Shaders\PointSprite.vert" />
+    <None Include="..\Assets\Shaders\SpriteShader.frag" />
+    <None Include="..\Assets\Shaders\SpriteShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

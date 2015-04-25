@@ -16,7 +16,13 @@ rb::SpriteRenderer::SpriteRenderer(const Texture& texture, const Shader& shader)
 }
 rb::SpriteRenderer::SpriteRenderer(const Texture& texture)
 	: SpriteRenderer(texture,
+#if RENDER_MODE_IMMEDIATE
 	ShaderManager::GetShader(Shader::ShaderType::SpriteShader))
+#endif
+#if RENDER_MODE_INSTANCED
+	ShaderManager::GetShader(Shader::ShaderType::InstancedSprite))
+#endif
+	
 {}
 
 rb::SpriteRenderer::SpriteRenderer(const SpriteRenderer&& rhs)

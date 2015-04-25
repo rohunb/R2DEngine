@@ -5,8 +5,9 @@
 
 namespace rb
 {
-#define PHYSICS_DEBUG_DRAW 0
-#define INSTANCED_SPRITES 1
+#define PHYSICS_DEBUG_DRAW 0 //only works with immediate mode
+#define RENDER_MODE_IMMEDIATE 1
+#define RENDER_MODE_INSTANCED 0
 
 	struct GameConfig
 	{

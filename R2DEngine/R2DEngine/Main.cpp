@@ -4,6 +4,6 @@
 int main()
 {
 	using namespace rb;
-	std::unique_ptr<RocketCommand> game = std::make_unique<RocketCommand>();
+	auto& game = std::make_unique<RocketCommand>();
 	game->StartGame();
 }

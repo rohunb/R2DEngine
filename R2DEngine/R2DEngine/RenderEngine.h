@@ -9,6 +9,8 @@
 #include "Colour.h"
 #include "RMatrix.h"
 #include "Shader.h"
+#include "GameConfig.h"
+#include "Texture.h"
 
 namespace rb
 {
@@ -26,9 +28,9 @@ namespace rb
 
 		void AddNewRenderer(std::shared_ptr<class SpriteRenderer>& renderer);
 		void RemoveRenderer(std::shared_ptr<class SpriteRenderer>& renderer);
-		void PreRender() const;
-		void Render() const;
-		void PostRender() const;
+		void PreRender();
+		void Render();
+		void PostRender();
 		static void SetClearColour(const Colour& colour);
 
 	private:
@@ -38,31 +40,27 @@ namespace rb
 		std::vector <std::shared_ptr<class SpriteRenderer>> spriteRenderers;
 		std::vector <std::shared_ptr<class SpriteAnimator>> animatedSprites;
 
+#if RENDER_MODE_INSTANCED
 		struct TextureBatch
 		{
-			GLuint texID;
+			Texture texture;
+			GLuint VAO;
 			std::vector<Mat4> modelMatrices;
-			std::vector<Vec4> colours;
-			TextureBatch(GLuint texID) :texID(texID){}
+			std::vector<Colour> colours;
+			explicit TextureBatch(const std::shared_ptr<class SpriteRenderer>& sprite);
 		};
 		struct ShaderBatch
 		{
 			Shader shader;
 			std::vector<std::shared_ptr<TextureBatch>> textureBatches;
-			ShaderBatch(const Shader& shader) : shader(shader){}
+			explicit ShaderBatch(const std::shared_ptr<class SpriteRenderer>& sprite);
 		};
-
 		std::vector <std::shared_ptr<ShaderBatch>> shaderBatches;
-
-		void SortSprites();
 		void SetupBatches();
-
-		
-
+		void ClearBatches();
+#endif
 
 	};
-
-
 }
 
 #endif // !R_RENDER_ENGINE_H_

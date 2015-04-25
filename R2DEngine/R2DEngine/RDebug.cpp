@@ -1,5 +1,6 @@
 #include "RDebug.h"
 #include <iostream>
+#include "GL_Includes.h"
 
 void rb::Debug::Log(const string& message)
 {
@@ -27,6 +28,18 @@ void rb::Debug::Warning(const string& message)
 void rb::Debug::Warning(const string& message, const string& file, int line)
 {
 	DisplayMessage("Warning: " + message, file, line);
+}
+
+void rb::Debug::CheckGLError(const string& file, int line)
+{
+	const GLenum glError = glGetError();
+	assert(glError == GL_NO_ERROR);
+	if (glError != GL_NO_ERROR)
+	{
+		//printf("GLERROR %s | file %s at line %d", gluErrorString(glError), file, line);
+		//string errorString = gluErrorString(glError);
+		//DisplayMessage("GL_ERROR: " + );
+	}
 }
 
 void rb::Debug::DisplayMessage(const string& message)

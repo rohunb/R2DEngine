@@ -26,7 +26,7 @@ void rb::Collider::RegisterCollisionCallback(const CollisionCallback& _OnCollisi
 
 void rb::Collider::OnCollisionEnter(const Collider& otherCol)
 {
-	Debug::Log("collision enter");
+	//Debug::Log("collision enter");
 	if (OnCollision) OnCollision(otherCol);
 }
 

@@ -220,31 +220,31 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\SpriteShader.frag">
+    <None Include="..\Assets\Shaders\AnimatedSprite.frag">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\SpriteShader.vert">
+    <None Include="..\Assets\Shaders\AnimatedSprite.vert">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\PointSprite.frag">
+    <None Include="..\Assets\Shaders\InstancedSprite.frag">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\PointSprite.geom">
+    <None Include="..\Assets\Shaders\InstancedSprite.vert">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\PointSprite.vert">
+    <None Include="..\Assets\Shaders\PointSprite.frag">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\AnimatedSprite.frag">
+    <None Include="..\Assets\Shaders\PointSprite.geom">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\AnimatedSprite.vert">
+    <None Include="..\Assets\Shaders\PointSprite.vert">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\InstancedSprite.vert">
+    <None Include="..\Assets\Shaders\SpriteShader.frag">
       <Filter>Engine\Shaders</Filter>
     </None>
-    <None Include="Assets\Shaders\InstancedSprite.frag">
+    <None Include="..\Assets\Shaders\SpriteShader.vert">
       <Filter>Engine\Shaders</Filter>
     </None>
   </ItemGroup>

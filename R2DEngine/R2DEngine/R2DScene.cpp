@@ -55,7 +55,7 @@ void rb::R2DScene::DestroyAllObjects()
 	Debug::Log("Destroying all scene objs");
 	while (!sceneObjects.empty())
 	{
-		Destroy(sceneObjects[0]);
+		Destroy(sceneObjects[0]); //TODO: erase from the back, preferably by index
 	}
 	sceneObjects.clear();
 }

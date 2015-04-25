@@ -8,6 +8,9 @@ namespace rb
 	class Debug
 	{
 	public:
+
+#define CheckOpenGLError() CheckGLError(__FILE__, __LINE__)
+
 		Debug() = delete;
 		static void Log(const string& message);
 		static void Log(const string& message, const string& file, int line);
@@ -15,6 +18,7 @@ namespace rb
 		static void Error(const string& message, const string& file, int line);
 		static void Warning(const string& message);
 		static void Warning(const string& message, const string& file, int line);
+		static void CheckGLError(const string& file, int line);
 
 	private:
 		static void DisplayMessage(const string& message, const string& file, int line);
