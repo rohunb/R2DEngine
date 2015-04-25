@@ -54,6 +54,7 @@ namespace rb
 			Shader shader;
 			std::vector<std::shared_ptr<TextureBatch>> textureBatches;
 			explicit ShaderBatch(const std::shared_ptr<class SpriteRenderer>& sprite);
+			void SetupTextureBatches();
 		};
 		std::vector <std::shared_ptr<ShaderBatch>> shaderBatches;
 		void SetupBatches();

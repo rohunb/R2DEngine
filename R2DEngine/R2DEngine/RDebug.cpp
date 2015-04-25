@@ -33,12 +33,10 @@ void rb::Debug::Warning(const string& message, const string& file, int line)
 void rb::Debug::CheckGLError(const string& file, int line)
 {
 	const GLenum glError = glGetError();
-	assert(glError == GL_NO_ERROR);
 	if (glError != GL_NO_ERROR)
 	{
-		//printf("GLERROR %s | file %s at line %d", gluErrorString(glError), file, line);
-		//string errorString = gluErrorString(glError);
-		//DisplayMessage("GL_ERROR: " + );
+		printf("GLERROR %s | file %s at line %d", gluErrorString(glError), file, line);
+		assert(false);
 	}
 }
 

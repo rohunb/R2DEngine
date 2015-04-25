@@ -35,7 +35,7 @@ rb::RenderEngine::RenderEngine(int windowWidth, int windowHeight, int windowPosX
 	Debug::Log("Initialized Render Engine.");
 }
 
-void rb::RenderEngine::PreRender() 
+void rb::RenderEngine::PreRender()
 {
 	glClearColor(clearColour.r, clearColour.g, clearColour.b, clearColour.a);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -105,7 +105,7 @@ void RenderEngine::Render()
 	SetupBatches();
 
 	//foreach shader batch
-	Debug::Log("Num shader batches: " + ToString(shaderBatches.size()));
+	//Debug::Log("Num shader batches: " + ToString(shaderBatches.size()));
 	for (auto& shaderBatch : shaderBatches)
 	{
 		//bind shader
@@ -113,10 +113,11 @@ void RenderEngine::Render()
 		shader.Use();
 		//set uniforms for the entire texture batch
 		shader.SetMat4(Shader::projUniformName, projection);
-		
+
 		//foreach tex batch
-		for (auto& textureBatch: shaderBatch->textureBatches)
+		for (auto& textureBatch : shaderBatch->textureBatches)
 		{
+			//Debug::Log("Num objects: " + ToString(textureBatch->modelMatrices.size()));
 			//bind texure
 			shader.SetInt(Shader::spriteTextureName, 0);
 			textureBatch->texture.Bind();
@@ -125,15 +126,15 @@ void RenderEngine::Render()
 			GLuint VAO = textureBatch->VAO;
 			GLuint modelMatBuffer, colourBuffer;
 			const auto vec4Size = sizeof(Vec4);
-			const auto numTexBatches = shaderBatch->textureBatches.size();
-			
+			assert(textureBatch->modelMatrices.size() == textureBatch->colours.size());
+			const auto numObjects = textureBatch->modelMatrices.size();
 			glBindVertexArray(VAO);
 			Debug::CheckOpenGLError();
 			//model and colour buffers
 			//colours
 			glGenBuffers(1, &colourBuffer);
 			glBindBuffer(GL_ARRAY_BUFFER, colourBuffer);
-			glBufferData(GL_ARRAY_BUFFER, numTexBatches * vec4Size, textureBatch->colours.data(), GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, numObjects * vec4Size, textureBatch->colours.data(), GL_STATIC_DRAW);
 			glEnableVertexAttribArray(1);
 			glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)0);
 			glVertexAttribDivisor(1, 1);
@@ -141,14 +142,14 @@ void RenderEngine::Render()
 			//model mat buffer
 			glGenBuffers(1, &modelMatBuffer);
 			glBindBuffer(GL_ARRAY_BUFFER, modelMatBuffer);
-			glBufferData(GL_ARRAY_BUFFER, numTexBatches * sizeof(Mat4), textureBatch->modelMatrices.data(), GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, numObjects * sizeof(Mat4), textureBatch->modelMatrices.data(), GL_STATIC_DRAW);
 			//model matrix is from 2..5
 			glEnableVertexAttribArray(2);
 			glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)0);
 			glEnableVertexAttribArray(3);
 			glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)vec4Size);
 			glEnableVertexAttribArray(4);
-			glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)(2*vec4Size));
+			glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)(2 * vec4Size));
 			glEnableVertexAttribArray(5);
 			glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)(3 * vec4Size));
 			glVertexAttribDivisor(2, 1);
@@ -156,8 +157,8 @@ void RenderEngine::Render()
 			glVertexAttribDivisor(4, 1);
 			glVertexAttribDivisor(5, 1);
 			//instanced render
-			Debug::Log("Num batches: " + ToString(numTexBatches));
-			glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, numTexBatches);
+			//Debug::Log("Num batches: " + ToString(numTexBatches));
+			glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, numObjects);
 			Debug::CheckOpenGLError();
 			glBindVertexArray(0);
 			Texture::Unbind();
@@ -165,7 +166,7 @@ void RenderEngine::Render()
 		Shader::Unbind();
 	}//for shaderBatches
 	ClearBatches();
-			
+
 #endif // RENDER_MODE_INSTANCED
 
 
@@ -206,30 +207,30 @@ void RenderEngine::Render()
 
 void rb::RenderEngine::ClearBatches()
 {
-	/*for (auto& shaderBatch : shaderBatches)
+	for (auto& shaderBatch : shaderBatches)
 	{
 		shaderBatch->textureBatches.clear();
 	}
-	shaderBatches.clear();*/
-	
-	while (!shaderBatches.empty())
+	shaderBatches.clear();
+
+	/*while (!shaderBatches.empty())
 	{
-		auto& textureBatch = shaderBatches[0]->textureBatches;
-		while (!textureBatch.empty())
-		{
-			textureBatch.erase(textureBatch.begin() + textureBatch.size() - 1);
-		}
-		shaderBatches.erase(shaderBatches.begin() + shaderBatches.size() - 1);
+	auto& textureBatch = shaderBatches[0]->textureBatches;
+	while (!textureBatch.empty())
+	{
+	textureBatch.erase(textureBatch.begin() + textureBatch.size() - 1);
 	}
+	shaderBatches.erase(shaderBatches.begin() + shaderBatches.size() - 1);
+	}*/
 }
 
 void rb::RenderEngine::SetupBatches()
 {
 	//sort sprites by shader first
-	std::stable_sort(spriteRenderers.begin(), spriteRenderers.end(), 
-		[](const std::shared_ptr<SpriteRenderer>& a, const std::shared_ptr<SpriteRenderer>& b)
+	std::stable_sort(spriteRenderers.begin(), spriteRenderers.end(),
+		[](const std::shared_ptr<SpriteRenderer>& lhs, const std::shared_ptr<SpriteRenderer>& rhs)
 	{
-		return a->GetShader().Program() > b->GetShader().Program();
+		return lhs->GetShader().Program() > rhs->GetShader().Program();
 	});
 
 	//setup the shader batches
@@ -247,39 +248,57 @@ void rb::RenderEngine::SetupBatches()
 		}
 		else //new shader - create new shader batch and setup texture batches for previous shader batch
 		{
-			auto& shaderBatch = shaderBatches.back();
-			//sort last shaderBatch's textureBatch by texture
-			std::stable_sort(shaderBatch->textureBatches.begin(), shaderBatch->textureBatches.end(),
-				[](const std::shared_ptr<TextureBatch>& a, const std::shared_ptr<TextureBatch>& b)
-			{
-				return a->texture.textureID > b->texture.textureID;
-			});
-			//foreach textureBatch, setup modelMatrices and colours
-			for (size_t j = 1; j < shaderBatch->textureBatches.size(); )
-			{
-				auto& prevTexBatch = shaderBatch->textureBatches[j - 1];
-				auto& thisTexBatch = shaderBatch->textureBatches[j];
-				//if same texture as previous, get rid of this as it is repeated, but save model and colour into previous texBatch
-				if (thisTexBatch->texture.textureID == prevTexBatch->texture.textureID)
-				{
-					assert(thisTexBatch->modelMatrices.size() == 1 && "Expecting tex batch to have one 1 model matrix at this point");
-					assert(thisTexBatch->colours.size() == 1 && "Expecting tex batch to have one 1 colour at this point");
-					prevTexBatch->modelMatrices.push_back(thisTexBatch->modelMatrices[0]);
-					prevTexBatch->colours.push_back(thisTexBatch->colours[0]);
-					//erase this tex patch as it is a duplicate
-					shaderBatch->textureBatches.erase(shaderBatch->textureBatches.begin() + j);
-					//j should not increment since an element was deleted
-				}
-				else
-				{
-					j++;
-				}
-			}//for textureBatches
-
+			assert(shaderBatches.back());
+			shaderBatches.back()->SetupTextureBatches();
 			//create new shaderBatch with this sprite's shader
 			shaderBatches.push_back(std::make_shared<ShaderBatch>(spriteRenderers[i]));
 		}//end else (if not same shader)
 	}//for sprites
+	//the first shaderBatch has not setup it's textureBatches yet
+	assert(shaderBatches[0]);
+	shaderBatches[0]->SetupTextureBatches();
+}
+void rb::RenderEngine::ShaderBatch::SetupTextureBatches()
+{
+	//sort textureBatches by texture
+	std::stable_sort(textureBatches.begin(), textureBatches.end(),
+		[](const std::shared_ptr<TextureBatch>& lhs, const std::shared_ptr<TextureBatch>& rhs)
+	{
+		return lhs->texture.textureID > rhs->texture.textureID;
+	});
+	//foreach textureBatch, setup modelMatrices and colours
+	for (size_t i = 1; i < textureBatches.size();)
+	{
+		auto& prevTexBatch = textureBatches[i - 1];
+		auto& thisTexBatch = textureBatches[i];
+		//if same texture as previous, get rid of this as it is repeated, but save model and colour into previous texBatch
+		if (thisTexBatch->texture.textureID == prevTexBatch->texture.textureID)
+		{
+			//Debug::Log("Same tex");
+			assert(thisTexBatch->modelMatrices.size() == 1 && "Expecting tex batch to have one 1 model matrix at this point");
+			assert(thisTexBatch->colours.size() == 1 && "Expecting tex batch to have one 1 colour at this point");
+			prevTexBatch->modelMatrices.push_back(thisTexBatch->modelMatrices[0]);
+			prevTexBatch->colours.push_back(thisTexBatch->colours[0]);
+			//erase this tex patch as it is a duplicate
+			textureBatches.erase(textureBatches.begin() + i);
+			//j should not increment since an element was deleted
+		}
+		else
+		{
+			i++;
+		}
+	}//for textureBatches
+#if _DEBUG
+	for (size_t i = 0; i < textureBatches.size(); i++)
+	{
+		size_t texCount = std::count_if(textureBatches.begin(), textureBatches.end(),
+			[&](const std::shared_ptr<TextureBatch>& texBatch)
+		{
+			return texBatch->texture.textureID == textureBatches[i]->texture.textureID;
+		});
+		assert(texCount == 1); //each texture should be unique
+	}
+#endif
 }
 
 //ShaderBatch Ctor
@@ -288,6 +307,7 @@ rb::RenderEngine::ShaderBatch::ShaderBatch(const std::shared_ptr<SpriteRenderer>
 {
 	textureBatches.push_back(std::make_shared<TextureBatch>(sprite));
 }
+
 //TextureBatch ctor
 rb::RenderEngine::TextureBatch::TextureBatch(const std::shared_ptr<SpriteRenderer>& sprite)
 	: texture(sprite->GetTexture()),
@@ -298,7 +318,7 @@ rb::RenderEngine::TextureBatch::TextureBatch(const std::shared_ptr<SpriteRendere
 }
 #endif // RENDER_MODE_INSTANCED
 
-void rb::RenderEngine::PostRender() 
+void rb::RenderEngine::PostRender()
 {
 	glfwSwapBuffers(window);
 }
