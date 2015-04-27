@@ -10,7 +10,7 @@ namespace rb
 	class Collider : public R2DComponent
 	{
 	public:
-		typedef std::function<void(const Collider&)>  CollisionCallback;
+		typedef std::function<void(Collider&)>  CollisionCallback;
 		enum class ColliderType {Circle, Rect};
 
 		Collider() = default;
@@ -24,7 +24,7 @@ namespace rb
 		virtual std::unique_ptr<Collider> Clone() const = 0;
 
 		void RegisterCollisionCallback(const CollisionCallback& OnCollision);
-		void OnCollisionEnter(const Collider& otherCol);
+		void OnCollisionEnter(Collider& otherCol);
 
 	protected:
 		ColliderType type;

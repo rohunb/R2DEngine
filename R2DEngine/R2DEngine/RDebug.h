@@ -5,24 +5,20 @@
 
 namespace rb
 {
-	class Debug
+	namespace Debug
 	{
-	public:
-
 #define CheckOpenGLError() CheckGLError(__FILE__, __LINE__)
 
-		Debug() = delete;
-		static void Log(const string& message);
-		static void Log(const string& message, const string& file, int line);
-		static void Error(const string& message);
-		static void Error(const string& message, const string& file, int line);
-		static void Warning(const string& message);
-		static void Warning(const string& message, const string& file, int line);
-		static void CheckGLError(const string& file, int line);
+		void Log(const string& message);
+		void Log(const string& message, const string& file, int line);
+		void Error(const string& message);
+		void Error(const string& message, const string& file, int line);
+		void Warning(const string& message);
+		void Warning(const string& message, const string& file, int line);
+		void CheckGLError(const string& file, int line);
 
-	private:
-		static void DisplayMessage(const string& message, const string& file, int line);
-		static void DisplayMessage(const string& message);
-	};
+		void DisplayMessage(const string& message, const string& file, int line);
+		void DisplayMessage(const string& message);
+	}
 }
 #endif // !R_DEBUG_H_

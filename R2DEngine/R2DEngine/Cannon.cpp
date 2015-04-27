@@ -20,13 +20,14 @@ void rb::Cannon::Start()
 
 	auto& explodeTex = TextureManager::GetTexture("Explosion");
 	explosionPrefab = std::make_unique<GameObject>(explodeTex);
+	explosionPrefab->tag = "Explosion";
 	explosionPrefab->GetTransform()->size = Vec2(80.0f);
 	auto& anim = explosionPrefab->AddComponent<SpriteAnimator>();
 	anim->Initialize(8, 3, 20, 0.01f, false);
 	//anim->Initialize(8, 8, 64, 0.01f, false);
 	explosionPrefab->AddScript<TimedDestroy>();
 	auto& col = explosionPrefab->AddComponent<CircleCollider>();
-	col->SetRadius(explosionPrefab->GetTransform()->size.x);
+	col->SetRadius(explosionPrefab->GetTransform()->size.x*0.5f);
 
 	onMouseClick = Input::RegisterMouseClickCallback(
 		[&](int button, int action, const Vec2& mousePos){OnMouseClick(button, action, mousePos); });
@@ -49,9 +50,13 @@ void Cannon::Fire(const Vec2& targetPos)
 	const float timeToTarget = distToTarget / missileSpeed;
 	assert(missileClone->GetScript<TimedAction>());
 	missileClone->GetScript<TimedAction>()->SetTimedAction(
-	[=]()
+		[=]()
 	{
-		auto& explosionClone = std::move(Instantiate(*explosionPrefab, targetPos, 0.0f));
+		auto& explosionClone = Instantiate(*explosionPrefab, targetPos, 0.0f);
+		pos = targetPos;
+		auto& collider = explosionClone->GetCollider();
+		assert(collider);
+		collider->RegisterCollisionCallback([this](Collider& other){OnCollision(other); });
 		assert(explosionClone->GetScript<TimedDestroy>());
 		explosionClone->GetScript<TimedDestroy>()->StartDestroyTimer(1.0f);
 	}, timeToTarget);
@@ -64,7 +69,6 @@ void rb::Cannon::OnMouseClick(int button, int action, const Vec2& mousePosition)
 	if (action == GLFW_PRESS)
 	{
 		Fire(Screen::ToWorldCoords(mousePosition));
-		
 	}
 }
 
@@ -73,6 +77,17 @@ void rb::Cannon::OnKeyboard(int key, int action)
 	if (key == GLFW_KEY_LEFT_SHIFT && action == GLFW_PRESS)
 	{
 		Fire(Screen::ToWorldCoords(Input::GetMousePosition()));
+	}
+}
+
+void rb::Cannon::OnCollision(Collider& other)
+{
+	assert(other.GetGameObject());
+	if (other.GetGameObject()->tag == "Asteroid")
+	{
+		//Debug::Log("Collided with " + otherGO->tag + "dist " + ToString(glm::distance(pos, other.GetGameObject()->GetTransform()->position)));
+		other.GetGameObject()->GetRenderer()->SetColour(Colour::red);
+		Destroy(other.GetGameObject());
 	}
 }
 

@@ -90,7 +90,7 @@ void RenderEngine::Render()
 			auto& trans = renderer->GetGameObject()->GetTransform();
 			Mat4 modelMat = glm::translate(Mat4(1.0f), RVector2::ToVector3(trans->position));
 			modelMat = glm::rotate(modelMat, trans->rotation, RVector3::back);
-			modelMat = glm::scale(modelMat, Vec3(col->GetRadius(), col->GetRadius(), 1.0f));
+			modelMat = glm::scale(modelMat, Vec3(col->GetRadius()*2.0f, col->GetRadius()*2.0f, 1.0f));
 			colShader.SetMat4(Shader::modelUniformName, modelMat);
 			colShader.SetVec4(Shader::spriteColourName, Colour::red.ToVec4());
 			colShader.SetInt(Shader::spriteTextureName, 0);

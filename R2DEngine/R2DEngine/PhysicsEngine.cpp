@@ -79,8 +79,8 @@ void rb::PhysicsEngine::Update(float dt)
 		{
 			if (CheckCollision(*circleColliders[i], *circleColliders[j]))
 			{
-				//Debug::Log("Collision: Col A " + ToString(circleColliders[i]->GetGameObject()->GetTransform()->position) 
-					//+ " col b " + ToString(circleColliders[j]->GetGameObject()->GetTransform()->position));
+				/*Debug::Log("Collision: Col A " + ToString(circleColliders[i]->GetGameObject()->GetTransform()->position) 
+					+ " col b " + ToString(circleColliders[j]->GetGameObject()->GetTransform()->position));*/
 				circleColliders[i]->OnCollisionEnter(*circleColliders[j]);
 				circleColliders[j]->OnCollisionEnter(*circleColliders[i]);
 			}

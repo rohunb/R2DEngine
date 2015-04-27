@@ -19,11 +19,13 @@ void rb::AsteroidSpawner::Start()
 	asteroidVelY = 200.0f;
 	asteroidVelXRange = 200.0f;
 	asteroidPrefab = std::make_unique<GameObject>(TextureManager::GetTexture("Asteroid"));
+	asteroidPrefab->tag = "Asteroid";
 	asteroidPrefab->GetTransform()->size *= 0.3f;
 	asteroidPrefab->AddComponent<Rigidbody2D>();
 	asteroidPrefab->AddScript<TimedDestroy>();
 	auto& col = asteroidPrefab->AddComponent<CircleCollider>();
-	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.6f);
+	col->SetRadius(asteroidPrefab->GetTransform()->size.x*0.3f);
+	Debug::Log("rad: " + ToString(col->GetRadius()));
 
 	/*size_t count = 500;
 	for (size_t i = 0; i < count; ++i)
@@ -58,7 +60,7 @@ void rb::AsteroidSpawner::Update(float dt)
 		const Vec2 velocity = Vec2(Random::Range(-asteroidVelXRange, asteroidVelXRange), -asteroidVelY);
 		asteroidClone->GetRigidbody()->velocity = velocity;
 		auto& timedDestroy = asteroidClone->GetScript<TimedDestroy>();
-		timedDestroy->StartDestroyTimer(5.0f);
+		timedDestroy->StartDestroyTimer(10.0f);
 		currentTime = 0.0f;
 	}
 	currentTime += dt;

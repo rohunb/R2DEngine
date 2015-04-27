@@ -11,11 +11,11 @@ void rb::GameObject::Init()
 {
 	//Debug::Log("GameObject init");
 	transform->gameObject = shared_from_this();
-	if(renderer) renderer->gameObject = shared_from_this();
-	if(rigidbody) rigidbody->gameObject = shared_from_this();
+	if (renderer) renderer->gameObject = shared_from_this();
+	if (rigidbody) rigidbody->gameObject = shared_from_this();
 	if (animator) animator->gameObject = shared_from_this();
 	if (collider) collider->gameObject = shared_from_this();
-	
+
 	for (auto& script : scripts)
 	{
 		script->gameObject = shared_from_this();
@@ -28,14 +28,17 @@ rb::GameObject::GameObject()
 {}
 
 rb::GameObject::GameObject(const Texture& texture)
-	:transform(std::make_shared<Transform>()),
+	: transform(std::make_shared<Transform>()),
 	renderer(std::make_shared<SpriteRenderer>(texture))
 {
 	transform->size = Vec2(renderer->GetTexture().width, renderer->GetTexture().height);
 }
 
 rb::GameObject::GameObject(const GameObject& rhs)
-	:transform(std::make_shared<Transform>(*(rhs.transform)))
+	:tag(rhs.tag),
+	name(rhs.name),
+	destroyed(rhs.destroyed),
+	transform(std::make_shared<Transform>(*(rhs.transform)))
 {
 	if (rhs.renderer) renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
 	if (rhs.animator) animator = std::make_shared<SpriteAnimator>(*(rhs.animator));
@@ -43,7 +46,7 @@ rb::GameObject::GameObject(const GameObject& rhs)
 	if (rhs.collider) collider = rhs.collider->Clone();
 
 	scripts.reserve(rhs.scripts.size());
-	for (auto& rhsScript: rhs.scripts)
+	for (auto& rhsScript : rhs.scripts)
 	{
 		scripts.push_back(rhsScript->Clone());
 	}
@@ -51,6 +54,9 @@ rb::GameObject::GameObject(const GameObject& rhs)
 
 GameObject& rb::GameObject::operator=(const GameObject& rhs)
 {
+	tag = rhs.tag;
+	name = rhs.name;
+	destroyed = rhs.destroyed;
 	transform = std::make_shared<Transform>(*(rhs.transform));
 	if (rhs.renderer) renderer = std::make_shared<SpriteRenderer>(*(rhs.renderer));
 	if (rhs.animator) animator = std::make_shared<SpriteAnimator>(*(rhs.animator));
@@ -65,7 +71,10 @@ GameObject& rb::GameObject::operator=(const GameObject& rhs)
 }
 
 rb::GameObject::GameObject(GameObject&& rhs)
-	: transform(std::move(rhs.transform)),
+	: tag(std::move(rhs.tag)),
+	name(std::move(rhs.name)),
+	destroyed(rhs.destroyed),
+	transform(std::move(rhs.transform)),
 	scripts(std::move(rhs.scripts))
 {
 	if (rhs.renderer) renderer = std::move(rhs.renderer);
@@ -75,6 +84,9 @@ rb::GameObject::GameObject(GameObject&& rhs)
 }
 GameObject& rb::GameObject::operator=(GameObject&& rhs)
 {
+	tag = std::move(rhs.tag);
+	name = std::move(rhs.name);
+	destroyed = rhs.destroyed;
 	transform = std::move(rhs.transform);
 	if (rhs.renderer) renderer = std::move(rhs.renderer);
 	if (rhs.animator) animator = std::move(rhs.animator);
@@ -96,7 +108,7 @@ void rb::GameObject::SetTransform(const Vec2& position, float rotation, const Ve
 	transform->size = size;
 }
 
-const std::shared_ptr<Transform>& rb::GameObject::GetTransform() const
+std::shared_ptr<Transform> rb::GameObject::GetTransform() const
 {
 	return transform;
 }

@@ -31,7 +31,7 @@ namespace rb
 		~GameObject() = default;
 
 		//get/set
-		const std::shared_ptr<Transform>& GetTransform() const;
+		std::shared_ptr<Transform> GetTransform() const;
 		std::shared_ptr<SpriteRenderer> GetRenderer() const;
 		std::shared_ptr<Rigidbody2D> GetRigidbody() const;
 		std::shared_ptr<SpriteAnimator> GetAnimator() const;

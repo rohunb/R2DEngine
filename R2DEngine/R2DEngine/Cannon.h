@@ -34,8 +34,8 @@ namespace rb
 		//callbacks
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
 		void OnKeyboard(int key, int action);
-
-
+		void OnCollision(class Collider& other);
+		Vec2 pos;
 
 	};
 }
