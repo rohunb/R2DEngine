@@ -65,10 +65,14 @@ void RenderEngine::Render()
 			if (!anim->IsAnimationComplete())
 			{
 				anim->SetShaderValues(shader);
+				renderer->Render();
 			}
 		}
-		//render
-		renderer->Render();
+		else
+		{
+			//render
+			renderer->Render();
+		}
 		Texture::Unbind();
 		Shader::Unbind();
 
@@ -117,7 +121,7 @@ void RenderEngine::Render()
 		//foreach tex batch
 		for (auto& textureBatch : shaderBatch->textureBatches)
 		{
-			//Debug::Log("Num objects: " + ToString(textureBatch->modelMatrices.size()));
+			
 			//bind texure
 			shader.SetInt(Shader::spriteTextureName, 0);
 			textureBatch->texture.Bind();
@@ -128,21 +132,21 @@ void RenderEngine::Render()
 			const auto vec4Size = sizeof(Vec4);
 			assert(textureBatch->modelMatrices.size() == textureBatch->colours.size());
 			const auto numObjects = textureBatch->modelMatrices.size();
+			Debug::Log("Num objects: " + ToString(numObjects));
 			glBindVertexArray(VAO);
 			Debug::CheckOpenGLError();
 			//model and colour buffers
 			//colours
 			glGenBuffers(1, &colourBuffer);
 			glBindBuffer(GL_ARRAY_BUFFER, colourBuffer);
-			glBufferData(GL_ARRAY_BUFFER, numObjects * vec4Size, textureBatch->colours.data(), GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, numObjects * vec4Size, textureBatch->colours.data(), GL_DYNAMIC_DRAW);
 			glEnableVertexAttribArray(1);
 			glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)0);
 			glVertexAttribDivisor(1, 1);
-
 			//model mat buffer
 			glGenBuffers(1, &modelMatBuffer);
 			glBindBuffer(GL_ARRAY_BUFFER, modelMatBuffer);
-			glBufferData(GL_ARRAY_BUFFER, numObjects * sizeof(Mat4), textureBatch->modelMatrices.data(), GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, numObjects * sizeof(Mat4), textureBatch->modelMatrices.data(), GL_DYNAMIC_DRAW);
 			//model matrix is from 2..5
 			glEnableVertexAttribArray(2);
 			glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)0);

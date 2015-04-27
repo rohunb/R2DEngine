@@ -27,7 +27,7 @@ void rb::SpriteAnimator::Update(float dt)
 	if (animationComplete) return;
 	if (currentTime >= frameDuration)
 	{
-		const int frameIncrement = dt <= frameDuration ? 1 : 2;
+		const int frameIncrement = dt <= frameDuration ? 1 : 1;
 		if (!loop && currFrame + frameIncrement >= numFrames)
 		{
 			animationComplete = true;
