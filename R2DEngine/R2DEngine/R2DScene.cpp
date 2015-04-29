@@ -88,7 +88,7 @@ std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab)
 
 std::shared_ptr<GameObject> rb::R2DScene::Instantiate(const GameObject& prefab, const Vec2& position, float rotation)
 {
-	std::shared_ptr<GameObject> objClone = std::make_shared<GameObject>(std::move(prefab));
+	std::shared_ptr<GameObject> objClone = std::make_shared<GameObject>(prefab);
 	objClone->SetTransform(position, rotation);
 	sceneObjects.push_back(objClone);
 	assert(OnInstantiate && "Instantiate callback is null");

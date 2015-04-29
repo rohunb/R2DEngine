@@ -45,9 +45,12 @@ void rb::RocketCommand::OnMouseClick(int button, int action, const Vec2& mousePo
 
 void rb::RocketCommand::LoadResources()
 {
+	TextureManager::LoadTexture("Background", "Background.png");
 	TextureManager::LoadTexture("Missile", "Missile.png");
 	TextureManager::LoadTexture("Asteroid", "asteroid.png");
 	TextureManager::LoadTexture("Explosion", "explosion.png");
+	TextureManager::LoadTexture("City1", "city1.png");
+	
 	//TextureManager::LoadTexture("Explosion", "boom3_0.png");
 }
 

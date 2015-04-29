@@ -12,6 +12,7 @@ namespace rb
 		static int Height();
 		static float WidthToFloat();
 		static float HeightToFloat();
+		static Vec2 GetResolution();
 		static Vec2 Center();
 		static Vec2 ToWorldCoords(const Vec2& screenPosition);
 	private:

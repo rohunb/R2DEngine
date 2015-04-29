@@ -17,7 +17,8 @@ namespace rb
 		std::shared_ptr<MouseClickEvent> mouseClickEvent;
 		std::unique_ptr<GameObject> asteroidSpawnerPrefab;
 		std::unique_ptr<GameObject> cannonPrefab;
-
+		std::unique_ptr<GameObject> backgroundPrefab;
+		std::unique_ptr<GameObject> city1Prefab;
 		void OnMouseClick(int button, int action, const Vec2& mousePos);
 	};
 }
