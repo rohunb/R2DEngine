@@ -1,6 +1,7 @@
+R2DEngine/Debug
+R2DEngine/Release
 R2DEngine/R2DEngine/Debug
 R2DEngine/R2DEngine/Release
-R2DEngine/Debug
 R2DEngine/RocketCommand/Debug
 R2DEngine/RocketCommand/Release
 
@@ -40,6 +41,8 @@ R2DEngine/RocketCommand/Release
 *.exe
 *.out
 *.app
+
+*.sdf
 
 # =========================
 # Operating System Files

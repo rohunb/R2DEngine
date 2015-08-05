@@ -35,7 +35,7 @@ void rb::Debug::CheckGLError(const string& file, int line)
 	const GLenum glError = glGetError();
 	if (glError != GL_NO_ERROR)
 	{
-		printf("GLERROR %s | file %s at line %d", gluErrorString(glError), file, line);
+		printf("GLERROR %s | file %s at line %d", gluErrorString(glError), file.c_str(), line);
 		assert(false);
 	}
 }
